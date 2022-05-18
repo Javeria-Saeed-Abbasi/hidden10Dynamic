@@ -72,7 +72,201 @@
           <label for="selfieUpload" class="icon-wrapper"><i class="fa fa-pencil"></i></label>
           <img src="{{selfie?selfie:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'}}" alt="">
         </div>
-        <div class="btns d-flex align-items-center ">
+        <div class="container">
+          <p class="mt-3">1.) Are you seeking a real relationship, or are you looking for something casual?</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <label class="checkboxcontainer"
+              >Real relationship
+              <input type="radio" value="Real relationship" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >Casual relationship
+              <input
+                type="radio"
+                value="Casual relationship"
+                checked="checked"
+                formControlName=""
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >Not sure yet
+              <input type="radio" value="Not sure yet" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <p class="mt-3">2.) If there aren't "sparks" and/or "chemistry" on the first date, would you consider going on a second date?</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <label class="checkboxcontainer"
+              >Yes
+              <input type="radio" value="Yes" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >No
+              <input
+                type="radio"
+                value="No"
+                checked="checked"
+                formControlName=""
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >Maybe
+              <input type="radio" value="Maybe" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <p class="mt-3">3.) Are you currently separated, or in a relationship that's headed for a break up?</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <label class="checkboxcontainer"
+              >Yes
+              <input type="radio" value="Yes" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >No
+              <input
+                type="radio"
+                value="No"
+                checked="checked"
+                formControlName=""
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >Prefer not to answer
+              <input type="radio" value="Prefer not to answer" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <p class="mt-3">4.) What is your career, or what kind of work do you do?</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <input type="text" class="form-control" placeholder="Career">
+          </div>
+          <p class="mt-3">5.) Have you ever been married?</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <label class="checkboxcontainer"
+              >Yes once
+              <input type="radio" value="Yes once" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >Yes two times or more
+              <input
+                type="radio"
+                value="Yes two times or more"
+                checked="checked"
+                formControlName=""
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >Never married
+              <input type="radio" value="Never married" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <p class="mt-3">6.) Do you smoke marijuana?</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <label class="checkboxcontainer"
+              >Yes
+              <input type="radio" value="Yes" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >No
+              <input
+                type="radio"
+                value="No"
+                checked="checked"
+                formControlName=""
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >Sometimes
+              <input type="radio" value="Sometimes" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <p class="mt-3">7.) Do you use drugs?</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <label class="checkboxcontainer"
+              >Yes
+              <input type="radio" value="Yes" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >No
+              <input
+                type="radio"
+                value="No"
+                checked="checked"
+                formControlName=""
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >Sometimes
+              <input type="radio" value="Sometimes" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <p class="mt-3">8.) Are you interested in marriage?</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <label class="checkboxcontainer"
+              >Yes
+              <input type="radio" value="Yes" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >No
+              <input
+                type="radio"
+                value="No"
+                checked="checked"
+                formControlName=""
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >Maybe
+              <input type="radio" value="Maybe" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <p class="mt-3">9.) Are you willing to relocate, if you found someone?</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <label class="checkboxcontainer"
+              >Yes
+              <input type="radio" value="Yes" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >No because of my job
+              <input
+                type="radio"
+                value="No because of my job"
+                checked="checked"
+                formControlName=""
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkboxcontainer"
+              >It depends on the situation
+              <input type="radio" value="It depends on the situation" formControlName="" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <p class="mt-3">10.) Tell us why we should accept you as a member of Hidden 10s.</p>
+          <div class="checkboxWrap headerCheckbox d-flex align-items-center flex-wrap">
+            <input type="text" class="form-control" placeholder="Tell us why">
+          </div>
+        </div>
+        <div class="btns d-flex align-items-center mt-3">
           <button type="button" class="blackBtn verifyBtn" disabled (click)="verify()" >Verify</button>
           <button type="button" class="blackBtn danger" data-bs-dismiss="modal">Cancel</button>
         </div>

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import * as $ from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from 'src/app/services/http.service';
@@ -7,20 +12,20 @@ import { LoaderServiceService } from 'src/app/services/loader-service.service';
 @Component({
   selector: 'app-match-settings',
   templateUrl: './match-settings.component.html',
-  styleUrls: ['./match-settings.component.scss']
+  styleUrls: ['./match-settings.component.scss'],
 })
 export class MatchSettingsComponent implements OnInit {
   // specific section
   specificLocation;
   profileData;
-   //countries variables
-    allCities: any = [];
-    allCountries: any = [];
-    allStates: any = [];
-    countriesData: any = [];
-    filteredCountries;
-    filteredStates: any = [];
-    filteredCitites: any = [];
+  //countries variables
+  allCities: any = [];
+  allCountries: any = [];
+  allStates: any = [];
+  countriesData: any = [];
+  filteredCountries;
+  filteredStates: any = [];
+  filteredCitites: any = [];
 
   matchSettingForm = this.fb.group({
     age_from: [null],
@@ -30,14 +35,19 @@ export class MatchSettingsComponent implements OnInit {
     browsing_from: [null],
     browsing_to: [null],
     specific_location: [null],
-    verifiy_percent:[null]
+    country: [null],
+    city: [null],
+    verifiy_percent: [null],
   });
-  constructor(private fb: FormBuilder, private http:HttpService, private toaster:ToastrService) { }
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpService,
+    private toaster: ToastrService
+  ) {}
 
   ngOnInit(): void {
-
-    this.getProfileData()
-    this.getCountries()
+    this.getProfileData();
+    this.getCountries();
   }
   getCountries() {
     LoaderServiceService.loader.next(true);
@@ -72,39 +82,46 @@ export class MatchSettingsComponent implements OnInit {
     this.filteredCitites = [];
     this.filteredCitites.push(city);
   }
-  update(){
-
-    if(this.matchSettingForm.controls['age_from'].value != null &&
+  update() {
+    if (
+      this.matchSettingForm.controls['age_from'].value != null &&
       this.matchSettingForm.controls['age_to'].value != null &&
       this.matchSettingForm.controls['height_from'].value != null &&
-      this.matchSettingForm.controls['height_to'].value != null &&(
-      this.matchSettingForm.controls['browsing_from'].value == null ||
-      this.matchSettingForm.controls['browsing_to'].value == null) &&
-      this.matchSettingForm.controls['specific_location'].value != null){
-        localStorage.setItem('matchSettings', 'true');
-      }
-      else if(this.matchSettingForm.controls['age_from'].value != null &&
+      this.matchSettingForm.controls['height_to'].value != null &&
+      (this.matchSettingForm.controls['browsing_from'].value == null ||
+        this.matchSettingForm.controls['browsing_to'].value == null) &&
+      this.matchSettingForm.controls['specific_location'].value != null &&
+      this.matchSettingForm.controls['country'].value != null &&
+      this.matchSettingForm.controls['city'].value != null
+    ) {
+      localStorage.setItem('matchSettings', 'true');
+    } else if (
+      this.matchSettingForm.controls['age_from'].value != null &&
       this.matchSettingForm.controls['age_to'].value != null &&
       this.matchSettingForm.controls['height_from'].value != null &&
       this.matchSettingForm.controls['height_to'].value != null &&
       this.matchSettingForm.controls['browsing_from'].value != null &&
-      this.matchSettingForm.controls['browsing_to'].value != null  &&
-      this.matchSettingForm.controls['specific_location'].value == null){
-        localStorage.setItem('matchSettings', 'true');
-      }
-       else {
+      this.matchSettingForm.controls['browsing_to'].value != null &&
+      this.matchSettingForm.controls['specific_location'].value == null &&
+      this.matchSettingForm.controls['country'].value == null &&
+      this.matchSettingForm.controls['city'].value == null
+    ) {
+      localStorage.setItem('matchSettings', 'true');
+    } else {
       localStorage.setItem('matchSettings', 'false');
     }
     LoaderServiceService.loader.next(true);
     setTimeout(() => {
-      if(localStorage.getItem('personalDetails') == "true" && localStorage.getItem('matchSettings') == "true"){
+      if (
+        localStorage.getItem('personalDetails') == 'true' &&
+        localStorage.getItem('matchSettings') == 'true'
+      ) {
         this.matchSettingForm.patchValue({
-          verifiy_percent: 100
+          verifiy_percent: 100,
         });
-      }
-      else{
+      } else {
         this.matchSettingForm.patchValue({
-          verifiy_percent: 75
+          verifiy_percent: 75,
         });
       }
       this.http
@@ -118,14 +135,13 @@ export class MatchSettingsComponent implements OnInit {
         };
     });
   }
-  getProfileData(){
+  getProfileData() {
     LoaderServiceService.loader.next(true);
-    this.http.get('/my_profile', true).subscribe((res:any)=>{
+    this.http.get('/my_profile', true).subscribe((res: any) => {
       this.profileData = res;
-      if(res?.my_profile.specific_location){
+      if (res?.my_profile.specific_location) {
         this.specificLocation = true;
-      }
-      else{
+      } else {
         this.specificLocation = false;
       }
       this.matchSettingForm = this.fb.group({
@@ -136,18 +152,18 @@ export class MatchSettingsComponent implements OnInit {
         browsing_from: [this.profileData?.my_profile.browsing_from],
         browsing_to: [this.profileData?.my_profile.browsing_to],
         specific_location: [this.profileData?.my_profile.specific_location],
+        country: [this.profileData?.my_profile.country],
+        city: [this.profileData?.my_profile.city],
         verifiy_percent: [],
       });
       LoaderServiceService.loader.next(false);
-    })
+    });
   }
-  toggleSec(event){
-    if(event.target.checked){
+  toggleSec(event) {
+    if (event.target.checked) {
       this.specificLocation = true;
-    }
-    else{
+    } else {
       this.specificLocation = false;
     }
   }
-
 }

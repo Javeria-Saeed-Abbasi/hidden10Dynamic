@@ -387,6 +387,9 @@ export class HeaderComponent implements OnInit {
     //   }
     // });
   }
+  routeChat(user_id){
+    this.router.navigate([`/profileSettings/chat/${user_id}`]);
+  }
   getNotification() {
     this.http.get('/notifications', true).subscribe((res: any) => {
       res?.connect_details?.map((data: any, i) => {

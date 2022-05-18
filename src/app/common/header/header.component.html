@@ -77,7 +77,7 @@
                 <a
                   *ngFor="let chat of chatList"
                   href="javascript:void(0)"
-                  [routerLink]="['/profileSettings/chat/{{chat?.user_id}}']"
+                  (click)="routeChat(chat?.user_id)"
                   class="d-flex align-items-center"
                 >
                   <span
@@ -333,7 +333,7 @@
             >
               <div
                 class="item"
-                [routerLink]="['/profileSettings/chat']"
+                [routerLink]="['/profileSettings/chat/allUsers']"
                 (click)="navToggle()"
               >
                 Chat
@@ -351,14 +351,14 @@
       </div>
     </div>
     <div *ngIf="mobileNav && dashboard" class="smallScreenSidebar">
-      <div class="mobileLogo mb-5" [routerLink]="[!signRegister ? '/dashboard' : '']">
+      <div class="mobileLogo mb-5" (click)="navToggle()" [routerLink]="[!signRegister ? '/dashboard' : '']">
         <img src="assets/SVG/logo-white.svg" alt="" />
       </div>
       <div id="items" class="text-center">
         <div class="itemsBox">
           <div
             class="item"
-            [routerLink]="['/profileSettings/chat']"
+            [routerLink]="['/profileSettings/chat/allUsers']"
             (click)="navToggle()"
           >
             Chat

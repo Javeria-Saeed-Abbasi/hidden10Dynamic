@@ -81,12 +81,15 @@
     }
   }
 }
-
+.checkboxcontainer{
+  min-width: 33.33%;
+    margin: 10px;
+}
 #selfieVerifyModal{
   .img-box {
     position: relative;
     width: 100%;
-    height: 350px;
+    height: 300px;
     padding: 1rem;
     overflow: hidden;
     form{

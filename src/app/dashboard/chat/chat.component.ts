@@ -218,10 +218,21 @@ export class ChatComponent implements OnInit {
         if(v.messages.length > 0 || v.message_recevie.length > 0){
           const result = this.friends.filter(friends => (friends.messages.length > 0 || friends.message_recevie.length > 0) && friends.id != this.myData.id)
           this.friends = result
+          console.log('====================================');
+          console.log(this.friends);
+          console.log('====================================');
         }
         setTimeout(() => {
           if(v.id == this.id){
+            if(this.friends.includes(this.id)){
+              this.friends.splice(i, 1)
+              return
+          } else{
             this.friends.push(v)
+          }
+          console.log('====================================');
+          console.log(this.friends);
+          console.log('====================================');
           }
         });
       });
