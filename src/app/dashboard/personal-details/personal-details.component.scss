@@ -1,0 +1,225 @@
+.header {
+  position: relative;
+  min-height: 70px;
+  min-width: 540px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../../../assets/SVG/headingProp.svg) no-repeat;
+    width: 43px;
+    height: 71px;
+    z-index: -1;
+    background-size: cover;
+  }
+
+  h3 {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 10px;
+    right: 0;
+    transform: translateY(-50%);
+    font-family: gilroy-bold;
+    letter-spacing: 1px;
+    color: #000;
+
+    span {
+      color: #fff;
+    }
+  }
+}
+
+.aboutMe {
+  // position: relative;
+
+  .header {
+    position: relative;
+
+    &::after {
+      content: "Simple Description";
+      position: absolute;
+      top: 120%;
+      right: 30px;
+      width: fit-content;
+      height: fit-content;
+      font-size: 12px;
+      color: #4D4D4D;
+      font-family: gilroy-regular;
+    }
+
+    h3 {
+      left: 4px;
+    }
+  }
+
+  .row {
+    width: 100%;
+  }
+}
+
+.row {
+  width: 50%;
+
+  h6 {
+    font-family: gilroy-bold;
+    margin: 0;
+    min-width: 150px;
+  }
+
+  input {
+    background-color: #F2F2F2;
+    border: none;
+    outline: none;
+    color: #000;
+    padding: 5px 1rem;
+    width: 70%;
+  }
+  input[type="radio"]{
+    width: fit-content;
+  }
+  textarea {
+    width: 100%;
+    border: 1px solid #808080;
+    background: #fff;
+    resize: none;
+    color: #4D4D4D;
+    font-size: 13px;
+    font-family: gilroy-regular;
+    padding: 1rem;
+  }
+}
+.checkboxWrap{
+  width: 100%;
+}
+input::placeholder{
+  color: #1A1A1A;
+}
+.headerCheckbox{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30%;
+}
+::ng-deep .toast-top-right {
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    height: fit-content;
+    top: unset !important;
+}
+::ng-deep .toast-success {
+  background-color: #969696;
+}
+@media only screen and (max-width:1024px) {
+  .row {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .checkboxcontainer.mx-auto {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+  }
+  .headerCheckbox{
+    top: 70%;
+    transform: translateY(0);
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .headerCheckbox{
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+  }
+  .header {
+    min-width: 100%;
+
+    h3 {
+      width: fit-content;
+      left: 12px;
+    }
+  }
+
+  .aboutMe {
+    .header {
+      h3 {
+        width: fit-content;
+        left: 8px;
+      }
+    }
+  }
+  .row{
+    input {
+      width: 75%;
+    }
+
+    .ng-select {
+      min-width: 75%;
+    }
+  }
+}
+@media only screen and (max-width:540px){
+  .headerCheckbox{
+    top: 80%;
+    transform: translateY(0);
+    width: 70%;
+    justify-content: end;
+  }
+    //  all hders margin top
+    .header {
+      margin-top: 2rem;
+    }
+
+
+}
+
+@media only screen and (max-width:414px) {
+  .checkboxcontainer.mx-auto {
+    margin-left: 0 !important;
+    margin-right:10px !important;
+  }
+  .row {
+    h6 {
+      min-width: 130px;
+    }
+  }
+
+  .checkboxWrap {
+    flex-wrap: wrap;
+  }
+  .checkboxcontainer{
+    margin-right: 10px !important;
+  }
+  .row{
+    .ng-select {
+      min-width: 64%;
+    }
+  }
+  .header {
+    h3 {
+      left: 14px;
+    }
+  }
+  .aboutMe {
+    .header {
+      h3 {
+        left: 10px;
+      }
+    }
+  }
+}
+@media only screen and (max-width:375px){
+  .row{
+    .ng-select {
+      min-width:59%;
+    }
+  }
+}

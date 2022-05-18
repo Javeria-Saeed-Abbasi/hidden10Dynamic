@@ -1,0 +1,41 @@
+<div class="header">
+  <h3><span>No</span>tifications</h3>
+</div>
+<div class="notificationBox mt2 mb2" [class.show]="show">
+  <div class="row">
+    <div class="col-lg-12" *ngFor="let notification of notifications">
+      <div class="notifaction d-flex justify-content-between"
+      >
+      <!-- [routerLink]="['/profile', notification?.users_invers?.id]" -->
+
+        <div class="d-flex align-items-center">
+          <div class="imgBox">
+            <img src="{{notification?.users_invers?.image}}" alt="">
+          </div>
+
+          <div class="details" *ngIf="notification?.request_accept == 1">
+            <h6>{{notification?.users_invers?.name}} <span>connected you</span></h6>
+            <label>{{notification?.created_at | date: 'h:mm a, d/M/yy'}}</label>
+          </div>
+          <div class="details" *ngIf="notification?.request_accept == 0">
+            <h6>{{notification?.users_invers?.name}} <span>sent you a rquest</span></h6>
+            <label>{{notification?.created_at | date: 'h:mm a, d/M/yy'}}</label>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center py-3" *ngIf="notification?.request_accept == 0">
+          <div class="px-2">
+            <button class="blackBtn2 mt-1" (click)="acceptRequest(notification)">Accept</button>
+          </div>
+          <div class="px-2">
+            <button class="blackBtn2 mt-1" (click)="declineRequest(notification)">Decline</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-lg-12" *ngIf="notifications?.length < 1">
+      <h6>No Notification</h6>
+    </div>
+  </div>
+</div>
+<button class="showBtn" *ngIf="notifications?.length > 5" [class.showBtnRotate]="showBtnRotate" (click)="show = !show" (click)="showBtnRotate = !showBtnRotate" > <label> {{ show ? 'Show Less': 'Show More' }} </label> <i class="fas fa-chevron-down"></i> </button>

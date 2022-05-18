@@ -1,0 +1,34 @@
+<div class="header">
+  <h3><span>Ph</span>oto Album</h3>
+</div>
+
+<h6 class="mt-5 mb-3">Disclaimer</h6>
+<h6 class="mb-5 text-danger">
+  You must have to upload at least one full body picture. You have to upload
+  minimum 5 photos it can be with others, but at least 4 photos of only
+  yourself.
+</h6>
+<input
+  type="file"
+  name=""
+  id="multiUpload"
+  multiple
+  (change)="multiUpload($event)"
+  hidden
+  #multiupload
+/>
+<label for="multiUpload" class="blackBtn">Upload</label>
+<div id="dvPreview"></div>
+<button class="blackBtn right" [disabled]="upload" (click)="save()">
+  Save
+</button>
+<div class="container">
+  <div class="row mt-3 mb-3 w-100 mx-auto">
+    <h3>Photos</h3>
+    <div class="col-lg-4 mt-1 mb-1" *ngFor="let picture of savedimages">
+      <div class="imgbox">
+        <img src="{{ picture }}" alt="" />
+      </div>
+    </div>
+  </div>
+</div>

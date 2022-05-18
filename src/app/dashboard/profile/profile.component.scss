@@ -1,0 +1,674 @@
+h1 {
+  font-family: gilroy-bold;
+  color: #000;
+}
+
+.profileHeader {
+  width: 100%;
+  justify-content: flex-start;
+
+  .firstCol {
+    z-index: 2;
+    width: 20%;
+    position: relative;
+
+    .imgBox {
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+      border-bottom-left-radius: 10px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 90%;
+        top: -15px;
+        right: -50px;
+        background: url('../../../assets/1x/profilePicBg.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: -1;
+      }
+    }
+  }
+
+  .secondCol {
+    width: 80%;
+    background: #F2F2F2;
+    padding: 1rem 2rem;
+    z-index: 1;
+
+    h1 {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        width: 80%;
+        height: 1px;
+        left: -7%;
+        background-color: #939393;
+      }
+    }
+
+    .heartBtn {
+      background: #000;
+      min-width: 200px;
+      min-height: 30px;
+      justify-content: space-around;
+      color: #fff;
+      align-items: center;
+      border: none;
+      padding: 10px;
+      margin-right: 10px;
+      font-family: gilroy-regular;
+      transition: 0.5s all ease-in-out;
+      border-radius: 0;
+      &:hover{
+        background: #fff;
+        color: #000;
+      border: 1px solid #000;
+
+      }
+      .heartBox {
+        background: #93939342;
+        padding: 0 10px;
+        font-size: 10px;
+
+      }
+
+      .heartIcon {
+        width: 15px;
+        height: 20px;
+        overflow: hidden;
+        margin-right: 3px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+
+    .messageBtn {
+      background: #fff;
+      color: #000;
+      border: 1px solid #000;
+      &:hover{
+        background: #000;
+      border: 1px solid #fff;
+      color: #fff;
+      }
+    }
+  }
+}
+.wrap {
+  display: inline-block;
+  position: relative;
+}
+
+.overlap {
+  display: none
+}
+
+.poptooltip{
+  .overlap{
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    cursor: not-allowed;
+  }
+}
+.deatilBg {
+  width: 100%;
+  background: #f2f2f2;
+  padding: 2rem 5rem;
+  .head {
+    position: relative;
+    padding-bottom: 1rem;
+
+    h6 {
+      font-family: gilroy-heavy;
+      color: #000;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #939393;
+    }
+  }
+
+  .contentContainer {
+    label {
+      font-family: gilroy-bold;
+      color: #000;
+      font-size: 14px;
+    }
+
+    p {
+      font-family: gilroy-regular;
+      color: #808080;
+    }
+
+    .contactBox,
+    .familyBox {
+      border: 1px solid #000;
+      padding: 1rem;
+      width: 250px;
+      max-width: 400px;
+      min-width: 250px;
+      margin-top: 2rem;
+
+      .number {
+        .numberIcon {
+          width: 12px;
+          height: auto;
+          overflow: hidden;
+          margin-right: 10px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .numberHead {
+          font-size: 13px;
+          font-family: gilroy-light;
+          color: #000;
+        }
+
+        .phoneNumber {
+          color: #808080;
+          font-family: gilroy-light;
+          font-size: 13px;
+        }
+      }
+    }
+
+    .familyBox {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .backgroundBox,
+    .educationBox {
+      width: 250px;
+      max-width: 400px;
+      min-width: 250px;
+      margin-top: 1rem;
+
+      .number {
+        .numberIcon {
+          width: 12px;
+          height: auto;
+          overflow: hidden;
+          margin-right: 10px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .phoneNumber {
+          color: #808080;
+          font-family: gilroy-light;
+          font-size: 15px;
+        }
+      }
+    }
+
+    .lookingForBox {
+      margin-top: 1rem;
+
+      .profileImgBox {
+        width: 130px;
+        height: 130px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .matched {
+        background-color: #CCCCCC;
+        min-width: 350px;
+        text-align: center;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: -120px;
+          background: url('../../../assets/SVG/dottedProp.svg');
+          width: 30%;
+          height: 10%;
+          background-repeat: no-repeat;
+          background-size: contain;
+          transform: translateY(-50%);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: -120px;
+          background: url('../../../assets/SVG/dottedProp.svg');
+          width: 30%;
+          height: 10%;
+          background-repeat: no-repeat;
+          background-size: contain;
+          transform: translateY(-50%);
+        }
+
+        label {
+          font-family: gilroy-light;
+        }
+      }
+
+      .preferenceBox {
+        text-align: center;
+
+        h6 {
+          color: #000;
+        }
+      }
+    }
+  }
+
+  // left side icons
+  .about {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: -35px;
+      background: url('../../../assets/SVG/contenticon1.svg');
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 1;
+    }
+  }
+
+  .contact {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: -35px;
+      background: url('../../../assets/SVG/contenticon2.svg');
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 1;
+    }
+  }
+
+  .background {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: -35px;
+      background: url('../../../assets/SVG/contenticon3.svg');
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 1;
+    }
+  }
+
+  .family {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: -35px;
+      background: url('../../../assets/SVG/contenticon4.svg');
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 1;
+    }
+  }
+
+  .education {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: -35px;
+      background: url('../../../assets/SVG/contenticon5.svg');
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 1;
+    }
+  }
+
+  .lookingFor {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: -35px;
+      background: url('../../../assets/SVG/contenticon6.svg');
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 1;
+    }
+  }
+
+  .prop {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: -24px;
+      background: #CCCCCC;
+      width: 1px;
+      height: 100%;
+      z-index: 0;
+    }
+  }
+
+  .preference {
+    border-bottom: 1px solid #1A1A1A;
+
+    .preferenceHead {
+      font-size: 13px;
+      font-family: gilroy-bold;
+      color: #000;
+    }
+
+    .preferenceDetail {
+      color: #808080;
+      font-family: gilroy-light;
+      font-size: 13px;
+    }
+
+    .checkIcon {
+      width: 22px;
+      height: 25px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        // object-fit: contain;
+      }
+    }
+  }
+
+  .paginationBtn {
+    background: none;
+    border: none;
+    min-width: 40px;
+    min-height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: gilroy-bold;
+
+    i {
+      margin: 0 5px;
+    }
+  }
+}
+::ng-deep .toast-top-right {
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    height: fit-content;
+    top: unset !important;
+}
+::ng-deep .toast-success {
+  background-color: #969696;
+}
+.modal {
+  .modal-content {
+    background-color: #F2F2F2;
+
+  .modal-header,.modal-footer{
+    border: 0px;
+  }
+}}
+@media only screen and (min-width:1440px) {
+  .profileHeader {
+    .firstCol {
+      .imgBox {
+        &::before {
+          right: -90px;
+        }
+      }
+    }
+  }
+  .deatilBg {
+    .contentContainer {
+      .lookingForBox {
+        .matched {
+          &::before {
+            left: -60% !important;
+            width: 52% !important;
+          }
+
+          &::after {
+            right: -60% !important;
+            width: 52% !important;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width:1366px){
+  .deatilBg {
+    .contentContainer {
+      .lookingForBox {
+        .matched {
+          &::before {
+            top: 50%;
+            left: -44%;
+            width: 38%;
+            height: 9%;
+            background-size: cover;
+          }
+
+          &::after {
+            top: 50%;
+            right: -44%;
+            width: 38%;
+            height: 9%;
+            background-size: cover;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width:1024px) {
+  .profileHeader {
+    .firstCol {
+      .imgBox {
+        &::before {
+          right: -20px;
+        }
+      }
+    }
+  }
+  .deatilBg {
+    .contentContainer {
+      .lookingForBox {
+        .matched {
+          &::before {
+            left: -70px;
+            width: 22%;
+            background-size: cover;
+          }
+
+          &::after {
+            right: -85px;
+            width: 22%;
+            background-size: cover;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .profileHeader {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .firstCol {
+      width: 100%;
+
+      .imgBox {
+        height: 500px;
+        border-bottom-left-radius: 0;
+
+        &::before {
+          width: 50%;
+          height: 100%;
+          right: -20px;
+          background-size: cover;
+        }
+
+        img {
+          object-fit: cover;
+          object-position: top;
+        }
+      }
+    }
+
+    .secondCol {
+      width: 100%;
+
+      h1 {
+        &::before {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+  .deatilBg {
+    padding: 2rem 3rem;
+
+    .contentContainer {
+      .lookingForBox {
+        flex-wrap: wrap;
+        justify-content: center !important;
+
+        .matched {
+          margin-bottom: 1rem;
+          min-width: 500px;
+          &::after,
+          &::before {
+            content: unset;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 540px) {
+  //  all hders margin top
+  .header {
+    margin-top: 2rem;
+  }
+}
+@media only screen and (max-width:414px) {
+  .profileHeader {
+    .firstCol {
+      .imgBox {
+        &::before {
+          width: 90%;
+          height: 100%;
+          right: -7px;
+        }
+
+        img {
+          object-fit: cover;
+          object-position: top;
+        }
+      }
+    }
+
+    .secondCol {
+      width: 100%;
+
+      .col-lg-12.mt3.d-flex {
+        flex-wrap: wrap;
+        margin-top: 1rem !important;
+
+        button {
+          margin: 8px 0;
+        }
+      }
+
+      h1 {
+        &::before {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .deatilBg {
+    .contentContainer {
+      .lookingForBox {
+        .matched {
+          min-width: 350px;
+        }
+      }
+    }
+  }
+}

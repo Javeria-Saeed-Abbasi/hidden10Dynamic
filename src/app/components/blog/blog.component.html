@@ -1,0 +1,128 @@
+<div class="fullScreenContainer d-flex align-items-center justify-content-between fBreak">
+  <div class="leftSec"></div>
+  <div class="rightSec colol"></div>
+  <div class="content">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="leftSec">
+        <div class="makeDiv d-flex flex-column">
+          <h1 class="wow fadeInRight">
+            Blogs
+          </h1>
+          <p class="wow fadeInLeft">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure
+          </p>
+        </div>
+      </div>
+      <div class="rightSec">
+        <div class="pillar1">
+          <img src="assets/SVG/pillar1.svg" alt="">
+        </div>
+        <div class="pillar2">
+          <img src="assets/SVG/pillar2.svg" alt="">
+        </div>
+        <div class="pillar1img pillimg">
+          <img src="{{blogscms?.blog_cms_1?.image ? blogscms?.blog_cms_1?.image : 'assets/1x/dummyImage.jpg'}}" class="img-fluid"
+            alt="">
+        </div>
+        <div class="pillar2img pillimg">
+          <img
+            src="{{blogscms?.blog_cms_1?.image2 ? blogscms?.blog_cms_1?.image2 : 'assets/1x/dummyImage.jpg'}}"
+            class="img-fluid" alt="">
+        </div>
+        <div class="pillar3img pillimg">
+          <img src="{{blogscms?.blog_cms_1?.image3 ? blogscms?.blog_cms_1?.image3 : 'assets/1x/dummyImage.jpg'}}"
+            class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="whatWeAreThinking mt4">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <h1 class="wow fadeInRight">
+            What we <br>
+            are thinking <br>
+            about
+          </h1>
+          <p  class="wow fadeInRight">
+            After trying out a few of the dating apps over the years, I felt like I could create something that was better on many levels. Slowly but surely, this idea is starting to become a reality. The majority of singles are truly seeking the real thing. The idea is to weed out those who can't offer something, and/or weed out those who aren't bringing anything to the table.
+          </p>
+          <button class="Discov blackBtn mt-5 wow fadeInLeft" [routerLink]="'/about'">
+            Know More
+          </button>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
+          <div class="sideImage">
+            <div class="pill">
+              <img data-aos="zoom-in-down" data-aos-duration="1500" src="assets/SVG/flipper.svg" alt="">
+            </div>
+            <div class="userI">
+              <img data-aos="zoom-in-up" data-aos-duration="1500" src="https://img2.goodfon.com/wallpaper/nbig/7/b1/pomeschenie-devushka-obernulas.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="proD">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mt-4" *ngFor="let blog of blogs">
+          <div class="cardPros" [routerLink]="['blog',blog.id]">
+            <div class="cImg">
+              <img src="{{blog?.image}}" alt="">
+            </div>
+            <div class="Chad">
+              {{blog?.title}}
+            </div>
+            <p [innerHTML]="(blog?.short_description.length > 100) ? (blog?.short_description | slice:0:191)+ '...' :(blog?.short_description) | sanitizeHtml" > </p>
+            <a href="javascript:void(0)" [routerLink]="['blog',blog.id]">
+              Know More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="whatWeAreThinking rleft">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="sideImage">
+            <div class="pill">
+              <img data-aos="zoom-in-down" data-aos-duration="1500" src="assets/SVG/flipper.svg" alt="">
+            </div>
+            <div class="userI">
+              <img  data-aos="zoom-in-up" data-aos-duration="1500" src="https://img2.goodfon.com/wallpaper/nbig/7/b1/pomeschenie-devushka-obernulas.jpg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-7">
+          <h1 class="wow fadeInRight">
+            What we <br>
+            are thinking <br>
+            about
+          </h1>
+          <p class="wow fadeInRight">
+            After trying out a few of the dating apps over the years, I felt like I could create something that was better on many levels. Slowly but surely, this idea is starting to become a reality. The majority of singles are truly seeking the real thing. The idea is to weed out those who can't offer something, and/or weed out those who aren't bringing anything to the table.
+          </p>
+          <button class="Discov blackBtn mt-5" data-aos="flip-down" data-aos-duration="1500" [routerLink]="'/about'">
+            Know More
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

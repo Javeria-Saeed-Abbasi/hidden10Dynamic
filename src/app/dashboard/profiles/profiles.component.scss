@@ -1,0 +1,241 @@
+.profileImg {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #ffffff00, #ffffff00, black);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.details {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  transition: 0.5s all ease-in-out;
+
+  h4 {
+    font-family: gilroy-bold;
+    color: #fff;
+  }
+
+  h5 {
+    font-family: gilroy-regular;
+    color: #b3b3b3;
+  }
+}
+.progressRow {
+  button {
+    background: none;
+    border: none;
+    color: #0071bc;
+  }
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  h1 {
+    font-family: gilroy-bold;
+    color: #000;
+  }
+  label {
+    color: #000;
+    font-family: gilroy-regular;
+  }
+  ::ng-deep.bg-info {
+    background-color: #666666 !important;
+  }
+}
+.profiles {
+  cursor: pointer;
+
+  .row {
+    .col-lg-4 {
+      // z-index: -2;
+      .profileCard {
+        position: relative;
+        min-height: 450px;
+        overflow: hidden;
+      }
+      .profileCard:hover .details {
+        transform: translateY(-20px);
+      }
+    }
+  }
+}
+
+.filterSideBar {
+  width: 330px;
+  background: #f9f9f9;
+  min-height: 100vh;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  transition: 0.5s all ease-in-out;
+  transform: translateX(-100%);
+  padding: 4rem 2rem 0 2rem;
+
+  h6 {
+    font-family: gilroy-regular;
+    color: #000;
+  }
+  .ageRange {
+    input {
+      width: 40%;
+      min-height: 40px;
+      border-radius: 0;
+      background: #e6e6e6;
+      border: none;
+      outline: none;
+      text-align: center;
+      &::placeholder {
+        color: #000;
+      }
+    }
+    input[type="checkbox"] {
+      width: 0;
+    }
+    .inpBox {
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 15px;
+        height: 1px;
+        background: #000;
+      }
+    }
+  }
+}
+
+.checkBoxContainer {
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    min-height: 45px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 45px;
+    width: 80px;
+    background-color: #e6e6e6;
+    border-radius: 0;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-family: gilroy-light;
+  }
+  .container input:checked ~ .checkmark {
+    background-color: #000;
+    color: #fff;
+  }
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+}
+::ng-deep .ng-select .ng-select-container {
+  background-color: #e6e6e6;
+}
+.cstmCard {
+  padding: 1rem 0;
+  transition: 0.5s all ease-in-out;
+  transform: translateY(44px);
+  cursor: pointer;
+  h3 {
+    font-family: gilroy-bold;
+  }
+}
+.cstmCard.white {
+  background: #ededed;
+}
+.plansSec {
+  label {
+    width: 100%;
+  }
+  input[type="radio"]:checked + label .cstmCard {
+    min-height: 350px;
+    transform: translateY(0);
+    background: #000;
+    h3 {
+      color: #fff;
+    }
+    span {
+      color: #fff;
+    }
+    button {
+      background: #fff;
+      color: #000;
+    }
+    .infobox {
+      color: #fff;
+    }
+  }
+}
+.toggle-btn {
+  span {
+    margin-left: 10px;
+  }
+}
+::ng-deep .toast-top-right {
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    height: fit-content;
+    top: unset !important;
+}
+::ng-deep .toast-success {
+  background-color: #969696;
+}
+@media only screen and (max-width: 540px) {
+  //  all hders margin top
+  .header {
+    margin-top: 2rem;
+  }
+  .plansSec {
+    label {
+      width: 100%;
+    }
+    input[type="radio"]:checked + label .cstmCard {
+      margin-top: 25%;
+    }
+  }
+}

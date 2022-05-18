@@ -1,0 +1,129 @@
+.header {
+  position: relative;
+  min-height: 75px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../../../assets/SVG/headingProp.svg) no-repeat;
+    width: 45px;
+    height: 100px;
+    z-index: -1;
+    background-size: contain;
+  }
+
+  h3 {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 7px;
+    right: 0;
+    transform: translateY(-50%);
+    font-family: gilroy-bold;
+    letter-spacing: 1px;
+    color: #000;
+
+    span {
+      color: #fff;
+    }
+  }
+}
+
+.notificationBox {
+  height: 60vh;
+  overflow: hidden;
+
+  .row {
+    .notifaction {
+      padding: 10px;
+      background: #F9F9F9;
+      cursor: pointer;
+
+      .imgBox {
+        width: 90px;
+        height: 90px;
+        overflow: hidden;
+        border-radius: 100px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .details {
+        margin-left: 1rem;
+
+        h6 {
+          font-family: gilroy-medium;
+          color: #000;
+          margin-bottom: 0;
+
+          span {
+            font-family: gilroy-light;
+          }
+        }
+
+        label {
+          color: #4D4D4D;
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+
+.show {
+  overflow-y: scroll;
+}
+
+.showBtn {
+  background: none;
+  border: none;
+  color: #1A1A1A;
+  font-family: poppins-semibold;
+
+  label {
+    min-width: 95px;
+    text-align: left;
+
+  }
+
+  i {
+    transition: 0.5s all ease-in-out;
+  }
+}
+
+.showBtn.showBtnRotate {
+  i {
+    transform: rotate(180deg);
+  }
+}
+::ng-deep .toast-top-right {
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    height: fit-content;
+    top: unset !important;
+}
+::ng-deep .toast-success {
+  background-color: #969696;
+}
+@media only screen and (max-width:768px) {
+  .header {
+    h3 {
+      width: fit-content;
+      left: 12px;
+    }
+  }
+}
+@media only screen and (max-width: 540px) {
+  //  all hders margin top
+  .header {
+    margin-top: 2rem;
+  }
+}

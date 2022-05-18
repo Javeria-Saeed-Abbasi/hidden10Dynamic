@@ -1,0 +1,523 @@
+<!-- personal information -->
+<form [formGroup]="editUserForm">
+  <div class="header">
+    <h3><span>Pe</span>rsonal Details</h3>
+  </div>
+  <div class="row mt2 mb2">
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Email</h6>
+      <input
+        type="email"
+        placeholder="Email Address"
+        formControlName="email"
+        readonly
+      />
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Age</h6>
+      <input
+        type="text"
+        placeholder="Age"
+        formControlName="age"
+        (keypress)="numberOnly($event)"
+      />
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Mother Tongue</h6>
+      <ng-select placeholder="Select" formControlName="mother_tongue">
+        <ng-option value="Afrikaans">Afrikaans</ng-option>
+        <ng-option value="Albanian">Albanian</ng-option>
+        <ng-option value="Arabic">Arabic</ng-option>
+        <ng-option value="Armenian">Armenian</ng-option>
+        <ng-option value="Basque">Basque</ng-option>
+        <ng-option value="Bengali">Bengali</ng-option>
+        <ng-option value="Bulgarian">Bulgarian</ng-option>
+        <ng-option value="Catalan">Catalan</ng-option>
+        <ng-option value="Cambodian">Cambodian</ng-option>
+        <ng-option value="Chinese (Mandarin)">Chinese (Mandarin)</ng-option>
+        <ng-option value="Croatian">Croatian</ng-option>
+        <ng-option value="Czech">Czech</ng-option>
+        <ng-option value="Danish">Danish</ng-option>
+        <ng-option value="Dutch">Dutch</ng-option>
+        <ng-option value="English">English</ng-option>
+        <ng-option value="Estonian">Estonian</ng-option>
+        <ng-option value="Fiji">Fiji</ng-option>
+        <ng-option value="Finnish">Finnish</ng-option>
+        <ng-option value="French">French</ng-option>
+        <ng-option value="Georgian">Georgian</ng-option>
+        <ng-option value="German">German</ng-option>
+        <ng-option value="Greek">Greek</ng-option>
+        <ng-option value="Gujarati">Gujarati</ng-option>
+        <ng-option value="Hebrew">Hebrew</ng-option>
+        <ng-option value="Hindi">Hindi</ng-option>
+        <ng-option value="Hungarian">Hungarian</ng-option>
+        <ng-option value="Icelandic">Icelandic</ng-option>
+        <ng-option value="Indonesian">Indonesian</ng-option>
+        <ng-option value="Irish">Irish</ng-option>
+        <ng-option value="Italian">Italian</ng-option>
+        <ng-option value="Japanese">Japanese</ng-option>
+        <ng-option value="Javanese">Javanese</ng-option>
+        <ng-option value="Korean">Korean</ng-option>
+        <ng-option value="Latin">Latin</ng-option>
+        <ng-option value="Latvian">Latvian</ng-option>
+        <ng-option value="Lithuanian">Lithuanian</ng-option>
+        <ng-option value="Macedonian">Macedonian</ng-option>
+        <ng-option value="Malay">Malay</ng-option>
+        <ng-option value="Malayalam">Malayalam</ng-option>
+        <ng-option value="Maltese">Maltese</ng-option>
+        <ng-option value="Maori">Maori</ng-option>
+        <ng-option value="Marathi">Marathi</ng-option>
+        <ng-option value="Mongolian">Mongolian</ng-option>
+        <ng-option value="Nepali">Nepali</ng-option>
+        <ng-option value="Norwegian">Norwegian</ng-option>
+        <ng-option value="Persian">Persian</ng-option>
+        <ng-option value="Polish">Polish</ng-option>
+        <ng-option value="Portuguese">Portuguese</ng-option>
+        <ng-option value="Punjabi">Punjabi</ng-option>
+        <ng-option value="Quechua">Quechua</ng-option>
+        <ng-option value="Romanian">Romanian</ng-option>
+        <ng-option value="Russian">Russian</ng-option>
+        <ng-option value="Samoan">Samoan</ng-option>
+        <ng-option value="Serbian">Serbian</ng-option>
+        <ng-option value="Slovak">Slovak</ng-option>
+        <ng-option value="Slovenian">Slovenian</ng-option>
+        <ng-option value="Spanish">Spanish</ng-option>
+        <ng-option value="Swahili">Swahili</ng-option>
+        <ng-option value="Swedish ">Swedish </ng-option>
+        <ng-option value="Tamil">Tamil</ng-option>
+        <ng-option value="Tatar">Tatar</ng-option>
+        <ng-option value="Telugu">Telugu</ng-option>
+        <ng-option value="Thai">Thai</ng-option>
+        <ng-option value="Tibetan">Tibetan</ng-option>
+        <ng-option value="Tonga">Tonga</ng-option>
+        <ng-option value="Turkish">Turkish</ng-option>
+        <ng-option value="Ukrainian">Ukrainian</ng-option>
+        <ng-option value="Urdu">Urdu</ng-option>
+        <ng-option value="Uzbek">Uzbek</ng-option>
+        <ng-option value="Vietnamese">Vietnamese</ng-option>
+        <ng-option value="Welsh">Welsh</ng-option>
+        <ng-option value="Xhosa">Xhosa</ng-option>
+      </ng-select>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Horoscope</h6>
+      <ng-select placeholder="Select" formControlName="horoscope">
+        <ng-option value="Aries">Aries</ng-option>
+        <ng-option value="Taurus">Taurus</ng-option>
+        <ng-option value="Gemini">Gemini</ng-option>
+        <ng-option value="Cancer">Cancer</ng-option>
+        <ng-option value="Leo">Leo</ng-option>
+        <ng-option value="Virgo">Virgo</ng-option>
+        <ng-option value="Libra">Libra</ng-option>
+        <ng-option value="Scorpio">Scorpio</ng-option>
+        <ng-option value="Sagittarius">Sagittarius</ng-option>
+        <ng-option value="Capricorn">Capricorn</ng-option>
+        <ng-option value="Aquarius">Aquarius</ng-option>
+        <ng-option value="Pisces">Pisces</ng-option>
+      </ng-select>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Height</h6>
+      <ng-select placeholder="Height" formControlName="height">
+        <ng-option value="3.0 feet">3 feet</ng-option>
+        <ng-option value="3 feet 1 inch">3 feet 1 inch</ng-option>
+        <ng-option value="3 feet 2 inch">3 feet 2 inch</ng-option>
+        <ng-option value="3 feet 3 inch">3 feet 3 inch</ng-option>
+        <ng-option value="3 feet 4 inch">3 feet 4 inch</ng-option>
+        <ng-option value="3 feet 5 inch">3 feet 5 inch</ng-option>
+        <ng-option value="3 feet 6 inch">3 feet 6 inch</ng-option>
+        <ng-option value="3 feet 7 inch">3 feet 7 inch</ng-option>
+        <ng-option value="3 feet 8 inch">3 feet 8 inch</ng-option>
+        <ng-option value="3 feet 9 inch">3 feet 9 inch</ng-option>
+        <ng-option value="3 feet 10 inch">3 feet 10 inch</ng-option>
+        <ng-option value="3 feet 11 inch">3 feet 11 inch</ng-option>
+        <ng-option value="3 feet 12 inch">3 feet 12 inch</ng-option>
+        <ng-option value="4 feet">4 feet</ng-option>
+        <ng-option value="4 feet 1 inch">4 feet 1 inch</ng-option>
+        <ng-option value="4 feet 2 inch">4 feet 2 inch</ng-option>
+        <ng-option value="4 feet 3 inch">4 feet 3 inch</ng-option>
+        <ng-option value="4 feet 4 inch">4 feet 4 inch</ng-option>
+        <ng-option value="4 feet 5 inch">4 feet 5 inch</ng-option>
+        <ng-option value="4 feet 6 inch">4 feet 6 inch</ng-option>
+        <ng-option value="4 feet 7 inch">4 feet 7 inch</ng-option>
+        <ng-option value="4 feet 8 inch">4 feet 8 inch</ng-option>
+        <ng-option value="4 feet 9 inch">4 feet 9 inch</ng-option>
+        <ng-option value="4 feet 10 inch">4 feet 10 inch</ng-option>
+        <ng-option value="4 feet 11 inch">4 feet 11 inch</ng-option>
+        <ng-option value="4 feet 12 inch">4 feet 12 inch</ng-option>
+        <ng-option value="5 feet">5 feet</ng-option>
+        <ng-option value="5 feet 1 inch">5 feet 1 inch</ng-option>
+        <ng-option value="5 feet 2 inch">5 feet 2 inch</ng-option>
+        <ng-option value="5 feet 3 inch">5 feet 3 inch</ng-option>
+        <ng-option value="5 feet 4 inch">5 feet 4 inch</ng-option>
+        <ng-option value="5 feet 5 inch">5 feet 5 inch</ng-option>
+        <ng-option value="5 feet 6 inch">5 feet 6 inch</ng-option>
+        <ng-option value="5 feet 7 inch">5 feet 7 inch</ng-option>
+        <ng-option value="5 feet 8 inch">5 feet 8 inch</ng-option>
+        <ng-option value="5 feet 9 inch">5 feet 9 inch</ng-option>
+        <ng-option value="5 feet 10 inch">5 feet 10 inch</ng-option>
+        <ng-option value="5 feet 11 inch">5 feet 11 inch</ng-option>
+        <ng-option value="5 feet 12 inch">5 feet 12 inch</ng-option>
+        <ng-option value="6 feet">6 feet</ng-option>
+        <ng-option value="6 feet 1 inch">6 feet 1 inch</ng-option>
+        <ng-option value="6 feet 2 inch">6 feet 2 inch</ng-option>
+        <ng-option value="6 feet 3 inch">6 feet 3 inch</ng-option>
+        <ng-option value="6 feet 4 inch">6 feet 4 inch</ng-option>
+        <ng-option value="6 feet 5 inch">6 feet 5 inch</ng-option>
+        <ng-option value="6 feet 6 inch">6 feet 6 inch</ng-option>
+        <ng-option value="6 feet 7 inch">6 feet 7 inch</ng-option>
+        <ng-option value="6 feet 8 inch">6 feet 8 inch</ng-option>
+        <ng-option value="6 feet 9 inch">6 feet 9 inch</ng-option>
+        <ng-option value="6 feet 10 inch">6 feet 10 inch</ng-option>
+        <ng-option value="6 feet 11 inch">6 feet 11 inch</ng-option>
+        <ng-option value="6 feet 12 inch">6 feet 12 inch</ng-option>
+        <ng-option value="7 feet">7 feet</ng-option>
+        <ng-option value="7 feet 1 inch">7 feet 1 inch</ng-option>
+        <ng-option value="7 feet 2 inch">7 feet 2 inch</ng-option>
+        <ng-option value="7 feet 3 inch">7 feet 3 inch</ng-option>
+        <ng-option value="7 feet 4 inch">7 feet 4 inch</ng-option>
+        <ng-option value="7 feet 5 inch">7 feet 5 inch</ng-option>
+        <ng-option value="7 feet 6 inch">7 feet 6 inch</ng-option>
+        <ng-option value="7 feet 7 inch">7 feet 7 inch</ng-option>
+        <ng-option value="7 feet 8 inch">7 feet 8 inch</ng-option>
+        <ng-option value="7 feet 9 inch">7 feet 9 inch</ng-option>
+        <ng-option value="7 feet 10 inch">7 feet 10 inch</ng-option>
+        <ng-option value="7 feet 11 inch">7 feet 11 inch</ng-option>
+        <ng-option value="7 feet 12 inch">7 feet 12 inch</ng-option>
+      </ng-select>
+    </div>
+  </div>
+
+  <!-- location details -->
+  <div class="header">
+    <h3><span>Lo</span>cation Information</h3>
+    <div class="checkboxWrap headerCheckbox d-flex align-items-center">
+      <label class="checkboxcontainer mx-auto"
+        >Only Me
+        <input type="radio" value="Only Me" formControlName="location_status" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxcontainer mx-auto"
+        >Public
+        <input
+          type="radio"
+          value="Public"
+          checked="checked"
+          formControlName="location_status"
+        />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxcontainer mx-auto"
+        >Friends
+        <input type="radio" value="Friends" formControlName="location_status" />
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+  <div class="row mt2 mb2">
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Country Living In</h6>
+      <ng-select
+        placeholder="Select"
+        formControlName="country_living_in"
+        (change)="SelectedCountry($event)"
+      >
+        <ng-option
+          *ngFor="let country of filteredCountries"
+          [value]="country"
+          >{{ country }}</ng-option
+        >
+      </ng-select>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Residing State</h6>
+      <ng-select
+        placeholder="Select"
+        formControlName="residing_state"
+        (change)="SelectedState($event)"
+      >
+        <ng-option *ngFor="let state of filteredStates[0]" [value]="state">{{
+          state
+        }}</ng-option>
+      </ng-select>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Residing City</h6>
+      <ng-select
+        placeholder="Select"
+        formControlName="residing_city"
+        (change)="SelectedState($event)"
+      >
+        <ng-option *ngFor="let city of filteredCitites[0]" [value]="city">{{
+          city
+        }}</ng-option>
+      </ng-select>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Citizenship</h6>
+      <ng-select placeholder="Select" formControlName="citizenship" [multiple]="true">
+        <ng-option
+          *ngFor="let country of filteredCountries"
+          [value]="country"
+          >{{ country }}</ng-option
+        >
+      </ng-select>
+    </div>
+  </div>
+  <!-- religious details -->
+  <div class="header">
+    <h3><span>Re</span>ligious Information</h3>
+    <div class="checkboxWrap headerCheckbox d-flex align-items-center">
+      <label class="checkboxcontainer mx-auto"
+        >Only Me
+        <input
+          type="radio"
+          value="Only Me"
+          formControlName="religious_status"
+        />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxcontainer mx-auto"
+        >Public
+        <input
+          type="radio"
+          value="Public"
+          checked="checked"
+          formControlName="religious_status"
+        />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxcontainer mx-auto"
+        >Friends
+        <input
+          type="radio"
+          value="Friends"
+          formControlName="religious_status"
+        />
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+  <div class="row mt2 mb2">
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Religion Community</h6>
+      <ng-select placeholder="Select" formControlName="religion_community">
+        <ng-option value="America">Christianity</ng-option>
+        <ng-option value="Australia">Islam</ng-option>
+        <ng-option value="Canada">Hinduism</ng-option>
+        <ng-option value="France">Other Religions</ng-option>
+      </ng-select>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Religious Value</h6>
+      <ng-select placeholder="Select" formControlName="religious_value">
+        <ng-option value="America">Truth</ng-option>
+        <ng-option value="Australia">Love</ng-option>
+        <ng-option value="Canada">Righteousness</ng-option>
+        <ng-option value="France">Goodness</ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <!-- education details -->
+  <div class="header">
+    <h3><span>Ed</span>ucation & Profession</h3>
+    <div class="checkboxWrap headerCheckbox d-flex align-items-center">
+      <label class="checkboxcontainer mx-auto"
+        >Only Me
+        <input
+          type="radio"
+          value="Only Me"
+          formControlName="education_status"
+        />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxcontainer mx-auto"
+        >Public
+        <input
+          type="radio"
+          value="Public"
+          checked="checked"
+          formControlName="education_status"
+        />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxcontainer mx-auto"
+        >Friends
+        <input
+          type="radio"
+          value="Friends"
+          formControlName="education_status"
+        />
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+  <div class="row mt2 mb2">
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Employed In</h6>
+      <div class="checkboxWrap d-flex align-items-center">
+        <label class="checkboxcontainer"
+          >Government
+          <input
+            type="radio"
+            formControlName="employed_in"
+            value="Government"
+          />
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkboxcontainer mx-auto"
+          >Business
+          <input type="radio" formControlName="employed_in" value="Business" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkboxcontainer mx-auto"
+          >Private
+          <input type="radio" formControlName="employed_in" value="Private" />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Occupation</h6>
+      <ng-select placeholder="Select" formControlName="occupation">
+        <ng-option value="Engineer">Engineer</ng-option>
+        <ng-option value="Sportsman">Sportsman</ng-option>
+        <ng-option value="Doctor">Doctor</ng-option>
+        <ng-option value="Chef">Chef</ng-option>
+      </ng-select>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Annual Income</h6>
+      <input type="text" placeholder="$00.00" formControlName="annual_income" />
+    </div>
+  </div>
+  <!-- family details -->
+  <div class="header">
+    <h3><span>Fa</span>mily Information</h3>
+    <div class="checkboxWrap headerCheckbox d-flex align-items-center">
+      <label class="checkboxcontainer mx-auto"
+        >Only Me
+        <input type="radio" value="Only Me" formControlName="family_status" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxcontainer mx-auto"
+        >Public
+        <input
+          type="radio"
+          value="Public"
+          checked="checked"
+          formControlName="family_status"
+        />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxcontainer mx-auto"
+        >Friends
+        <input type="radio" value="Friends" formControlName="family_status" />
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+  <div class="row mt2 mb2">
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Marital Status</h6>
+      <ng-select placeholder="Marital Status" formControlName="marital_status">
+        <ng-option value="Single">Single</ng-option>
+        <ng-option value="Married">Married</ng-option>
+        <ng-option value="Divorced">Divorced</ng-option>
+        <ng-option value="Seprated">Seprated</ng-option>
+      </ng-select>
+    </div>
+    <div
+      class="col-lg-12 d-flex align-items-center mt-3 mb-3"
+      *ngIf="
+        editUserForm.controls['marital_status'].value == 'Married' ||
+        editUserForm.controls['marital_status'].value == 'Seprated' ||
+        editUserForm.controls['marital_status'].value == 'Divorced'
+      "
+    >
+      <h6>Number Of Marriages</h6>
+      <input type="number" placeholder="Number of marriages" min="0" formControlName="numer_of_marriages"/>
+    </div>
+    <div
+      class="col-lg-12 d-flex align-items-center mt-3 mb-3"
+      *ngIf="
+        editUserForm.controls['marital_status'].value == 'Married' ||
+        editUserForm.controls['marital_status'].value == 'Seprated' ||
+        editUserForm.controls['marital_status'].value == 'Divorced'
+      "
+    >
+      <h6>Kids</h6>
+      <input type="number" placeholder="Kids" min="0" formControlName="kids"/>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>Ethnicity</h6>
+      <ng-select placeholder="Select" formControlName="ethnicity">
+        <ng-option value="America">America</ng-option>
+        <ng-option value="Australia">Australia</ng-option>
+        <ng-option value="Canada">Canada</ng-option>
+        <ng-option value="France">France</ng-option>
+      </ng-select>
+    </div>
+    <div class="col-lg-12 d-flex align-items-center mt-3 mb-3">
+      <h6>About Family</h6>
+      <textarea
+        name=""
+        id=""
+        rows="2"
+        placeholder="About Family"
+        formControlName="about_family"
+      ></textarea>
+    </div>
+  </div>
+  <!-- About me -->
+  <div class="aboutMe">
+    <div class="header">
+      <h3><span>Ab</span>out Me</h3>
+      <div class="checkboxWrap headerCheckbox d-flex align-items-center">
+        <label class="checkboxcontainer mx-auto"
+          >Only Me
+          <input
+            type="radio"
+            value="Only Me"
+            formControlName="about_me_status"
+          />
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkboxcontainer mx-auto"
+          >Public
+          <input
+            type="radio"
+            value="Public"
+            checked="checked"
+            formControlName="about_me_status"
+          />
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkboxcontainer mx-auto"
+          >Friends
+          <input
+            type="radio"
+            value="Friends"
+            formControlName="about_me_status"
+          />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div class="row mt2">
+      <div class="col-lg-12 d-flex align-items-center">
+        <textarea
+          name=""
+          id=""
+          rows="4"
+          placeholder="About"
+          formControlName="about_me"
+        >
+After trying out a few of the dating apps over the years, I felt like I could create something that was better on many levels. Slowly but surely, </textarea
+        >
+      </div>
+    </div>
+  </div>
+
+  <button class="blackBtn mt-3 mb-3" (click)="update()">Update</button>
+</form>

@@ -1,0 +1,107 @@
+<div *ngIf="!planPage">
+  <form [formGroup]="matchSettingForm">
+  <div class="filterSideBar d-flex flex-column">
+    <div class="ageRange mt2">
+      <h6>Age Range</h6>
+      <div class="inpBox d-flex justify-content-between">
+        <input type="text" placeholder="Min" formControlName="age_from">
+        <input type="text" placeholder="Max" formControlName="age_to">
+      </div>
+    </div>
+    <div class="ageRange mt2">
+      <h6>Height Range</h6>
+      <div class="inpBox d-flex justify-content-between">
+        <input type="text" placeholder="Min" formControlName="height_from">
+        <input type="text" placeholder="Max" formControlName="height_to">
+      </div>
+    </div>
+    <div class="ageRange mt2" *ngIf="!specificLocation">
+      <h6>Browsing Distance</h6>
+      <div class="inpBox d-flex justify-content-between mt1">
+        <input type="text" placeholder="Min" formControlName="browsing_from">
+        <input type="text" placeholder="Max" formControlName="browsing_to">
+      </div>
+    </div>
+    <div class="ageRange mt2" *ngIf="specificLocation">
+      <h6>Specific Location</h6>
+      <ng-select
+        placeholder="Select"
+        formControlName="country_living_in"
+      >
+        <ng-option
+          *ngFor="let country of filteredCountries"
+          [value]="country"
+          >{{ country }}</ng-option
+        >
+      </ng-select>
+    </div>
+    <div class="toggle-btn d-flex align-items-center mt1">
+      <input type="checkbox" id="toggle3" (change)="toggleSec($event)" />
+      <label for="toggle3"></label>
+      <span>Search by specific location</span>
+    </div>
+    <div class="mt3">
+      <button class="blackBtn" (click)="update()">Apply</button>
+    </div>
+  </div>
+</form>
+  <div class="container mt6">
+    <div class="row progressRow">
+      <div class="col-lg-12">
+        <h1>{{progressBarVal}}% Completed</h1>
+        <div class="col-lg-12 d-flex justify-content-between align-items-center" *ngIf="progressBarVal < 100" >
+          <label>Complete your profile to get a head start and get your free extra hearts.</label>
+          <button [routerLink]="'/profileSettings'">Complete your profile</button>
+        </div>
+        <div class="col-lg-12 mt-3">
+          <ngb-progressbar [showValue]="true" type="info" [value]="progressBarVal" [max]="100"></ngb-progressbar>
+        </div>
+      </div>
+    </div>
+    <div class="profiles">
+      <div class="row">
+        <div class="col-lg-4 mt2 mb2" *ngFor="let fileruser of filterUsers">
+          <div class="profileCard" [routerLink]="['/profile', fileruser?.id]">
+            <div class="profileImg">
+              <img *ngIf="fileruser?.gender == 'men'" src="{{fileruser?.image ? fileruser?.image : 'assets/1x/boyDummy.jpg'}}" alt="">
+              <img *ngIf="fileruser?.gender == 'women'" src="{{fileruser?.image ? fileruser?.image : 'assets/1x/girlDummy.jpg'}}" alt="">
+            </div>
+            <div class="details">
+              <h4>{{fileruser?.name}} {{fileruser?.last_name}}</h4>
+              <h5><span *ngIf="fileruser?.residing_city != null">{{fileruser?.residing_city}}, </span><span>{{fileruser?.age}} Yr</span></h5>
+            </div>
+          </div>
+        </div>
+        <p *ngIf="filterUsers?.length < 1" class="text-center text-danger mt-5">No result found</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="planPage">
+  <div class="container mt6 plansSec">
+    <div class="row">
+      <div class="col-lg-12 mt-3">
+        <h1 class="text-center">Flexible Plans</h1>
+      </div>
+      <div class="col-lg-4 mt-3" *ngFor="let package of packagesData">
+        <input type="radio" name="plan" hidden id="{{package?.id}}">
+        <label for="{{package?.id}}">
+          <div class="cstmCard white text-center">
+            <h3 class="text-center">
+              {{package?.title}}
+            </h3>
+            <h3 class="text-center" [innerHTML]="package?.short_description | sanitizeHtml"></h3>
+            <div class="infobox mt-3 mb3">
+              <p [innerHTML]="package?.description | sanitizeHtml"></p>
+            </div>
+            <button class="blackBtn">Choose plan</button>
+          </div>
+        </label>
+      </div>
+      <div class="col-lg-12 mt6 text-center">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut in illum, sequi delectus laboriosam aspernatur labore molestias, maiores fugit accusamus perferendis! Exercitationem aperiam repudiandae sit alias, deleniti neque doloribus tenetur consequuntur laudantium. Obcaecati impedit molestias voluptate cupiditate aliquid asperiores, tempore id incidunt eveniet atque a suscipit vel? Nam, sequi delectus. Animi culpa vitae tenetur saepe doloremque fugiat, earum delectus obcaecati atque consectetur optio quis commodi velit ad fuga nobis, autem sequi qui assumenda esse quas ut deserunt! Obcaecati iusto laudantium velit nihil ad asperiores enim tempore sed odio labore minus sequi cupiditate fugit accusantium ducimus ratione impedit, itaque repellendus atque.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor commodi explicabo, sapiente tempore, possimus similique tempora distinctio veritatis nam non dolore odio. Possimus eaque consequuntur voluptatum illo unde inventore provident atque molestiae dolorem quis error id, expedita sapiente laboriosam blanditiis architecto officiis iste neque explicabo ipsa odit ad, qui itaque! Corporis ea fugit, vero amet ab placeat molestias nesciunt unde.</p>
+      </div>
+    </div>
+  </div>
+</div>

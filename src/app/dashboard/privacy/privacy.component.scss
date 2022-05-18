@@ -1,0 +1,64 @@
+.header {
+  position: relative;
+  min-height: 75px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../../../assets/SVG/headingProp.svg) no-repeat;
+    width: 45px;
+    height: 100px;
+    z-index: -1;
+    background-size: contain;
+  }
+
+  h3 {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 17px;
+    right: 0;
+    transform: translateY(-50%);
+    font-family: gilroy-bold;
+    letter-spacing: 1px;
+    color: #000;
+
+    span {
+      color: #fff;
+    }
+  }
+}
+h5{
+  color: #000;
+}
+.row {
+  width: 50%;
+}
+@media only screen and (max-width:768px){
+  .row {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .header {
+    h3 {
+      width: fit-content;
+      left: 19px;
+    }
+  }
+}
+@media only screen and (max-width: 540px) {
+  //  all hders margin top
+  .header {
+    margin-top: 2rem;
+  }
+}
+@media only screen and (max-width:414px){
+  .header {
+    h3 {
+      left: 20px;
+    }
+  }
+}

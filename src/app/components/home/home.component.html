@@ -1,0 +1,216 @@
+<div class="homeBanner">
+  <div class="leftSide">
+    <div class="makeDiv d-flex flex-column">
+      <h1 class="wow fadeInLeft">
+        {{ dashboard?.make_content?.title ? dashboard?.make_content?.title : ""}}
+      </h1>
+      <span class="wow fadeInLeft" [innerHTML]="dashboard?.make_content?.description ? dashboard?.make_content?.description : '' | sanitizeHtml"></span>
+      <a *ngIf="!access_token" href="javascript:void(0)" class="wow fadeInLeft">Still don’t have an account?</a>
+      <button *ngIf="!access_token" class="signup wow flipInX" [routerLink]="['/registration']">
+        Sign up now
+      </button>
+    </div>
+  </div>
+  <div class="rightSide">
+    <div class="bnnaerImgBox">
+      <img src="{{ dashboard?.make_content?.image ? dashboard?.make_content?.image : 'assets/1x/dummyImage.jpg' }}" alt="">
+    </div>
+  </div>
+</div>
+<section>
+  <div class="whatWeHave">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h3 class="wow flipInX">What we have</h3>
+        </div>
+        <div class="icos d-flex align-items-center justify-content-between">
+          <div class="iconio d-flex align-items-center">
+            <div class="cir">
+              <img class="wow fadeInDown" src="assets/SVG/user-icon.svg" alt="">
+            </div>
+            <span> {{ dashboard?.users_count }} Million+ <br /> Members </span>
+          </div>
+          <div class="iconio d-flex align-items-center">
+            <div class="cir">
+              <img class="wow fadeInDown" src="assets/SVG/heart-icon.svg" alt="">
+            </div>
+            <span> {{ dashboard?.heart_couple }}+ <br /> Couples </span>
+          </div>
+          <div class="iconio d-flex align-items-center">
+            <div class="cir">
+              <img class="wow fadeInDown" src="assets/SVG/globe-icon.svg" alt="">
+            </div>
+            <span> Worldwide </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="aboutVideo mt8" *ngIf="Aboutsection">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="videoBox" data-bs-toggle="modal" data-bs-target="#videoModal">
+            <img src="assets/SVG/blackScreen.svg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <h3 class="signup wow flipInX" >About</h3>
+          <h4 class="signup wow flipInX" >{{dashboard?.short_title?.build_your ? dashboard?.short_title?.build_your : ""}}</h4>
+          <p class="signup wow fadeInRight" [innerHTML]="(dashboard?.short_title?.description.length > 100) ? (dashboard?.short_title?.description | slice:0:191)+ '...' :(dashboard?.short_title?.description) | sanitizeHtml" >
+          </p>
+          <div class="row">
+            <div class="col-lg-12 mt1 text-lg-left">
+              <button class="Discov blackBtn wow flipInX" [routerLink]="'/about'">
+                Know More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="quality">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h3 class="wow flipInX">
+            Quality People, Just Like You
+          </h3>
+          <p>
+            We're seeking the best of the best.
+          </p>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-3 mb-5" *ngFor="let profile of dashboard?.latest_user" >
+          <div class="peopleCard" [routerLink]="['/profile', profile.id]">
+            <div class="img">
+              <img
+                src="{{ profile.image ? profile.image : 'assets/1x/dummyImage.jpg' }}"
+                class="img-fluid" alt="">
+            </div>
+            <div class="name">
+              <span>{{ profile.name }}</span>
+            </div>
+            <div class="addr">
+              <span> <span *ngIf="profile.country_living_in != null"> {{ profile.country_living_in }} ,</span> {{ profile.age }} Yrs</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mt3 text-center">
+            <button class="Discov blackBtn wow flipInX" [routerLink]="['/dashboard']">
+              Discover More
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slider mt7">
+    <div class="container position-relative">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h3 class="wow flipInX">What our user say!</h3>
+        </div>
+      </div>
+      <swiper [config]="config" [pagination]="{
+        clickable: true
+      }">
+        <ng-template swiperSlide *ngFor="let testimonial of dashboard?.testimonial">
+          <div class="testiCard">
+            <div class="quotation">“</div>
+            <div class="para">
+            <span [innerHTML]="testimonial.description | sanitizeHtml"></span>
+            </div>
+            <div class="pName">
+              {{ testimonial.title }}
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+      <div class="pill2">
+        <img src="assets/SVG/pillTesti.svg" alt="">
+      </div>
+      <div class="rounder"></div>
+    </div>
+  </div>
+</section>
+
+<!-- <section>
+  <div class="about mt8" *ngIf="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <h3 class="wow fadeInDown">About</h3>
+          <h4 class="wow fadeInDown">Who we are</h4>
+          <img class="wow flipInX" src="assets/SVG/arrow.svg" alt="">
+        </div>
+        <div class="col-lg-9">
+          <p>
+            After trying out a few of the dating apps over the years, I felt like I could create something that was
+            better on many levels. Slowly but surely, this idea is starting to become a reality. The majority of singles
+            are truly seeking the real thing. The idea is to weed out those who can't offer something, and/or weed out
+            those who aren't bringing anything to the table. There are scores of profiles that I run across who aren't
+            in a position to be a partner and/or spouse. For example, I run across women who are separated but yet
+            they're on a dating app. If you're still legally married, you will not make the cut on Hidden 10s. This is
+            just one of many examples.
+          </p>
+          <div class="row">
+            <div class="col-lg-12 mt1 text-lg-left">
+              <button class="Discov blackBtn wow flipInX"  [routerLink]="['/about']">
+                Know More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section>
+  <div class="blogSec mt8">
+    <div class="container">
+      <div class="row wow fadeInLeft">
+        <div class="col-lg-8">
+          <h3>{{ dashboard?.home_blog.title }}</h3>
+          <h4>{{ dashboard?.home_blog.short_description }}</h4>
+          <span class="wow fadeInLeft" [innerHTML]="dashboard?.home_blog?.description | sanitizeHtml"></span>
+        </div>
+        <div class="col-lg-4">
+          <div class="pic" [routerLink]="['/blogs']">
+            <img
+              src="{{dashboard?.home_blog?.image ? dashboard?.home_blog?.image : 'assets/1x/dummyImage.jpg' }}"
+              alt="">
+            <div class="conTRe" [routerLink]="['/blogs']">
+              Continue Reading
+              <fa-icon [icon]="faArrowRight"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <video id="aboutVideo" width="100%" height="315" controls>
+          <source type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>

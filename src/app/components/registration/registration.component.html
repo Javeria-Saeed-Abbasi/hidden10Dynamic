@@ -1,0 +1,403 @@
+<div
+  class="fullScreenContainer d-flex align-items-center justify-content-between fBreak"
+>
+  <div class="rightSec colol"></div>
+  <div class="leftSec"></div>
+  <div class="content">
+    <div
+      class="cstmContainer d-flex align-items-center justify-content-between"
+    >
+      <div class="rightSec">
+        <div class="pillar1">
+          <img src="assets/SVG/pillar7.svg" class="img-fluid" alt="" />
+        </div>
+        <div class="pillar2">
+          <img src="assets/SVG/pillar2.svg" class="img-fluid" alt="" />
+        </div>
+        <div class="pillar3">
+          <img src="assets/SVG/pillar3.svg" class="img-fluid" alt="" />
+        </div>
+        <div class="pillar4">
+          <img src="assets/SVG/pillar4.svg" class="img-fluid" alt="" />
+        </div>
+        <div class="pillar5">
+          <img src="assets/SVG/pillar6.svg" class="img-fluid" alt="" />
+        </div>
+        <div class="pillar1img pillimg">
+          <img
+            src="https://img2.goodfon.com/wallpaper/nbig/7/b1/pomeschenie-devushka-obernulas.jpg"
+            class="img-fluid"
+            alt=""
+          />
+        </div>
+        <div class="pillar2img pillimg">
+          <img
+            src="https://media.istockphoto.com/photos/handsome-businessman-with-arms-crossed-standing-in-office-picture-id674199444?k=20&m=674199444&s=612x612&w=0&h=DQNZB1QSTtrkz-L8koE92W62z_TPa-STPW-b6p9_I9g="
+            class="img-fluid"
+            alt=""
+          />
+        </div>
+        <div class="pillar3img pillimg">
+          <img
+            src="https://image.freepik.com/free-photo/business-man-owner-company-office_1303-15851.jpg"
+            class="img-fluid"
+            alt=""
+          />
+        </div>
+        <div class="pillar4img pillimg">
+          <img
+            src="https://www.chicagotribune.com/resizer/M_I03H4cZ--ldcSEs4SnI73rv0E=/1200x0/top/www.trbimg.com/img-5ce6d292/turbine/ct-life-my-hijab-meaning-05142019"
+            class="img-fluid"
+            alt=""
+          />
+        </div>
+        <div class="pillar5img pillimg">
+          <img
+            src="https://smallbusinessify.com/wp-content/uploads/2019/11/Best-Computer-for-Business-Owner.jpg"
+            class="img-fluid"
+            alt=""
+          />
+        </div>
+        <div class="pillar6img pillimg">
+          <img
+            src="https://media.istockphoto.com/photos/handsome-businessman-with-arms-crossed-standing-in-office-picture-id674199444?k=20&m=674199444&s=612x612&w=0&h=DQNZB1QSTtrkz-L8koE92W62z_TPa-STPW-b6p9_I9g="
+            class="img-fluid"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="leftSec">
+        <div class="container">
+          <div class="registerationForm">
+            <div class="registerationFormHeader">
+              <div class="logoBox" [routerLink]="''">
+                <img src="assets/SVG/logo.svg" alt="" />
+              </div>
+            </div>
+            <div class="registerationFormBody">
+              <form [formGroup]="registration">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h1>Registration</h1>
+                  </div>
+                  <div class="col-lg-12 mt-3">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <span>Name</span>
+                      </div>
+                      <div class="col-sm-4">
+                        <input
+                          type="text"
+                          placeholder="First Name"
+                          formControlName="name"
+                        />
+                        <div
+                          *ngIf="
+                            registration.controls['name'].touched &&
+                            registration.controls['name'].invalid
+                          "
+                          class="text text-danger mt-1"
+                        >
+                          First Name is required
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <input
+                          type="text"
+                          placeholder="Last Name"
+                          formControlName="last_name"
+                        />
+                        <div
+                          *ngIf="
+                            registration.controls['last_name'].touched &&
+                            registration.controls['last_name'].invalid
+                          "
+                          class="text text-danger mt-1"
+                        >
+                          Last Name is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 mt-3">
+                    <div class="row">
+                      <div class="col-sm-3 mb-3">
+                        <span>Gender</span>
+                      </div>
+                      <div class="col-3">
+                        <label class="checkboxcontainer"
+                          >Man
+                          <input
+                            type="radio"
+                            formControlName="gender"
+                            name="gender"
+                            value="men"
+                            checked="checked"
+                          />
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                      <div class="col-3">
+                        <label class="checkboxcontainer mx-auto"
+                          >Woman
+                          <input
+                            type="radio"
+                            name="gender"
+                            formControlName="gender"
+                            value="women"
+                          />
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 mt-3">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <span>Date Of Birth</span>
+                      </div>
+                      <div class="col-sm-3">
+                        <input
+                          type="number"
+                          placeholder="Date"
+                          formControlName="date"
+                          maxLength="2"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          min="1"
+                        />
+                        <div
+                          *ngIf="registration.controls?.['date']?.touched && registration.controls?.['date']?.errors?.['required']"
+                          class="text text-danger mt-1"
+                        >
+                          Date is required
+                        </div>
+                        <div
+                          *ngIf="registration.controls?.['date']?.touched && registration.controls?.['date']?.errors?.['pattern']"
+                          class="text text-danger mt-1"
+                        >
+                          Invalid date
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <input
+                          type="number"
+                          placeholder="Month"
+                          formControlName="month"
+                          maxLength="2"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          min="1"
+
+                        />
+                        <div
+                          *ngIf="registration.controls?.['month']?.touched && registration.controls?.['month']?.errors?.['required']"
+                          class="text text-danger mt-1"
+                        >
+                          Month is required
+                        </div>
+                        <div
+                          *ngIf="registration.controls?.['month']?.touched && registration.controls?.['month']?.errors?.['pattern']"
+                          class="text text-danger mt-1"
+                        >
+                          Invalid month
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <input
+                          type="number"
+                          placeholder="Year"
+                          formControlName="year"
+                          maxLength="4"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          min="0"
+                        />
+                        <div
+                          *ngIf="registration.controls?.['year']?.touched && registration.controls?.['year']?.errors?.['required']"
+                          class="text text-danger mt-1"
+                        >
+                          Year is required
+                        </div>
+                        <div
+                          *ngIf="registration.controls?.['year']?.touched && registration.controls?.['year']?.errors?.['pattern']"
+                          class="text text-danger mt-1"
+                        >
+                          Invalid Year
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 mt-3">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <span>Mobile Number</span>
+                      </div>
+                      <div class="col-sm-8">
+                        <input
+                          type="text"
+                          placeholder="Phone Number (197)635-2678"
+                          formControlName="phone_number"
+                          (keyup)="numberKeyup($event)"
+                          (keypress)="numberOnly($event)"
+                          maxlength="13"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          id="phone_number"
+                        />
+                        <div
+                          *ngIf="registration.controls?.['phone_number']?.touched && registration.controls?.['phone_number']?.errors?.['required']"
+                          class="text text-danger mt-1"
+                        >
+                          Mobile Number is required
+                        </div>
+                        <div
+                          *ngIf="registration.controls?.['phone_number']?.touched && registration.controls?.['phone_number']?.errors?.['pattern']"
+                          class="text text-danger mt-1"
+                        >
+                          Invalid Mobile Number
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 mt-3">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <span>Email Address</span>
+                      </div>
+                      <div class="col-sm-8">
+                        <input
+                          type="email"
+                          placeholder="Email Address"
+                          formControlName="email"
+                        />
+                        <div
+                          *ngIf="registration.controls?.['email']?.touched && registration.controls?.['email']?.errors?.['required']"
+                          class="text text-danger mt-1"
+                        >
+                          Email is required
+                        </div>
+                        <div
+                          *ngIf="registration.controls?.['email']?.touched && registration.controls?.['email']?.errors?.['email']"
+                          class="text text-danger mt-1"
+                        >
+                          Invalid Email
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 mt-3">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <span>Password</span>
+                      </div>
+                      <div class="col-sm-8">
+                        <div class="inpBox">
+                          <i class="fa fa-eye" (click)="showPass($event)"></i>
+                          <input
+                            class="passwordInp"
+                            type="password"
+                            placeholder="password"
+                            formControlName="password"
+                          />
+                        </div>
+                        <div
+                          *ngIf="registration.controls?.['password']?.touched && registration.controls?.['password']?.errors?.['required']"
+                          class="text text-danger mt-1"
+                        >
+                          Password is required
+                        </div>
+                        <div
+                          *ngIf="registration.controls?.['password']?.touched && registration.controls?.['password']?.errors?.['pattern']"
+                          class="text text-danger mt-1"
+                        >
+                          Password must contain the following: <br />
+                          A lowercase letter <br />
+                          A capital (uppercase) letter <br />
+                          A number Minimum 8 characters <br />
+                          A special character
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 mt-3">
+                    <div class="row justify-content-end termsRow">
+                      <div class="col-sm-8">
+                        <label class="cstmCheckContainer mb-3"
+                          >I have read all Privacy & Policy
+                          <input
+                            id="termsCheck"
+                            type="checkbox"
+                            checked="checked"
+                            (change)="terms($event)"
+                          />
+                          <span class="cstmCheckmark"></span>
+                        </label>
+                        <button
+                          class="blackBtn mb-3"
+                          (click)="verify()"
+                          [disabled]="!btnTerms"
+                        >
+                          Register
+                        </button>
+                        <button
+                          class="otpModal"
+                          hidden
+                          data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                        ></button>
+                        <span class="alreadyAccnt"
+                          >Already have an account
+                          <button (click)="signInmodal()">Sign In</button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <i
+          class="fa fa-times close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></i>
+        <h3>Verify</h3>
+        <ng-otp-input
+          (onInputChange)="onOtpChange($event)"
+          [config]="{ length: 4 }"
+        ></ng-otp-input>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-dark registerBtn"
+          (click)="register($event)"
+          disabled
+        >
+          Register
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          data-bs-dismiss="modal"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

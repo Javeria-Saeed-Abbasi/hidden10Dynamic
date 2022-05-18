@@ -1,0 +1,61 @@
+<div class="fullScreenContainer d-flex align-items-center justify-content-between fBreak">
+  <div class="leftSec"></div>
+  <div class="rightSec colol"></div>
+  <div class="content">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="leftSec">
+        <div class="makeDiv d-flex flex-column">
+          <h1 class="wow fadeInRight">
+            About Us
+          </h1>
+          <div class="imgBox wow flipInX">
+            <img  src="assets/SVG/arrow.svg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="rightSec">
+        <div class="pillar1">
+          <img src="assets/SVG/pillar1.svg" class="img-fluid" alt="">
+        </div>
+        <div class="pillar2">
+          <img src="assets/SVG/pillar3.svg" class="img-fluid" alt="">
+        </div>
+        <div class="pillar3">
+          <img src="assets/SVG/pillar3.svg" class="img-fluid" alt="">
+        </div>
+        <div class="pillar1img pillimg">
+          <img src="{{aboutUs?.image ? aboutUs?.image : 'assets/1x/dummyImage.jpg'}}" class="img-fluid"
+            alt="">
+        </div>
+        <div class="pillar2img pillimg">
+          <img
+            src="{{aboutUs?.image2 ? aboutUs?.image2 : 'assets/1x/dummyImage.jpg'}}"
+            class="img-fluid" alt="">
+        </div>
+        <div class="pillar3img pillimg">
+          <img src="{{aboutUs?.image3 ? aboutUs?.image3 : 'assets/1x/dummyImage.jpg'}}"
+            class="img-fluid" alt="">
+        </div>
+        <div class="pillar4img pillimg">
+          <img
+            src="{{aboutUs?.image4 ? aboutUs?.image4 : 'assets/1x/dummyImage.jpg'}}"
+            class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="whoWeAre">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center wow zoomIn">
+          {{aboutUs?.title}}
+        </div>
+        <span class="text-center" [innerHTML]="aboutUs?.description | sanitizeHtml">
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

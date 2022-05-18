@@ -1,0 +1,145 @@
+.rightSec {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00000082;
+  }
+
+  height: 100vh;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cstmRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .cstmCol {
+    width: 50%;
+  }
+
+  .leftSec {
+    padding: 1rem 4rem;
+  }
+}
+
+h1 {
+  font-family: gilroy-bold;
+  color: #000;
+}
+
+span {
+  font-family: gilroy-bold;
+  color: #000;
+}
+
+input,
+textarea {
+  background: #F2F2F2;
+  border: none;
+  padding: 6px 1rem;
+  outline: none;
+  width: 100%;
+  resize: none;
+}
+::ng-deep .toast-top-right {
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    height: fit-content;
+    top: unset !important;
+}
+::ng-deep .toast-success {
+  background-color: #969696;
+}
+@media only screen and (max-width:768px) {
+  .rightSec {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #00000082;
+    }
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .cstmRow {
+    flex-direction: column-reverse;
+
+    .cstmCol {
+      display: none;
+    }
+
+    .cstmCol.leftSec {
+      width: 100%;
+      display: flex;
+      position: relative;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #00000082;
+        z-index: -1;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('../../../assets/1x/landingPageBanner.png') no-repeat;
+        background-size: cover;
+        z-index: -2;
+      }
+    }
+
+    input,
+    textarea {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+      &::placeholder{
+        color: #fff;
+      }
+    }
+
+    span {
+      color: #fff;
+    }
+    h1 {
+      color: #fff;
+    }
+  }
+}

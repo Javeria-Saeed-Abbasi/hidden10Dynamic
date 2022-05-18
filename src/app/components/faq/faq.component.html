@@ -1,0 +1,67 @@
+<div class="fullScreenContainer d-flex align-items-center justify-content-between fBreak">
+  <div class="leftSec"></div>
+  <div class="rightSec colol"></div>
+  <div class="content">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="leftSec">
+        <div class="makeDiv d-flex flex-column">
+          <h1 class="wow fadeInRight">
+            {{faqs?.faqs_cms?.title ? faqs?.faqs_cms?.title : ''}}
+          </h1>
+          <span [innerHTML]="faqs?.faqs_cms?.description | sanitizeHtml"></span>
+        </div>
+      </div>
+      <div class="rightSec">
+        <div class="pillar1">
+          <img src="assets/SVG/pillar1.svg" class="img-fluid" alt="">
+        </div>
+        <div class="pillar2">
+          <img src="assets/SVG/pillar3.svg" class="img-fluid" alt="">
+        </div>
+        <div class="pillar3">
+          <img src="assets/SVG/pillar3.svg" class="img-fluid" alt="">
+        </div>
+        <div class="pillar1img pillimg">
+          <img src="{{faqs?.faqs_cms?.image ? faqs?.faqs_cms?.image : 'assets/1x/dummyImage.jpg'}}" class="img-fluid"
+            alt="">
+        </div>
+        <div class="pillar2img pillimg">
+          <img
+            src="{{faqs?.faqs_cms?.image2 ? faqs?.faqs_cms?.image2 : 'assets/1x/dummyImage.jpg'}}"
+            class="img-fluid" alt="">
+        </div>
+        <div class="pillar3img pillimg">
+          <img src="{{faqs?.faqs_cms?.image3 ? faqs?.faqs_cms?.image3 : 'assets/1x/dummyImage.jpg'}}"
+            class="img-fluid" alt="">
+        </div>
+        <div class="pillar4img pillimg">
+          <img
+            src="{{faqs?.faqs_cms?.image4 ? faqs?.faqs_cms?.image4 : 'assets/1x/dummyImage.jpg'}}"
+            class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="faqs mt7">
+    <div class="container">
+      <div class="row">
+       <div class="col-lg-12">
+        <div class="collapseCard card" *ngFor="let faq of faqs?.faqs">
+          <div class="cheader">
+            <a data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="collapsed">
+              {{faq?.title}}
+              <i class="fa fa-angle-down"></i>
+            </a>
+          </div>
+          <div class="cCont collapse multi-collapse" id="multiCollapseExample1">
+            <span [innerHTML]="faq?.description | sanitizeHtml"></span>
+          </div>
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</section>

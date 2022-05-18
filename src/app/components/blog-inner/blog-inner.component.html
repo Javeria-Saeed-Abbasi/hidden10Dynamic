@@ -1,0 +1,56 @@
+<section>
+  <div class="whatWeAreThinking">
+    <div class="container">
+      <div class="row mt7">
+        <div class="col-lg-7">
+          <h1>
+            What we <br>
+            are thinking <br>
+            about
+          </h1>
+          <p>
+            After trying out a few of the dating apps over the years, I felt like I could create something that was
+            better on many levels. Slowly but surely, this idea is starting to become a reality. The majority of singles
+            are truly seeking the real thing. The idea is to weed out those who can't offer something, and/or weed out
+            those who aren't bringing anything to the table.
+          </p>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
+          <div class="sideImage">
+            <div class="pill">
+              <img src="assets/SVG/flipper.svg" alt="">
+            </div>
+            <div class="userI">
+              <img src="{{blog?.image}}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container mt3">
+  <div class="blogBody">
+    <div class="row">
+      <div class="col-lg-12 mt-3">
+        <span  [innerHTML]="blog?.short_description | sanitizeHtml">
+        </span>
+      </div>
+      <div class="col-sm-4 mt-3">
+        <div class="sideImage">
+          <div class="pill">
+            <img src="assets/SVG/flipper.svg" alt="">
+          </div>
+          <div class="userI">
+            <img src="{{blog?.image}}" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8 mt-3">
+        <span [innerHTML]="blog?.description | sanitizeHtml ">
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

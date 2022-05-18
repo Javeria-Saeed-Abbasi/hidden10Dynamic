@@ -1,0 +1,8 @@
+{
+  "/echo":{
+    "target":"designprosglobal.com/hidden",
+    "secure":false,
+    "changeOrigin":true,
+    "logLevel":"debug"
+  }
+}

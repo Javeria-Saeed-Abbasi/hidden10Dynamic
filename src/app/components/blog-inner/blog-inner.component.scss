@@ -1,0 +1,161 @@
+.whatWeAreThinking{
+  h1{
+    font-family: 'gilroy-bold';
+    font-size: 50px;
+    color: #000;
+  }
+  p{
+    font-family: gilroy-regular;
+    /* font-size: 16px; */
+    margin-top: 1.5rem;
+    color: #808080;
+  }
+  .col-lg-4{
+    height: 435px;
+  }
+  .sideImage{
+    position: relative;
+    img{
+      width: 76%;
+    }
+    .pill{
+      position: absolute;
+      // right: 19px;
+      z-index: -1;
+      top: -27px;
+    }
+    .userI{
+      height: 400px;
+      // width: 92%;
+      margin-top: 8%;
+      margin-left: 8%;
+      right: 0;
+      display: flex;
+      justify-content: start;
+      z-index: 1;
+      img{
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+  }
+
+}
+.blogBody{
+  p{
+    color: #808080;
+    font-family: gilroy-regular;
+  }
+  .sideImage{
+    position: relative;
+    img{
+      width: 76%;
+    }
+    .pill{
+      position: absolute;
+      z-index: -1;
+      top: -27px;
+      right: 50px;
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
+    .userI{
+      height: 400px;
+      // width: 92%;
+      margin-top: 8%;
+      margin-left: 8%;
+      right: 0;
+      display: flex;
+      justify-content: start;
+      z-index: 1;
+      img{
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+  }
+}
+@media only screen and (max-width:1024px){
+  .blogBody{
+    .sideImage{
+      .pill{
+        right: 40px;
+      }
+    }
+  }
+}
+@media only screen and (max-width:768px){
+  .whatWeAreThinking{
+    .sideImage{
+      height: 100%;
+      .pill{
+        right: unset;
+        left: 0%;
+        top: -50px;
+    width: 39%;
+      }
+    }
+    .col-lg-4{
+      margin-top: 3rem;
+      height: fit-content;
+      .userI{
+        height: 100%;
+        margin-left: 0;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  }
+  .blogBody{
+    .sideImage{
+      height: 100%;
+      .pill{
+        right: 20px;
+      }
+      .userI{
+        height: 60%;
+      }
+    }
+  }
+}
+@media only screen and (max-width:414px){
+  .whatWeAreThinking{
+    .sideImage{
+      height: 100%;
+      .pill{
+        right: unset;
+        left: 0%;
+        top: -50px;
+    width: 39%;
+      }
+    }
+    .col-lg-4{
+      margin-top: 3rem;
+      height: fit-content;
+      .userI{
+        height: 100%;
+        margin-left: 0;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  }
+  .blogBody{
+    .sideImage{
+      height: 100%;
+      .pill{
+        right: 20px;
+        width: 40%;
+      }
+      .userI{
+        height: 100%;
+        margin-left: 0;
+        justify-content: center;
+        width: 100%;
+        margin-top: 0;
+      }
+    }
+  }
+}

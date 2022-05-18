@@ -1,0 +1,115 @@
+.header {
+  position: relative;
+  min-height: 85px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../../../assets/SVG/headingProp.svg) no-repeat;
+    width: 52px;
+    height: 100px;
+    z-index: -1;
+    background-size: contain;
+  }
+
+  h3 {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 10px;
+    right: 0;
+    transform: translateY(-50%);
+    font-family: gilroy-bold;
+    letter-spacing: 1px;
+    color: #000;
+
+    span {
+      color: #fff;
+    }
+  }
+}
+
+.row {
+  .col-lg-12 {
+    h6 {
+      color: #666666;
+      font-family: gilroy-light;
+    }
+    .locationBox{
+      h2{
+        color: #666666;
+        font-family: gilroy-bold;
+      }
+      h6{
+        color: #000;
+        font-family: gilroy-regular;
+      }
+    }
+    .locationArrow{
+      width: 40px;
+      overflow: hidden;
+      height: 40px;
+      cursor: pointer;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .col-lg-8{
+    h6{
+      margin: 0;
+      min-width: 210px;
+    }
+    .checkboxWrap{
+      width: 70%;
+    }
+  }
+}
+.range-input {
+  display: none !important;
+}
+.rangBox{
+  max-width: 70%;
+  width: 100%;
+}
+::ng-deep .ng5-slider .ng5-slider-pointer{
+  background-color: #A5A5A5 !important;
+  width: 12px !important;
+    height: 12px !important;
+    top: -5px !important;
+}
+::ng-deep .ng5-slider .ng5-slider-selection,
+::ng-deep .ng5-slider .ng5-slider-bar{
+  background-color: #CCCCCC !important;
+}
+::ng-deep .ng5-slider .ng5-slider-pointer{
+  &::after{
+    background: #A5A5A5 !important;
+    content: unset !important;
+  }
+}
+.toggle-btn{
+  span{
+    margin-left: 10px;
+  }
+}
+::ng-deep .toast-top-right {
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    height: fit-content;
+    top: unset !important;
+}
+::ng-deep .toast-success {
+  background-color: #969696;
+}
+@media only screen and (max-width: 540px) {
+  //  all hders margin top
+  .header {
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,647 @@
+<div class="container mt6">
+  <h1>Profile View</h1>
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <div class="profileHeader d-flex">
+        <div class="firstCol">
+          <div class="imgBox">
+            <img
+              data-aos="zoom-in-up"
+              data-aos-duration="1500"
+              *ngIf="profileDetail?.user_details?.gender == 'men'"
+              src="{{
+                profileDetail?.user_details.image
+                  ? profileDetail?.user_details.image
+                  : 'assets/1x/boyDummy.jpg'
+              }}"
+              alt=""
+            />
+            <img
+              data-aos="zoom-in-up"
+              data-aos-duration="1500"
+              *ngIf="profileDetail?.user_details?.gender == 'women'"
+              src="{{
+                profileDetail?.user_details.image
+                  ? profileDetail?.user_details.image
+                  : 'assets/1x/girlDummy.jpg'
+              }}"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="secondCol">
+          <div class="row mt1">
+            <div class="col-lg-12 mb2">
+              <h1>
+                {{ profileDetail?.user_details?.name }}
+                {{ profileDetail?.user_details?.last_name }}
+              </h1>
+            </div>
+            <div class="col-sm-5 mt-1">
+              <label
+                >{{ profileDetail?.user_details?.age }} yrs,
+                {{ profileDetail?.user_details?.height }},
+                {{ profileDetail?.user_details?.horoscope }}</label
+              >
+            </div>
+            <div
+              class="col-sm-5 mt-1"
+              *ngIf="
+                (profileDetail?.user_details?.family_status != 'Only Me' &&
+                  profileDetail?.user_details?.family_status != 'Public' &&
+                  profileDetail?.user_details?.family_status != 'Friends') ||
+                profileDetail?.user_details?.family_status == 'Public' ||
+                (profileDetail?.user_details?.family_status == 'Friends' &&
+                  profileDetail?.connection_dual == 1)
+              "
+            >
+              <label>{{ profileDetail?.user_details?.marital_status }}</label>
+            </div>
+            <div class="col-sm-5 mt-1">
+              <label>{{ profileDetail?.user_details?.mother_tongue }}</label>
+            </div>
+            <div class="col-sm-5 mt-1">
+              <label>{{ profileDetail?.user_details?.physical_status }}</label>
+            </div>
+            <div
+              class="col-sm-5 mt-1"
+              *ngIf="
+                (profileDetail?.user_details?.location_status != 'Only Me' &&
+                  profileDetail?.user_details?.location_status != 'Public' &&
+                  profileDetail?.user_details?.location_status != 'Friends') ||
+                profileDetail?.user_details?.location_status == 'Public' ||
+                (profileDetail?.user_details?.location_status == 'Friends' &&
+                  profileDetail?.connection_dual == 1)
+              "
+            >
+              <label
+                >Lives In {{ profileDetail?.user_details?.residing_city }},
+                {{ profileDetail?.user_details?.residing_state }}</label
+              >
+            </div>
+            <div
+              class="col-sm-5 mt-1"
+              *ngIf="
+                (profileDetail?.user_details?.religious_status != 'Only Me' &&
+                  profileDetail?.user_details?.religious_status != 'Public' &&
+                  profileDetail?.user_details?.religious_status != 'Friends') ||
+                profileDetail?.user_details?.religious_status == 'Public' ||
+                (profileDetail?.user_details?.religious_status == 'Friends' &&
+                  profileDetail?.connection_dual == 1)
+              "
+            >
+              <label>{{ profileDetail?.user_details?.religious_value }}</label>
+            </div>
+            <div
+              class="col-sm-5 mt-1"
+              *ngIf="
+                (profileDetail?.user_details?.education_status != 'Only Me' &&
+                  profileDetail?.user_details?.education_status != 'Public' &&
+                  profileDetail?.user_details?.education_status != 'Friends') ||
+                profileDetail?.user_details?.education_status == 'Public' ||
+                (profileDetail?.user_details?.education_status == 'Friends' &&
+                  profileDetail?.connection_dual == 1)
+              "
+            >
+              <label>{{ profileDetail?.user_details?.occupation }}</label>
+            </div>
+            <div
+              class="col-sm-5 mt-1"
+              *ngIf="
+                (profileDetail?.user_details?.education_status != 'Only Me' &&
+                  profileDetail?.user_details?.education_status != 'Public' &&
+                  profileDetail?.user_details?.education_status != 'Friends') ||
+                profileDetail?.user_details?.education_status == 'Public' ||
+                (profileDetail?.user_details?.education_status == 'Friends' &&
+                  profileDetail?.connection_dual == 1)
+              "
+            >
+              <label
+                >Earns
+                {{
+                  profileDetail?.user_details?.annual_income | currency: "USD"
+                }}
+                annually</label
+              >
+            </div>
+            <div class="col-lg-12 mt3 d-flex">
+              <button
+                class="d-flex heartBtn"
+                (click)="connect()"
+                *ngIf="profileDetail?.connection_status == 0 && profileDetail?.user_connected == 0"
+              >
+                Connect<span class="d-flex align-items-baseline heartBox"
+                  ><span class="heartIcon">
+                    <img src="assets/SVG/heartIcon.svg" alt="" /> </span
+                  >1 Heart</span
+                >
+              </button>
+              <label *ngIf="profileDetail?.connection_status == 1 && profileDetail?.connection_dual == 0"
+                class="d-flex heartBtn"
+              > Request Sent</label>
+              <div class="d-flex justify-content-center align-items-center" *ngIf="profileDetail?.connection_status == 0 && profileDetail?.user_connected == 2 && profileDetail?.connection_dual == 0">
+                <button class="heartBtn btn" (click)="acceptRequest()" >Accept</button>
+                <button class="heartBtn btn" (click)="declineRequest()">Decline</button>
+              </div>
+              <button
+                *ngIf="profileDetail?.connection_dual == 1"
+                class="d-flex heartBtn btn"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal1"
+              >
+                Connected
+              </button>
+              <!-- (click)="connected()" -->
+              <!-- <button *ngIf="profileDetail?.connection_status == 1"
+                class="d-flex heartBtn"
+                (click)="connected()"
+              > Connected</button> -->
+              <div rel="tooltip" class="wrap poptooltip">
+                <button
+                  class="d-flex heartBtn messageBtn"
+                  [routerLink]="[
+                    '/profileSettings/chat',
+                    profileDetail?.user_details?.id
+                  ]"
+                >
+                  Message
+                  <span class="d-flex align-items-baseline heartBox"
+                    ><span class="heartIcon">
+                      <img src="assets/SVG/heartIcon.svg" alt="" /> </span
+                    >5 Heart</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="deatilBg">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="head">
+          <h6>Detailed Profile</h6>
+        </div>
+        <div
+          class="contentContainer about prop mt-3"
+          *ngIf="
+            (profileDetail?.user_details?.about_me_status != 'Only Me' &&
+              profileDetail?.user_details?.about_me_status != 'Public' &&
+              profileDetail?.user_details?.about_me_status != 'Friends') ||
+            profileDetail?.user_details?.about_me_status == 'Public' ||
+            (profileDetail?.user_details?.about_me_status == 'Friends' &&
+              profileDetail?.connection_dual == 1)
+          "
+        >
+          <label class="mt-2"
+            >About {{ profileDetail?.user_details?.name }}</label
+          >
+          <p class="mt-2">{{ profileDetail?.user_details?.about_me }}</p>
+        </div>
+        <div class="contentContainer contact prop mt-3">
+          <label class="mt-2">Contact Details</label>
+          <div class="contactBox">
+            <div class="number d-flex align-items-start">
+              <div class="numberIcon">
+                <img src="assets/SVG/contactIcon1.svg" alt="" />
+              </div>
+              <div class="numberDet d-flex flex-column">
+                <label class="numberHead mt-1">Contact Number</label>
+                <label class="phoneNumber mt-1">{{
+                  profileDetail?.user_details?.phone_number
+                }}</label>
+              </div>
+            </div>
+            <div class="number d-flex align-items-start">
+              <div class="numberIcon">
+                <img src="assets/SVG/contactIcon2.svg" alt="" />
+              </div>
+              <div class="numberDet d-flex flex-column">
+                <label class="numberHead mt-1">Email ID</label>
+                <label class="phoneNumber mt-1">{{
+                  profileDetail?.user_details?.email
+                }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="contentContainer background prop mt-3"
+          *ngIf="
+            (profileDetail?.user_details?.religious_status != 'Only Me' &&
+              profileDetail?.user_details?.religious_status != 'Public' &&
+              profileDetail?.user_details?.religious_status != 'Friends') ||
+            profileDetail?.user_details?.religious_status == 'Public' ||
+            (profileDetail?.user_details?.religious_status == 'Friends' &&
+              profileDetail?.connection_dual == 1)
+          "
+        >
+          <label class="mt-2">Background</label>
+          <div class="backgroundBox">
+            <div class="number d-flex align-items-start">
+              <div class="numberIcon">
+                <img src="assets/SVG/backgroundIcon1.svg" alt="" />
+              </div>
+              <div class="numberDet d-flex flex-column">
+                <label class="phoneNumber mt-1"
+                  >{{ profileDetail?.user_details?.religious_value
+                  }}{{ profileDetail?.user_details?.mother_tongue }}
+                </label>
+              </div>
+            </div>
+            <div class="number d-flex align-items-start">
+              <div class="numberIcon">
+                <img src="assets/SVG/backgroundIcon2.svg" alt="" />
+              </div>
+              <div class="numberDet d-flex flex-column">
+                <label class="phoneNumber mt-1">{{
+                  profileDetail?.user_details?.religion_community
+                }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="contentContainer family prop mt-3"
+          *ngIf="
+            (profileDetail?.user_details?.family_status != 'Only Me' &&
+              profileDetail?.user_details?.family_status != 'Public' &&
+              profileDetail?.user_details?.family_status != 'Friends') ||
+            profileDetail?.user_details?.family_status == 'Public' ||
+            (profileDetail?.user_details?.family_status == 'Friends' &&
+              profileDetail?.connection_dual == 1)
+          "
+        >
+          <label class="mt-2">Family</label>
+          <div class="familyBox">
+            <p>{{ profileDetail?.user_details?.about_family }}</p>
+          </div>
+        </div>
+        <div
+          class="contentContainer education prop mt-3"
+          *ngIf="
+            (profileDetail?.user_details?.education_status != 'Only Me' &&
+              profileDetail?.user_details?.education_status != 'Public' &&
+              profileDetail?.user_details?.education_status != 'Friends') ||
+            profileDetail?.user_details?.education_status == 'Public' ||
+            (profileDetail?.user_details?.education_status == 'Friends' &&
+              profileDetail?.connection_dual == 1)
+          "
+        >
+          <label class="mt-2">Education</label>
+          <div class="educationBox">
+            <div class="number d-flex align-items-start">
+              <div class="numberIcon">
+                <img src="assets/SVG/educationicon1.svg" alt="" />
+              </div>
+              <div class="numberDet d-flex flex-column">
+                <label class="phoneNumber mt-1">{{
+                  profileDetail?.user_details?.occupation
+                }}</label>
+              </div>
+            </div>
+            <div class="number d-flex align-items-start">
+              <div class="numberIcon">
+                <img src="assets/1x/officeIcon.png" alt="" />
+              </div>
+              <div class="numberDet d-flex flex-column">
+                <label class="phoneNumber mt-1">{{
+                  profileDetail?.user_details?.employed_in
+                }}</label>
+              </div>
+            </div>
+            <div class="number d-flex align-items-start">
+              <div class="numberIcon">
+                <img src="assets/SVG/educationicon2.svg" alt="" />
+              </div>
+              <div class="numberDet d-flex flex-column">
+                <label class="phoneNumber mt-1"
+                  >Earns
+                  {{
+                    profileDetail?.user_details?.annual_income | currency: "USD"
+                  }}
+                  annu..</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contentContainer lookingFor mt-3">
+          <label
+            class="mt-2"
+            *ngIf="profileDetail?.user_details?.gender == 'women'"
+            >What she is looking for</label
+          >
+          <label
+            class="mt-2"
+            *ngIf="profileDetail?.user_details?.gender == 'men'"
+            >What he is looking for</label
+          >
+          <div
+            class="lookingForBox d-flex justify-content-between align-items-center"
+          >
+            <div class="preferenceBox">
+              <div class="profileImgBox">
+                <img
+                  *ngIf="profileDetail?.user_details?.gender == 'women'"
+                  src="{{
+                    profileDetail?.user_details.image
+                      ? profileDetail?.user_details.image
+                      : 'assets/1x/girlDummy.jpg'
+                  }}"
+                  alt=""
+                />
+                <img
+                  *ngIf="profileDetail?.user_details?.gender == 'men'"
+                  src="{{
+                    profileDetail?.user_details.image
+                      ? profileDetail?.user_details.image
+                      : 'assets/1x/boyDummy.jpg'
+                  }}"
+                  alt=""
+                />
+              </div>
+              <h6
+                class="mt-3"
+                *ngIf="profileDetail?.user_details?.gender == 'women'"
+              >
+                Her Preferences
+              </h6>
+              <h6
+                class="mt-3"
+                *ngIf="profileDetail?.user_details?.gender == 'men'"
+              >
+                His Preferences
+              </h6>
+            </div>
+            <div class="matched">
+              <label *ngIf="profileDetail?.user_details?.gender == 'women'"
+                >You match {{ profileDetail?.match_ratio }}/7 of her
+                Preferences</label
+              >
+              <label *ngIf="profileDetail?.user_details?.gender == 'men'"
+                >You match {{ profileDetail?.match_ratio }}/7 of his
+                Preferences</label
+              >
+            </div>
+            <div class="preferenceBox">
+              <div class="profileImgBox">
+                <img
+                  *ngIf="gender == 'women'"
+                  src="{{
+                    profileDetail?.user_login_image.image
+                      ? profileDetail?.user_login_image.image
+                      : 'assets/1x/girlDummy.jpg'
+                  }}"
+                  alt=""
+                />
+                <img
+                  *ngIf="gender == 'men'"
+                  src="{{
+                    profileDetail?.user_login_image.image
+                      ? profileDetail?.user_login_image.image
+                      : 'assets/1x/boyDummy.jpg'
+                  }}"
+                  alt=""
+                />
+              </div>
+              <h6 class="mt-3">You matched</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mt-1">
+        <div
+          class="preference d-flex justify-content-between align-items-center"
+        >
+          <div class="preferenceDetailBox d-flex flex-column">
+            <label class="preferenceHead mt-1">Age</label>
+            <label class="preferenceDetail mt-1">
+              {{ profileDetail?.user_details?.age_from }} to
+              {{ profileDetail?.user_details?.age_to }}</label
+            >
+          </div>
+          <div class="checkIcon" *ngIf="profileDetail?.age == true">
+            <img src="assets/SVG/checkIcon.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mt-1">
+        <div
+          class="preference d-flex justify-content-between align-items-center"
+        >
+          <div class="preferenceDetailBox d-flex flex-column">
+            <label class="preferenceHead mt-1">Height</label>
+            <label class="preferenceDetail mt-1"
+              >{{ profileDetail?.user_details?.height_from }}(160cm) to
+              {{ profileDetail?.user_details?.height_to }}(187cm)</label
+            >
+          </div>
+          <div class="checkIcon" *ngIf="profileDetail?.height == true">
+            <img src="assets/SVG/checkIcon.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mt-1">
+        <div
+          class="preference d-flex justify-content-between align-items-center"
+        >
+          <div class="preferenceDetailBox d-flex flex-column">
+            <label class="preferenceHead mt-1">Marital Status</label>
+            <label class="preferenceDetail mt-1"
+              ><span
+                *ngIf="
+                  (profileDetail?.user_details?.family_status != 'Only Me' &&
+                    profileDetail?.user_details?.family_status != 'Public' &&
+                    profileDetail?.user_details?.family_status != 'Friends') ||
+                  profileDetail?.user_details?.family_status == 'Public' ||
+                  (profileDetail?.user_details?.family_status == 'Friends' &&
+                    profileDetail?.connection_dual == 1)
+                "
+                >{{ profileDetail?.user_details?.marital_status }}</span
+              >
+              <span
+                *ngIf="profileDetail?.user_details?.family_status == 'Only Me'"
+              >
+                ******
+              </span></label
+            >
+          </div>
+          <div class="checkIcon" *ngIf="profileDetail?.marital_status == true">
+            <img src="assets/SVG/checkIcon.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mt-1">
+        <div
+          class="preference d-flex justify-content-between align-items-center"
+        >
+          <div class="preferenceDetailBox d-flex flex-column">
+            <label class="preferenceHead mt-1">Religion / Community</label>
+            <label class="preferenceDetail mt-1"
+              ><span
+                *ngIf="
+                  (profileDetail?.user_details?.religious_status != 'Only Me' &&
+                    profileDetail?.user_details?.religious_status != 'Public' &&
+                    profileDetail?.user_details?.religious_status !=
+                      'Friends') ||
+                  profileDetail?.user_details?.religious_status == 'Public' ||
+                  (profileDetail?.user_details?.religious_status == 'Friends' &&
+                    profileDetail?.connection_dual == 1)
+                "
+                >{{ profileDetail?.user_details?.religion_community }}</span
+              >
+              <span
+                *ngIf="
+                  profileDetail?.user_details?.religious_status == 'Only Me'
+                "
+              >
+                ******
+              </span></label
+            >
+          </div>
+          <div
+            class="checkIcon"
+            *ngIf="profileDetail?.religion_community == true"
+          >
+            <img src="assets/SVG/checkIcon.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mt-1">
+        <div
+          class="preference d-flex justify-content-between align-items-center"
+        >
+          <div class="preferenceDetailBox d-flex flex-column">
+            <label class="preferenceHead mt-1">Mother Tongue</label>
+            <label class="preferenceDetail mt-1">{{
+              profileDetail?.user_details?.mother_tongue
+            }}</label>
+          </div>
+          <div class="checkIcon" *ngIf="profileDetail?.mother_tongue == true">
+            <img src="assets/SVG/checkIcon.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mt-1">
+        <div
+          class="preference d-flex justify-content-between align-items-center"
+        >
+          <div class="preferenceDetailBox d-flex flex-column">
+            <label class="preferenceHead mt-1">Country Living in</label>
+            <label class="preferenceDetail mt-1">
+              <span
+                *ngIf="
+                  (profileDetail?.user_details?.location_status != 'Only Me' &&
+                    profileDetail?.user_details?.location_status != 'Public' &&
+                    profileDetail?.user_details?.location_status !=
+                      'Friends') ||
+                  profileDetail?.user_details?.location_status == 'Public' ||
+                  (profileDetail?.user_details?.location_status == 'Friends' &&
+                    profileDetail?.connection_dual == 1)
+                "
+                >{{ profileDetail?.user_details?.country_living_in }}</span
+              >
+              <span
+                *ngIf="
+                  profileDetail?.user_details?.location_status == 'Only Me'
+                "
+              >
+                ******
+              </span></label
+            >
+          </div>
+          <div
+            class="checkIcon"
+            *ngIf="profileDetail?.country_living_in == true"
+          >
+            <img src="assets/SVG/checkIcon.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mt-1">
+        <div
+          class="preference d-flex justify-content-between align-items-center"
+        >
+          <div class="preferenceDetailBox d-flex flex-column">
+            <label class="preferenceHead mt-1">Annual Income</label>
+            <label class="preferenceDetail mt-1"
+              >Earns
+              <span
+                *ngIf="
+                  (profileDetail?.user_details?.education_status != 'Only Me' &&
+                    profileDetail?.user_details?.education_status != 'Public' &&
+                    profileDetail?.user_details?.education_status !=
+                      'Friends') ||
+                  profileDetail?.user_details?.education_status == 'Public' ||
+                  (profileDetail?.user_details?.education_status == 'Friends' &&
+                    profileDetail?.connection_dual == 1)
+                "
+                >{{ profileDetail?.user_details?.annual_income }}</span
+              >
+              <span
+                *ngIf="
+                  profileDetail?.user_details?.education_status == 'Only Me'
+                "
+              >
+                ******
+              </span>
+              annu..</label
+            >
+          </div>
+          <div class="checkIcon" *ngIf="profileDetail?.annual_income == true">
+            <img src="assets/SVG/checkIcon.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Accept/Decline Modal -->
+<div
+  class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          id="confirmMod"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <span
+          >{{ myDetail?.user_details?.name }}
+          {{ myDetail?.user_details?.last_name }}</span
+        >
+        are you sure you want to disconnect with
+        {{ profileDetail?.user_details?.name }}
+        {{ profileDetail?.user_details?.last_name }}?
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn blackBtn2" (click)="connected()">
+          Yes
+        </button>
+        <button
+          type="button"
+          class="btn blackBtn2"
+          data-bs-dismiss="modal"
+          aria-label=""
+        >
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

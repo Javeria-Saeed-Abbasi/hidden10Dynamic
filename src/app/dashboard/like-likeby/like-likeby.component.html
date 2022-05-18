@@ -1,0 +1,44 @@
+<div class="container d-flex justify-content-center">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="pills-myLikes-tab" data-bs-toggle="pill" data-bs-target="#pills-myLikes"
+        type="button" role="tab" aria-controls="pills-myLikes" aria-selected="true">My Likes</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-likedBy-tab" data-bs-toggle="pill" data-bs-target="#pills-likedBy"
+        type="button" role="tab" aria-controls="pills-likedBy" aria-selected="false">Liked By</button>
+    </li>
+  </ul>
+</div>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-myLikes" role="tabpanel" aria-labelledby="pills-myLikes-tab">
+    <div class="row">
+      <div class="col-lg-4 mt2 mb2" *ngFor="let myLikes of myLikes">
+        <div class="cstmProfileCard" [routerLink]="['/profile', myLikes?.id]">
+          <div class="profileImg">
+            <img src="{{myLikes?.image}}" alt="">
+          </div>
+          <div class="details">
+            <h4>{{myLikes?.name}} {{myLikes?.last_name}}</h4>
+            <h5><span>{{myLikes?.residing_city}}, </span><span>{{myLikes?.age}} Yr</span></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="pills-likedBy" role="tabpanel" aria-labelledby="pills-likedBy-tab">
+    <div class="row">
+      <div class="col-lg-4 mt2 mb2" *ngFor="let likedBy of likedBy">
+        <div class="cstmProfileCard" [routerLink]="['/profile', likedBy?.id]">
+        <div class="profileImg">
+          <img src="{{likedBy?.image}}" alt="">
+        </div>
+        <div class="details">
+          <h4>{{likedBy?.name}} {{likedBy?.last_name}}</h4>
+          <h5><span>{{likedBy?.residing_city}}, </span><span>{{likedBy?.age}} Yr</span></h5>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

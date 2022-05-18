@@ -1,0 +1,549 @@
+<header>
+  <nav
+    id="mobileNav"
+    *ngIf="(!mobileNav && !dashboard && !contactDashboard) || signRegister"
+    [ngClass]="
+      scrollTop >= 100 && addColor ? 'navColor' : !addColor ? 'navColor' : ''
+    "
+  >
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="right-sec-nav">
+        <div class="logo" [routerLink]="[!signRegister ? '/dashboard' : '']">
+          <img
+            src="{{ header_logo?.logos?.header }}"
+            class="img-fluid"
+            alt=""
+            *ngIf="scrollTop < 100 && addColor"
+          />
+          <img
+            src="assets/SVG/logo-white.svg"
+            class="img-fluid"
+            *ngIf="scrollTop >= 100 || !addColor"
+            alt=""
+          />
+        </div>
+      </div>
+      <div
+        class="left-sec-nav d-flex align-items-center"
+        *ngIf="signRegister == true"
+      >
+        <a href="javascript:void(0)">Have an account?</a>
+        <button
+          class="signin"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Sign In
+        </button>
+        <button class="register" [routerLink]="['/registration']">
+          Register
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div
+    class="header"
+    *ngIf="(!mobileNav && dashboard) || (!mobileNav && !signRegister)"
+  >
+    <div class="container">
+      <div class="cstmRow d-flex justify-content-between align-items-center">
+        <div class="firstcontentCol d-flex">
+          <div
+            id="filterBtn"
+            class="cstmCol d-flex filterIcon"
+            *ngIf="filterBtn"
+            (click)="filterSideBar()"
+          >
+            <div class="iconBox">
+              <img src="assets/SVG/filterIcon.svg" alt="" />
+            </div>
+            <h4>Filters</h4>
+          </div>
+          <div class="cstmCol d-flex align-items-center">
+            <div class="iconBox mgRight3 chatIcon">
+              <span (click)="myFunction($event)" class="item bageItem">
+                <label
+                  *ngIf="chatBadge.length >= 1"
+                  class="notificationBdage"
+                  >{{ chatBadge.length }}</label
+                >
+                <i id="chatIco" class="far fa-comment"></i>
+              </span>
+              <div
+                id="msgBtn"
+                class="dropBtn dropdown-content"
+                [ngClass]="{ show: chatdropDown == true }"
+              >
+                <a
+                  *ngFor="let chat of chatList"
+                  href="javascript:void(0)"
+                  [routerLink]="['/profileSettings/chat/{{chat?.user_id}}']"
+                  class="d-flex align-items-center"
+                >
+                  <span
+                    class="senderIcon d-flex justify-content-between align-items-center"
+                  >
+                    <img
+                      *ngIf="chat?.users_invers?.gender == 'men'"
+                      src="{{
+                        chat?.users_invers?.image
+                          ? chat?.users_invers?.image
+                          : 'assets/1x/boyDummy.jpg'
+                      }}"
+                      alt=""
+                    />
+                    <img
+                      *ngIf="chat?.users_invers?.gender == 'women'"
+                      src="{{
+                        chat?.users_invers?.image
+                          ? chat?.users_invers?.image
+                          : 'assets/1x/girlDummy.jpg'
+                      }}"
+                      alt=""
+                    />
+                  </span>
+                  <span
+                    class="msgDet d-flex justify-content-between align-items-end"
+                  >
+                    <span class="d-flex flex-column">
+                      {{ chat?.users_invers?.name
+                      }}<span class="newLab">New Message</span>
+                    </span>
+                    <span class="timeLab">{{
+                      chat?.created_at | date: "dd/MM/yyyy hh:mm a"
+                    }}</span>
+                  </span></a
+                >
+                <a
+                  [routerLink]="['/profileSettings/chat/allUsers']"
+                  href="javascript:void(0)"
+                  class="d-flex align-items-center text-center"
+                >
+                  See All
+                </a>
+              </div>
+            </div>
+            <div class="iconBox mgRight3 notificationIcon">
+              <span (click)="myFunction($event)" class="item bageItem">
+                <label
+                  *ngIf="notificationBadge.length >= 1"
+                  class="notificationBdage"
+                  >{{ notificationBadge.length }}</label
+                >
+                <i id="noti" class="far fa-bell"></i>
+              </span>
+              <div
+                id="notiBtn"
+                class="dropBtn dropdown-content"
+                [ngClass]="{ show: notidropDown == true }"
+              >
+              <a *ngFor="let notification of notiDropDownItem" href="javascript:void(0)"
+              class="" (click)="clickONNotiTab()">
+              <div class="d-flex flex-row align-items-center justify-content-center">
+                <span class="senderIcon d-flex justify-content-between align-items-center">
+                  <img *ngIf="notification?.users_invers?.gender == 'men'" src="{{
+                      notification?.users_invers?.image
+                        ? notification?.users_invers?.image
+                        : 'assets/1x/boyDummy.jpg'
+                    }}" alt="" />
+                  <img *ngIf="notification?.users_invers?.gender == 'women'" src="{{
+                      notification?.users_invers?.image
+                        ? notification?.users_invers?.image
+                        : 'assets/1x/girlDummy.jpg'
+                    }}" alt="" />
+                </span>
+                <span class="msgDet d-flex justify-content-between align-items-end">
+                  <span class="d-flex flex-column" style="width: 100%">
+                    {{ notification?.users_invers?.name
+                    }}
+                    <span class="newLab" *ngIf="notification?.request_accept == 1">Connected you</span>
+                    <span class="newLab" *ngIf="notification?.request_accept == 0">sent you a request</span>
+                  </span>
+                  <span class="timeLab">{{
+                    notification?.created_at | date: "dd/MM/yyyy hh:mm a"
+                    }}</span>
+                </span>
+              </div>
+
+              <span class="d-flex flex-row justify-content-space-evenly justify-content-center mb-2" *ngIf="notification?.request_accept == 0">
+                <div class="px-2">
+                  <button class="blackBtn2 mt-1" (click)="acceptRequest(notification)">Accept</button>
+                </div>
+                <div class="px-2">
+                  <button class="blackBtn2 mt-1" (click)="declineRequest(notification)">Decline</button>
+                </div>
+              </span>
+
+            </a>
+                <a
+                  *ngIf="notiDropDownItem?.length > 4"
+                  href="javascript:void(0)"
+                  class="d-flex justify-content-centertext-center"
+                  (click)="clickONNotiTab()"
+                >
+                  See More
+                </a>
+                <a *ngIf="notiDropDownItem?.length < 1">No Notifications</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="logoCol">
+          <div class="cstmCol d-flex justify-content-center">
+            <div class="logoBox" [routerLink]="[!signRegister ? '/dashboard' : '']">
+              <img src="assets/SVG/logo-white.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="secondcontentCol d-flex">
+          <div
+            class="cstmCol d-flex align-items-end"
+            [routerLink]="'/profileSettings'"
+          >
+            <div class="profileIconBox" [routerLink]="'/profileSettings'">
+              <img
+                *ngIf="
+                  (mydata?.my_profile?.gender == 'men' &&
+                    mydata?.my_profile?.image != null) ||
+                  (mydata?.my_profile?.gender == 'men' && profileImg != null)
+                "
+                src="{{ profileImg ? profileImg : 'assets/1x/boyDummy.jpg' }}"
+                alt=""
+              />
+              <img
+                *ngIf="
+                  (mydata?.my_profile?.gender == 'women' &&
+                    mydata?.my_profile?.image != null) ||
+                  (mydata?.my_profile?.gender == 'women' && profileImg != null)
+                "
+                src="{{ profileImg ? profileImg : 'assets/1x/girlDummy.jpg' }}"
+                alt=""
+              />
+              <img
+                *ngIf="
+                  (mydata?.my_profile?.gender == 'men' &&
+                    mydata?.my_profile?.image == null) ||
+                  (mydata?.my_profile?.gender == 'men' && profileImg == null)
+                "
+                src="assets/1x/boyDummy.jpg"
+                alt=""
+              />
+              <img
+                *ngIf="
+                  (mydata?.my_profile?.gender == 'women' &&
+                    mydata?.my_profile?.image == null) ||
+                  (mydata?.my_profile?.gender == 'women' && profileImg == null)
+                "
+                src="assets/1x/girlDummy.jpg"
+                alt=""
+              />
+            </div>
+            <div
+              class="profileName d-flex flex-column"
+              [routerLink]="'/profileSettings'"
+            >
+              <h6>
+                {{ mydata?.my_profile?.name }}
+                {{ mydata?.my_profile?.last_name }}
+              </h6>
+              <span>Profile Settings</span>
+            </div>
+          </div>
+          <div class="cstmCol" [routerLink]="'/packages'">
+            <div
+              class="heartBox d-flex align-items-center justify-content-center"
+            >
+              <div class="iconBox d-flex align-items-center">
+                <img src="assets/SVG/heartIcon.svg" alt="" />
+              </div>
+              <h6>{{ hearts }} Hearts</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="mobileNav && !contactDashboard"
+    class="w-100 burgerBg"
+    id="burgerBg"
+  >
+    <div
+      id="btn"
+      #btnNav
+      *ngIf="mobileNav && !contactDashboard"
+      (click)="navToggle()"
+    >
+      <div id="top"></div>
+      <div id="middle"></div>
+      <div id="bottom"></div>
+    </div>
+  </div>
+  <div id="box" #boxNav>
+    <div
+      *ngIf="mobileNav && !dashboard && !contactDashboard"
+      class="bigScreenSideBar"
+    >
+      <div class="mobileLogo mb-5" [routerLink]="[!signRegister ? '/dashboard' : '']" (click)="navToggle()">
+        <img src="assets/SVG/logo-white.svg" alt="" />
+      </div>
+      <div id="items" class="text-center">
+        <div class="itemsBox">
+          <div class="item" [routerLink]="['']" (click)="navToggle()">Home</div>
+          <div class="item" [routerLink]="['/about']" (click)="navToggle()">
+            About
+          </div>
+          <div class="item" [routerLink]="['/blogs']" (click)="navToggle()">
+            Blogs
+          </div>
+          <div class="item" [routerLink]="['/faqs']" (click)="navToggle()">
+            FAQs
+          </div>
+          <div class="item" [routerLink]="['/contact']" (click)="navToggle()">
+            Contact
+          </div>
+          <div
+            class="item"
+            (click)="navToggle()"
+            [routerLink]="['/policyPrivacy']"
+          >
+            Privacy Policy
+          </div>
+          <div class="item" *ngIf="signRegister == true">
+            <div
+              class="btnBox d-flex align-items-center justify-content-center flex-column"
+            >
+              <button
+                (click)="navToggle()"
+                class="signin mb-3"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Sign In
+              </button>
+              <button class="register mb-3" [routerLink]="['/registration']">
+                Register
+              </button>
+            </div>
+          </div>
+          <div class="item" *ngIf="signRegister == false">
+            <div
+              class="btnBox d-flex align-items-center justify-content-center flex-column"
+              [ngClass]="!signRegister ? 'btnTransformBack' : ''"
+            >
+              <div
+                class="item"
+                [routerLink]="['/profileSettings/chat']"
+                (click)="navToggle()"
+              >
+                Chat
+              </div>
+              <div class="item" (click)="clickONNotiTab(); navToggle()">
+                Notification
+              </div>
+              <div class="item" [routerLink]="['/profileSettings']">
+                Settings
+              </div>
+              <button (click)="logout()" class="register mb-3">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="mobileNav && dashboard" class="smallScreenSidebar">
+      <div class="mobileLogo mb-5" [routerLink]="[!signRegister ? '/dashboard' : '']">
+        <img src="assets/SVG/logo-white.svg" alt="" />
+      </div>
+      <div id="items" class="text-center">
+        <div class="itemsBox">
+          <div
+            class="item"
+            [routerLink]="['/profileSettings/chat']"
+            (click)="navToggle()"
+          >
+            Chat
+          </div>
+          <div class="item" (click)="clickONNotiTab(); navToggle()">
+            Notification
+          </div>
+          <div
+            class="item"
+            [routerLink]="['/profileSettings']"
+            (click)="navToggle()"
+          >
+            Settings
+          </div>
+          <div class="item">
+            <div
+              class="btnBox d-flex align-items-center justify-content-center flex-column"
+            >
+              <button class="signin mb-3" (click)="logout()">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- login modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button class="close" data-bs-dismiss="modal" hidden></button>
+        <div class="signInModal">
+          <h1 class="text-center">Sign In</h1>
+          <div class="row">
+            <form [formGroup]="loginForm">
+              <div class="col-lg-12 mt1">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="loginForm.controls?.['email']?.touched && loginForm.controls?.['email']?.errors?.['required']"
+                  class="text text-danger mt-1"
+                >
+                  Email is required
+                </div>
+                <div
+                  *ngIf="loginForm.controls?.['email']?.touched && loginForm.controls?.['email']?.errors?.['email']"
+                  class="text text-danger mt-1"
+                >
+                  Invalid Email
+                </div>
+              </div>
+              <div class="col-lg-12 mt1">
+                <div class="inpBox">
+                  <i class="fa fa-eye" (click)="showPass($event)"></i>
+                  <input
+                    class="passwordInp"
+                    type="password"
+                    placeholder="password"
+                    formControlName="password"
+                  />
+                </div>
+                <div
+                  *ngIf="loginForm.controls?.['password']?.touched && loginForm.controls?.['password']?.errors?.['required']"
+                  class="text text-danger mt-1"
+                >
+                  Password is required
+                </div>
+                <div
+                  *ngIf="loginForm.controls?.['password']?.touched && loginForm.controls?.['password']?.errors?.['pattern']"
+                  class="text text-danger mt-1"
+                >
+                  Password must contain the following: <br />
+                  A lowercase letter <br />
+                  A capital (uppercase) letter <br />
+                  A number Minimum 8 characters <br />
+                  A special character
+                </div>
+              </div>
+            </form>
+            <div class="col-lg-12">
+              <label
+                class="smLabel"
+                data-bs-toggle="modal"
+                data-bs-target="#resetModal"
+                data-bs-dismiss="modal"
+                >Forget Password</label
+              >
+            </div>
+            <div class="col-lg-12 mt1 text-center">
+              <button
+                class="signinBtn"
+                (click)="login()"
+                [disabled]="loginForm.invalid"
+              >
+                Sign In
+              </button>
+            </div>
+            <div class="col-lg-12 mt1 text-center">
+              <p>or</p>
+            </div>
+            <div class="col-lg-12 mt1 text-center">
+              <button class="fbBtn" (click)="facebook()">
+                <i class="fab fa-facebook-f"></i> Sign In With Facebook
+              </button>
+            </div>
+            <div class="col-lg-12 mt1 text-center">
+              <button class="gmailBtn">
+                <i class="fab fa-google-plus-g"></i> Sign In With Gmail
+              </button>
+            </div>
+            <div class="col-lg-12 text-center">
+              <label
+                >Don't have an account
+                <button [routerLink]="'/registration'" data-bs-dismiss="modal">
+                  Register here
+                </button>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- reset modal -->
+<div
+  class="modal fade"
+  id="resetModal"
+  tabindex="-1"
+  aria-labelledby="resetModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button class="close" data-bs-dismiss="modal">
+          <i class="fa fa-times"></i>
+        </button>
+        <div class="signInModal">
+          <h1 class="text-center">Reset Password</h1>
+          <div class="row">
+            <form [formGroup]="resetForm">
+              <div class="col-lg-12 mt1">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="resetForm.controls?.['email']?.touched && resetForm.controls?.['email']?.errors?.['required']"
+                  class="text text-danger mt-1"
+                >
+                  Email is required
+                </div>
+                <div
+                  *ngIf="resetForm.controls?.['email']?.touched && resetForm.controls?.['email']?.errors?.['email']"
+                  class="text text-danger mt-1"
+                >
+                  Invalid Email
+                </div>
+              </div>
+            </form>
+            <div class="col-lg-12 mt1 text-center">
+              <button
+                class="signinBtn"
+                [disabled]="resetForm.invalid"
+                (click)="reset()"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

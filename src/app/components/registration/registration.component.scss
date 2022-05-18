@@ -1,0 +1,893 @@
+.fullScreenContainer {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+
+  .leftSec,
+  .rightSec {
+    width: 50%;
+    height: 100%;
+    position: relative;
+  }
+
+  .rightSec.colol {
+    background: linear-gradient(141deg, #3d3d3d, #000);
+  }
+
+  .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    .cstmContainer {
+      // max-width: 1440px;
+      height: 100%;
+
+      .leftSec {
+        .makeDiv {
+          position: absolute;
+          width: 100%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          h1 {
+            font-family: 'gilroy-bold';
+            font-size: 5vh;
+            color: #000;
+            margin-bottom: 3rem;
+          }
+
+          p {
+            max-width: 58%;
+            font-family: 'gilroy-medium';
+            color: #4D4D4D;
+
+            strong {
+              color: #000;
+              font-family: 'gilroy-bold';
+            }
+          }
+
+          a {
+            color: #000;
+            text-decoration: none;
+            color: #000;
+            font-family: poppins-medium;
+            font-size: 15px;
+            margin-top: 0rem;
+          }
+
+          .signup {
+            background-color: #000;
+            border: 1px solid #000;
+            color: #fff;
+            font-family: 'poppins-regular';
+            width: 200px;
+            padding: 0.7rem;
+            margin-top: 4rem;
+            transition: 0.5s all ease-in-out
+          }
+        }
+      }
+
+      .rightSec {
+        overflow: hidden;
+
+        .pillar1 {
+          width: 12%;
+          position: absolute;
+          left: 30%;
+        }
+
+        .pillar2 {
+          width: 12%;
+          left: 50%;
+          position: absolute;
+          bottom: 0;
+        }
+
+        .pillar3 {
+          width: 10%;
+          position: absolute;
+          right: 20%;
+          bottom: 40%;
+        }
+
+        .pillar4 {
+          width: 9%;
+          position: absolute;
+          right: 10%;
+          bottom: 0%;
+        }
+
+        .pillar5 {
+          width: 35%;
+          position: absolute;
+          left: 0%;
+          bottom: 35%;
+        }
+
+        .pillimg img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+
+        .pillar1img {
+          height: 80px;
+          width: 80px;
+          border-radius: 100px;
+          overflow: hidden;
+          position: absolute;
+          top: 27%;
+          left: 30%;
+        }
+
+        .pillar2img {
+          height: 130px;
+          width: 130px;
+          border-radius: 100px 100px 100px 0;
+          overflow: hidden;
+          position: absolute;
+          bottom: 20%;
+          left: 40%;
+        }
+
+        .pillar3img {
+          position: absolute;
+          right: 35%;
+          border-radius: 100px 100px 0 0;
+          overflow: hidden;
+          height: 150px;
+          width: 130px;
+          top: 15%;
+
+        }
+
+        .pillar4img {
+          position: absolute;
+          border-radius: 100px;
+          overflow: hidden;
+          right: 25%;
+          height: 85px;
+          width: 85px;
+          top: 45%
+        }
+
+        .pillar5img {
+          position: absolute;
+          right: 10%;
+          border-radius: 100px;
+          height: 90px;
+          width: 90px;
+          bottom: 60px;
+          overflow: hidden;
+        }
+
+        .pillar6img {
+          height: 130px;
+          width: 130px;
+          border-radius: 100px 100px 100px 0;
+          overflow: hidden;
+          position: absolute;
+          bottom: 35%;
+          left: 20%;
+        }
+      }
+    }
+  }
+}
+.inpBox {
+  position: relative;
+  width: 100%;
+  i {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    color: #000;
+    transform: translateY(-50%);
+  }
+}
+.logoBox {
+  width: 20%;
+  height: 70px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.registerationForm {
+  padding: 0 2rem;
+}
+
+.registerationFormBody {
+  h1 {
+    font-family: gilroy-bold;
+    color: #000;
+  }
+
+  .row {
+
+    .col-sm-4,
+    .col-sm-2,
+    .col-sm-8,
+    .col-sm-3 {
+      span {
+        font-family: gilroy-bold;
+        color: #000;
+        font-size: 13px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="number"],
+      input[type="password"] {
+        background: #F2F2F2;
+        border: none;
+        padding: 6px 1rem;
+        outline: none;
+        width: 100%;
+      }
+    }
+
+    .col-sm-3 {
+      input[type="text"] {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// terms cstmCheckCheck
+.cstmCheckContainer {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #4D4D4D;
+  font-family: gilroy-medium;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.cstmCheckContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+//removed arrow button from input type number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/* Create a custom checkbox */
+.cstmCheckmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border: 1px solid #242424;
+}
+
+/* On mouse-over, add a grey background color */
+
+/* When the checkbox is checked, add a blue background */
+.cstmCheckContainer input:checked~.cstmCheckmark {
+  background-color: #242424;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.cstmCheckmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.cstmCheckContainer input:checked~.cstmCheckmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.cstmCheckContainer .cstmCheckmark:after {
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.termsRow {
+  .col-sm-8 {
+    span.alreadyAccnt {
+      display: block;
+      font-size: 14px;
+      color: #4D4D4D;
+      font-family: gilroy-regular;
+
+      button {
+        color: #0071BC;
+        margin-left: 15px;
+        border: none;
+        background: none;
+
+      }
+    }
+  }
+}
+#staticBackdrop{
+  .modal-body{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .fa-times{
+      position: absolute;
+      top:10px;
+      right:10px;
+    }
+    h3{
+      color: #000;
+      font-family: 'gilroy-bold';
+      margin-bottom: 1rem;
+    }
+  }
+}
+::ng-deep .toast-top-right {
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    height: fit-content;
+    top: unset !important;
+}
+::ng-deep .toast-success {
+  background-color: #969696;
+}
+// media query
+@media only screen and (min-width:1600px) {
+  .fullScreenContainer {
+    .content {
+      .cstmContainer {
+        .rightSec {
+          .pillar1img {
+            height: 100px;
+            width: 100px;
+          }
+
+          .pillar2 {
+            bottom: 0;
+          }
+
+          .pillar6img {
+            height: 140px;
+            width: 140px;
+          }
+
+          .pillar3 {
+            bottom: 40%;
+          }
+
+          .pillar5img {
+            right: 9.7%;
+            height: 100px;
+            width: 100px;
+          }
+
+          .pillar4img {
+            height: 100px;
+            width: 100px;
+            top: 47%;
+          }
+
+          .pillar3img {
+            right: 25%;
+            height: 170px;
+            width: 170px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width:1920px) {
+  .fullScreenContainer {
+    .content {
+      .cstmContainer {
+        .rightSec {
+          .pillar1img {
+            height: 110px;
+            width: 110px;
+          }
+
+          .pillar2 {
+            bottom: 0;
+          }
+
+          .pillar6img {
+            height: 170px;
+            width: 170px;
+          }
+
+          .pillar3 {
+            bottom: 40%;
+          }
+
+          .pillar5img {
+            right: 9%;
+            height: 110px;
+            width: 110px;
+          }
+
+          .pillar4img {
+            height: 100px;
+            width: 100px;
+            top: 47%;
+          }
+
+          .pillar3img {
+            right: 25%;
+            height: 170px;
+            width: 170px;
+          }
+
+          .pillar2img {
+            height: 160px;
+            width: 160px;
+            bottom: 15%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width:2560px) {
+  .fullScreenContainer {
+    .content {
+      .cstmContainer {
+        .rightSec {
+          .pillar1img {
+            height: 180px;
+            width: 180px;
+            top: 20%;
+            left: 29%;
+          }
+
+          .pillar2 {
+            bottom: 0;
+          }
+
+          .pillar6img {
+            height: 260px;
+            width: 260px;
+            border-radius: 200px 200px 200px 0;
+            bottom: 35%;
+          }
+
+          .pillar3 {
+            bottom: 35%;
+            width: 15%;
+          }
+
+          .pillar5img {
+            right: 9%;
+            height: 170px;
+            width: 170px;
+          }
+
+          .pillar4img {
+            height: 200px;
+            width: 200px;
+            top: 48%;
+          }
+
+          .pillar3img {
+            right: 25%;
+            height: 170px;
+            width: 170px;
+          }
+
+          .pillar2img {
+            height: 240px;
+            width: 240px;
+            border-radius: 200px 200px 200px 0;
+          }
+
+          .pillar3img {
+            border-radius: 200px 200px 0 0;
+            height: 300px;
+            width: 300px;
+            right: 15%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+// max
+@media only screen and (max-width:1366px) {
+  .fullScreenContainer {
+    .content {
+      .cstmContainer {
+        .rightSec {
+          .pillar1img {
+            height: 80px;
+            width: 80px;
+          }
+
+          .pillar2 {
+            bottom: 0;
+          }
+
+          .pillar5img {
+            height: 90px;
+            width: 90px;
+          }
+
+          .pillar3 {
+            bottom: 40%;
+          }
+
+          .pillar4img {
+            right: 25%;
+            height: 85px;
+            width: 85px;
+            top: 45%
+          }
+
+          .pillar3img {
+            height: 150px;
+            width: 130px;
+            top: 15%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:1280px) {
+  .fullScreenContainer {
+    height: 776px;
+    width: 100%;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width:1024px) {
+  .fullScreenContainer {
+    height: 100vh;
+
+    .content {
+      .cstmContainer {
+        .rightSec {
+          .pillar1img {
+            height: 120px;
+            width: 120px;
+            top: 10%;
+            left: 21%;
+          }
+
+          .pillar1 {
+            width: 15%;
+            left: 25%;
+          }
+
+          .pillar2 {
+            width: 20%;
+            left: 42%;
+            position: absolute;
+          }
+
+          .pillar3 {
+            bottom: 35%;
+            width: 20%;
+          }
+
+          .pillar4 {
+            width: 15%;
+          }
+
+          .pillar5 {
+            width: 45%;
+            position: absolute;
+            left: 0%;
+            bottom: 48%;
+          }
+
+          .pillar4img {
+            height: 115px;
+            width: 115px;
+            top: 51%;
+          }
+
+          .pillar3img {
+            height: 250px;
+            width: 230px;
+            border-radius: 200px 200px 0 0;
+            right: 10%;
+            top: 15%;
+          }
+
+          .pillar5img {
+            height: 100px;
+            width: 100px;
+          }
+
+          .pillar6img {
+            height: 200px;
+            width: 200px;
+            border-radius: 100px 100px 100px 0;
+            bottom: 45%;
+            left: 8%;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media only screen and (max-width:820px) {
+  .fullScreenContainer {
+    height: auto;
+
+    .content {
+      .cstmContainer {
+        .rightSec {
+          height: 100vh;
+
+        }
+      }
+    }
+  }
+
+  .fBreak {
+    flex-direction: column;
+
+    .leftSec,
+    .rightSec {
+      width: 100%;
+    }
+
+    .rightSec {
+      height: 100vh;
+    }
+
+    .leftSec {
+      height: 70vh;
+    }
+
+    .content {
+      .cstmContainer {
+        flex-direction: column;
+
+        .makeDiv {
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .fBreak {
+    .rightSec {
+      height: 100vh;
+    }
+
+    .leftSec {
+      height: 470px;
+    }
+  }
+
+  .fullScreenContainer {
+    .content {
+      .cstmContainer {
+        .rightSec {
+          .pillar1img {
+            height: 120px;
+            width: 120px;
+            top: 10%;
+            left: 21%;
+          }
+
+          .pillar1 {
+            width: 14%;
+            left: 22%;
+            top: -13%;
+          }
+
+          .pillar2 {
+            width: 17%;
+            left: 40%;
+          }
+
+          .pillar3 {
+            bottom: 35%;
+            width: 15%;
+            right: 15%;
+          }
+
+          .pillar4 {
+            width: 15%;
+          }
+
+          .pillar5 {
+            width: 30%;
+            position: absolute;
+            left: 0%;
+            bottom: 48%;
+          }
+
+          .pillar4img {
+            height: 110px;
+            width: 110px;
+            top: 50%;
+            right: 22%;
+          }
+
+          .pillar3img {
+            height: 200px;
+            width: 200px;
+            right: 23%;
+            top: 15%;
+          }
+
+          .pillar2img {
+            height: 140px;
+            width: 140px;
+            bottom: 20%;
+            left: 30%;
+          }
+
+          .pillar5img {
+            height: 140px;
+            width: 140px;
+            bottom: 100px;
+            right: 10%;
+          }
+
+          .pillar6img {
+            height: 150px;
+            width: 150px;
+            bottom: 46%;
+            left: 13%;
+          }
+
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width:540px){
+  .registerationForm {
+    padding: 1rem 2rem;
+}
+}
+
+@media only screen and (max-width:414px) {
+  .fullScreenContainer {
+    .content {
+      .cstmContainer {
+        .rightSec {
+
+          .pillar1,
+          .pillar2 {
+            width: 20%;
+          }
+
+          .pillar1img {
+            height: 90px;
+            width: 90px;
+          }
+
+          .pillar2img {
+            bottom: 15%;
+            height: 100px;
+            width: 100px;
+          }
+
+          .pillar5img {
+            height: 90px;
+            width: 90px;
+            bottom: 60px;
+          }
+
+          .pillar6img {
+            height: 110px;
+            width: 110px;
+            bottom: 45%;
+          }
+
+          .pillar3 {
+            bottom: 19%;
+          }
+
+          .pillar3img {
+            height: 128px;
+            width: 128px;
+          }
+
+          .pillar3 {
+            bottom: 39%;
+          }
+
+          .pillar4img {
+            height: 70px;
+            width: 70px;
+            top: 49%;
+          }
+        }
+      }
+    }
+  }
+
+  .registerationFormBody {
+    .row {
+
+      input[type="text"],
+      input[type="email"],
+      input[type="number"],
+      input[type="password"] {
+        margin: 10px 0;
+      }
+
+      .col-sm-3 {
+        input[type="text"] {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:390px) {
+  .fullScreenContainer {
+    .content {
+      .cstmContainer {
+        .rightSec {
+          .pillar3 {
+            bottom: 40.5%;
+          }
+        }
+      }
+    }
+  }
+}

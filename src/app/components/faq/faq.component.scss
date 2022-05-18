@@ -1,0 +1,600 @@
+.fullScreenContainer{
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  .leftSec,
+  .rightSec{
+    width: 50%;
+    height: 100%;
+    position: relative;
+  }
+  .rightSec.colol{
+    background: linear-gradient(
+      141deg
+      , #3d3d3d, #000);
+  }
+  .content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    .container{
+      height: 100%;
+      .leftSec{
+        .makeDiv{
+          position: absolute;
+          width: 100%;
+          top: 40%;
+          left: 50%;
+          transform: translate(-50%,-10%);
+          h1{
+            font-family: 'gilroy-bold';
+            font-size: 104px;
+            color: #000;
+            margin-bottom: 1rem;
+          }
+         p{
+          padding-right: 3rem;
+          font-family: 'gilroy-medium';
+         }
+        }
+      }
+      .rightSec{
+        overflow: hidden;
+        .pillar1{
+          width: 20%;
+          position: absolute;
+          left: 15%;
+        }
+        .pillar2{
+          width: 18%;
+          left: 15%;
+          position: absolute;
+          bottom: 121px;
+        }
+        .pillar3{
+          width: 21%;
+          position: absolute;
+          right: 10%;
+          bottom: 0px;
+        }
+        .pillar4{
+          width: 18%;
+          position: absolute;
+          right: 10%;
+          bottom: -14%;
+        }
+        .pillimg img{
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+        .pillar1img{
+          height: 130px;
+          width: 130px;
+          border-radius: 100px;
+          overflow: hidden;
+          position: absolute;
+          top: 29.5%;
+          left: 15%;
+        }
+        .pillar2img{
+          height: 130px;
+          width: 130px;
+          border-radius: 100px;
+          overflow: hidden;
+          position: absolute;
+          bottom: 108px;
+          left: 11%;
+        }
+        .pillar3img{
+          position: absolute;
+          right: 10%;
+          height: 250px;
+          width: 250px;
+          border-radius: 120px 120px 0 0;
+          overflow: hidden;
+          top: 30.3%;
+        }
+        .pillar4img{
+          position: absolute;
+          right: 25%;
+          height: 120px;
+          width: 120px;
+          border-radius: 100px;
+          overflow: hidden;
+          bottom:30px
+        }
+        .pillar5img{
+          position: absolute;
+          right: 10%;
+          border-radius: 100px;
+          height: 210px;
+          width: 210px;
+          bottom: 0;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+.collapseCard{
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 0;
+  margin: 1rem 0;
+  .cheader{
+    position: relative;
+    a{
+      font-family: 'gilroy-bold';
+      text-decoration: none;
+      color: #4D4D4D;
+    }
+    i{
+      position: absolute;
+      right: 20px;
+      top:6px;
+      transition:0.5s all ease-in-out;
+      transform: rotate(180deg);
+    }
+    .collapsed{
+      i{
+        transform: rotate(0deg);
+      }
+    }
+  }
+  .cCont {
+    font-family: gilroy-medium;
+    color: rgb(102, 102, 102);
+    margin-top:1.5rem;
+    transition: 0.3s all ease-in-out;
+  }
+  .cCont.show{
+    margin-top: 1.5rem;
+  }
+}
+
+// min
+@media only screen and (min-width:1600px){
+  .fullScreenContainer {
+    height: 100vh;
+    .content{
+      .container{
+        .rightSec{
+          .pillar2img {
+            height: 260px;
+            width: 260px;
+            border-radius: 130px 130px 130px 0;
+          }
+          .pillar1img {
+            height: 173px;
+            width: 173px;
+          }
+          .pillar2{
+            bottom: -6%;
+            width: 27%;
+          }
+          .pillar1{
+            width:27%
+          }
+          .pillar5img {
+            height: 220px;
+            width: 220px;
+            border-radius: 100%;
+          }
+          .pillar3{
+            bottom: 19%;
+            width: 25%;
+          }
+          .pillar4{
+            width: 19%;
+            right: 10%;
+            bottom: -10%;
+          }
+          .pillar4img {
+            height: 120px;
+            width: 120px;
+            top: 61%;
+          }
+          .pillar3img {
+            height: 220px;
+            width: 220px;
+            top: 33%;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width:1920px){
+  .fullScreenContainer {
+    .content{
+      .container{
+        .rightSec{
+          .pillar2img {
+            height: 260px;
+            width: 260px;
+            border-radius: 130px 130px 130px 0;
+          }
+          .pillar1img {
+            height: 173px;
+            width: 173px;
+          }
+          .pillar2{
+            bottom: -6%;
+            width: 27%;
+          }
+          .pillar1{
+            width:27%
+          }
+          .pillar5img {
+            height: 220px;
+            width: 220px;
+            border-radius: 100%;
+          }
+          .pillar3{
+            bottom: 19%;
+            width: 25%;
+          }
+          .pillar4{
+            width: 19%;
+            right: 10%;
+            bottom: -10%;
+          }
+          .pillar4img {
+            height: 120px;
+            width: 120px;
+            top: 61%;
+          }
+          .pillar3img {
+            top: 34.5%;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width:2560px){
+  .fullScreenContainer{
+    height: 67.5vh;
+    width: 100%;
+    position: relative;
+  }
+}
+// max
+@media only screen and (max-width:1366px){
+  .fullScreenContainer {
+    height: 540px;
+    .content{
+      .container{
+        .leftSec{
+          .makeDiv{
+            img{
+              height: 172px;
+              width: -moz-fit-content;
+              width: fit-content;
+              transform: translateY(19px);
+              margin-left: 10rem;
+            }
+          }
+        }
+        .rightSec{
+          .pillar1img {
+            height: 112px;
+            width: 112px;
+            top: 160px;
+          }
+          .pillar2{
+            bottom: 40px;
+          }
+          .pillar5img {
+            height: 180px;
+            width: 180px;
+          }
+          .pillar3{
+            bottom: 0px;
+          }
+          .pillar4img {
+            right: 27%;
+            height: 85px;
+            width: 85px;
+            bottom: 60px;
+          }
+          .pillar3img {
+            height: 190px;
+            width: 190px;
+            top: 27%;
+          }
+          .pillar2img{
+            left: 7%;
+            bottom: 36px;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width:1280px){
+  .fullScreenContainer {
+    height: 540px;
+    width: 100%;
+    position: relative;
+  }
+}
+@media only screen and (max-width:1024px){
+  .fullScreenContainer {
+    height: 525px;
+    .content{
+      .container{
+        .rightSec{
+          .pillar1img{
+            height: 110px;
+            width: 110px;
+          }
+          .pillar2{
+            bottom: -12.5%;
+          }
+          .pillar2img{
+            height: 150px;
+            width: 150px;
+            bottom: 12%;
+          }
+          .pillar5img{
+            height: 150px;
+            width: 150px;
+          }
+          .pillar3img{
+            height: 150px;
+            width: 150px;
+            top: 24.4%;
+          }
+          .pillar4img{
+            right: 27%;
+            height: 70px;
+            width: 70px;
+            top: 67%;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width:820px){
+  .fullScreenContainer {
+    height: auto;
+    .content{
+      .container{
+        .rightSec{
+          .pillar1{
+            width: 30%;
+            left: 5%;
+          }
+          .pillar1img {
+            height: 200px;
+            width: 206px;
+            left: 5%;
+            top:300px
+          }
+          .pillar2{
+            bottom: -10%;
+            width: 30%;
+            left: 5%;
+          }
+          .pillar5img {
+            height: 270px;
+            width: 270px;
+            border-radius: 100%;
+            right: 5%;
+          }
+          .pillar3{
+            bottom: 20%;
+            right: 5%;
+            width: 30%;
+          }
+          .pillar4{
+            right: 5%;
+            bottom: -8%;
+          }
+          .pillar4img {
+            right: 27%;
+            height: 135px;
+            width: 135px;
+            top: 59%;
+          }
+          .pillar3img {
+            height: 300px;
+            width: 300px;
+            top: 24%;
+            border-radius: 150px 150px 0 0;
+            right: 5%;
+          }
+          .pillar2img{
+            height: 260px;
+            width: 260px;
+            border-radius: 120px 120px 120px 0;
+          }
+        }
+
+        .leftSec{
+          .makeDiv{
+            img{
+              height: 132px;
+            width: -moz-fit-content;
+            width: fit-content;
+            transform: translateY(130px);
+            margin-left: -4rem;
+            }
+            p{
+              padding-right: 0rem;
+            }
+          }
+
+        }
+      }
+    }
+  }
+  .fBreak{
+    flex-direction: column-reverse;
+    .leftSec,
+    .rightSec{
+      width: 100%;
+      // height: auto;
+    }
+    .rightSec{
+      height: 100vh;
+    }
+    .leftSec{
+      height: 15vh;
+    }
+    .content{
+      .container {
+        flex-direction: column-reverse;
+
+        .makeDiv {
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+  .collapseCard .cheader {
+    position: relative;
+    padding-right: 1rem;
+  }
+}
+@media only screen and (max-width:768px){
+  .fullScreenContainer {
+    .content{
+      .container{
+        .rightSec{
+          .pillar2{
+            bottom: -22%;
+          }
+          .pillar3img {
+            top: 15%;
+          }
+          .pillar4img{
+            right: 29%;
+            height: 135px;
+            width: 135px;
+            top: 55%;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width:540px){
+  .makeDiv{
+    h1{
+      font-size: 4vh !important;
+    }
+    p,a{
+      text-align: center;
+    }
+  }
+  .fBreak{
+    .rightSec{
+      height: 720px;
+    }
+    .leftSec{
+      height: 150px;
+    }
+  }
+  .fullScreenContainer {
+    .content{
+      .container{
+        .rightSec{
+          height: 720px;
+          .pillar1{
+            width:24%
+          }
+          .pillar2{
+            width:24%;
+            bottom:15%;
+          }
+          .pillar1img{
+            height: 120px;
+            width: 120px;
+          }
+          .pillar2img{
+            height: 160px;
+            width: 160px;
+            left: 20px;
+          }
+          .pillar3img{
+            height: 168px;
+            width: 168px;
+          }
+          .pillar5img{
+            height: 190px;
+            width: 190px;
+          }
+          .pillar4img{
+            height: 100px;
+            width: 100px;
+          }
+        }
+
+      }
+    }
+  }
+}
+@media only screen and (max-width:414px){
+  .fullScreenContainer {
+    .content{
+      .container{
+        .rightSec{
+          .pillar1img{
+            top: 175px;
+          }
+          .pillar1,
+          .pillar2{
+            width: 30%;
+          }
+          .pillar2img{
+            bottom: 15%;
+          }
+          .pillar5img{
+            height: 150px;
+            width: 150px;
+          }
+          .pillar3{
+            bottom: 239px;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width:390px){
+  .fullScreenContainer {
+    .content{
+      .container{
+        .rightSec{
+          .pillar3{
+            bottom: 260px;
+          }
+          .pillar2{
+            bottom: 63px;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width:375px){
+  .fullScreenContainer {
+    .content{
+      .container{
+        .rightSec{
+          .pillar4img{
+            right: 26%;
+            top: 53%;
+          }
+        }
+      }
+    }
+  }
+}

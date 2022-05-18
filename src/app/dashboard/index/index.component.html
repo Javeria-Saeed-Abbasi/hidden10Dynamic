@@ -1,0 +1,82 @@
+<div class="d-flex align-items-start tabScreen mt5">
+  <div class="tabscontainer">
+    <div class="profileImg d-flex justify-content-center align-items-center">
+      <div class="profileUpload">
+        <div class="img-box">
+          <form [formGroup]="imageUploadForm">
+            <img  *ngIf="gender == 'men'" src="{{image ? image : 'assets/1x/boyDummy.jpg'}}" alt="">
+            <img  *ngIf="gender == 'women'" src="{{image ? image : 'assets/1x/girlDummy.jpg'}}" alt="">
+          <input type="file"  id="bannerUpload3" (change)="readUrl($event)" formControlName="image"  hidden>
+          <label for="bannerUpload3" class="icon-wrapper"><i class="fa fa-pencil"></i></label>
+        </form>
+        </div>
+      </div>
+    </div>
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <button class="nav-link active" id="v-pills-personalDetails-tab" data-bs-toggle="pill" data-bs-target="#v-pills-personalDetails" type="button" role="tab" aria-controls="v-pills-personalDetails" aria-selected="true">Personal Details</button>
+      <button class="nav-link" id="v-pills-matchSettings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-matchSettings" type="button" role="tab" aria-controls="v-pills-matchSettings" aria-selected="false">Match Settings</button>
+      <button class="nav-link" id="v-pills-photoAlbum-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photoAlbum" type="button" role="tab" aria-controls="v-pills-photoAlbum" aria-selected="false">Photo Album</button>
+      <button class="nav-link" id="v-pills-likeAndLikeBy-tab" data-bs-toggle="pill" data-bs-target="#v-pills-likeAndLikeBy" type="button" role="tab" aria-controls="v-pills-likeAndLikeBy" aria-selected="false">Like And Like By</button>
+      <button class="nav-link" id="v-pills-changePassword-tab" data-bs-toggle="pill" data-bs-target="#v-pills-changePassword" type="button" role="tab" aria-controls="v-pills-changePassword" aria-selected="false">Change Password</button>
+      <button class="nav-link" id="v-pills-notifications-tab" data-bs-toggle="pill" data-bs-target="#v-pills-notifications" type="button" role="tab" aria-controls="v-pills-notifications" aria-selected="false">Notifications</button>
+      <button class="nav-link" id="v-pills-helpCenter-tab" data-bs-toggle="pill" data-bs-target="#v-pills-helpCenter" type="button" role="tab" aria-controls="v-pills-helpCenter" aria-selected="false">Help Center</button>
+      <button class="nav-link" id="v-pills-privacyPolicy-tab" data-bs-toggle="pill" data-bs-target="#v-pills-privacyPolicy" type="button" role="tab" aria-controls="v-pills-privacyPolicy" aria-selected="false">Privacy Policy</button>
+      <button class="nav-link" id="v-pills-account-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-account-settings" type="button" role="tab" aria-controls="v-pills-account-settings" aria-selected="false">Account Settings</button>
+      <button class="nav-link" id="v-pills-logout-tab" data-bs-toggle="pill" data-bs-target="#v-pills-logout" type="button" role="tab" aria-controls="v-pills-logout" aria-selected="false" (click)="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="tab-content" id="v-pills-tabContent">
+    <div class="verficationBox">
+      <div class="container-fluid d-flex justify-content-between align-items-center ">
+        <label class="profileVerification" *ngIf="profile?.my_profile?.image_verification == null && profile?.my_profile?.image_verification_status == 'Pending'">Your profile is not verified. Please verify your profile.</label>
+        <label class="profileVerification" *ngIf="profile?.my_profile?.image_verification != null && profile?.my_profile?.image_verification_status == 'Pending'">Your profile is sent for verification.</label>
+        <button *ngIf="profile?.my_profile?.image_verification == null && profile?.my_profile?.image_verification_status == 'Pending'" class="verify" data-bs-toggle="modal" data-bs-target="#selfieVerifyModal">Verify</button>
+      </div>
+    </div>
+    <div class="tab-pane fade show active" id="v-pills-personalDetails" role="tabpanel" aria-labelledby="v-pills-personalDetails-tab">
+      <app-personal-details></app-personal-details>
+    </div>
+    <div class="tab-pane fade" id="v-pills-matchSettings" role="tabpanel" aria-labelledby="v-pills-matchSettings-tab">
+      <app-match-settings></app-match-settings>
+    </div>
+    <div class="tab-pane fade" id="v-pills-photoAlbum" role="tabpanel" aria-labelledby="v-pills-photoAlbum-tab">
+      <app-photo-album></app-photo-album>
+    </div>
+    <div class="tab-pane fade" id="v-pills-likeAndLikeBy" role="tabpanel" aria-labelledby="v-pills-likeAndLikeBy-tab">
+      <app-like-likeby></app-like-likeby>
+    </div>
+    <div class="tab-pane fade" id="v-pills-changePassword" role="tabpanel" aria-labelledby="v-pills-changePassword-tab">
+      <app-change-password></app-change-password>
+    </div>
+    <div class="tab-pane fade" id="v-pills-notifications" role="tabpanel" aria-labelledby="v-pills-notifications-tab">
+      <app-notifications></app-notifications>
+    </div>
+    <div class="tab-pane fade" id="v-pills-helpCenter" role="tabpanel" aria-labelledby="v-pills-helpCenter-tab">
+      <app-help-center></app-help-center>
+    </div>
+    <div class="tab-pane fade" id="v-pills-account-settings" role="tabpanel" aria-labelledby="v-pills-account-settings-tab">
+      <app-account-setting></app-account-setting>
+    </div>
+    <div class="tab-pane fade" id="v-pills-privacyPolicy" role="tabpanel" aria-labelledby="v-pills-privacyPolicy-tab">
+      <app-privacy></app-privacy>
+    </div>
+  </div>
+</div>
+<!-- selfie verification modal -->
+<div class="modal fade" id="selfieVerifyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="img-box">
+          <input type="file"  id="selfieUpload" (change)="readselfie($event)" formControlName="image"  hidden>
+          <label for="selfieUpload" class="icon-wrapper"><i class="fa fa-pencil"></i></label>
+          <img src="{{selfie?selfie:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'}}" alt="">
+        </div>
+        <div class="btns d-flex align-items-center ">
+          <button type="button" class="blackBtn verifyBtn" disabled (click)="verify()" >Verify</button>
+          <button type="button" class="blackBtn danger" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

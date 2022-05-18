@@ -1,0 +1,580 @@
+.cstmRow {
+  min-height: 87vh;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+
+  .firstCol {
+    width: 30%;
+    background: #f9f9f9;
+    overflow-y: scroll;
+    .chats {
+      padding: 1rem;
+
+      .inpBox {
+        position: relative;
+
+        i {
+          position: absolute;
+          top: 50%;
+          left: 10px;
+          transform: translateY(-50%);
+          color: #999999;
+          cursor: pointer;
+        }
+
+        input {
+          width: 100%;
+          height: 100%;
+          border: none;
+          border-radius: 2px;
+          background-color: #e6e6e6;
+          padding: 10px 1rem 10px 2rem;
+          outline: none;
+        }
+      }
+
+      .chatsBox {
+        .chatIcon {
+          margin: 1.5rem 0;
+          cursor: pointer;
+
+          .iconBox {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border-radius: 100px;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .name {
+            margin-left: 1rem;
+            width: 80%;
+
+            h6 {
+              color: #666666;
+              font-family: gilroy-medium;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .secondCol {
+    width: 70%;
+
+    .chatHeader {
+      background: #f2f2f2;
+      padding: 1rem;
+      width: 100%;
+
+      i {
+        cursor: pointer;
+      }
+
+      .chatIcon {
+        width: 50%;
+
+        .iconBox {
+          width: 50px;
+          height: 50px;
+          overflow: hidden;
+          border-radius: 100px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .name {
+          margin-left: 1rem;
+
+          h6 {
+            color: #000;
+            font-family: gilroy-medium;
+            margin: 0;
+          }
+        }
+      }
+
+      .chatAction {
+        width: 6%;
+      }
+    }
+
+    .chatBody {
+      overflow-y: scroll;
+      #conference {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      #remote {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      #local {
+        position: absolute;
+        width: 320px;
+        height: 240px;
+        bottom: 20px;
+        right: 20px;
+        z-index: 2;
+      }
+      // height: 67.5vh;
+      // overflow-y: scroll;
+      .chatIcon {
+        margin: 1rem;
+
+        .iconBox {
+          width: 100px;
+          height: 100px;
+          overflow: hidden;
+          border-radius: 100px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .message {
+          margin-left: 1rem;
+          max-width: 70%;
+
+          // position: relative;
+          p {
+            color: #000;
+            font-family: gilroy-light;
+            background: #f2f2f2;
+            margin: 0;
+            max-width: 100%;
+            padding: 1rem;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .reciever,
+      .sendMessage {
+        margin: 2rem 0;
+      }
+
+      .reciever {
+        position: relative;
+        flex-direction: row-reverse;
+        .message {
+          margin-left: 1rem;
+          max-width: 70%;
+
+          // position: relative;
+          p {
+            color: #fff;
+            background: #000000;
+          }
+        }
+
+        .time {
+          position: absolute;
+          bottom: -17%;
+        }
+      }
+
+      .reciever {
+        .message {
+          margin-left: 0;
+          margin-right: 1rem;
+          justify-content: flex-end;
+        }
+      }
+
+      .time {
+        max-width: 100%;
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-end;
+
+        label {
+          color: #cccccc;
+          font-size: 13px;
+        }
+
+        .tickIcon {
+          margin-left: 10px;
+
+          i {
+            background-color: #666666;
+            padding: 3px;
+            border-radius: 100px;
+            color: #fff;
+            font-size: 10px;
+          }
+        }
+      }
+      .sender {
+        .time {
+          .tickIcon {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .chatFooter {
+      position: fixed;
+      bottom: 0;
+      width: 70%;
+      .inpBox {
+        position: relative;
+
+        i {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          color: #000;
+          cursor: pointer;
+        }
+
+        input {
+          width: 100%;
+          height: 100%;
+          border: none;
+          border-radius: 2px;
+          background-color: #e6e6e6;
+          padding: 10px 1rem 10px 2rem;
+          outline: none;
+          resize: none;
+        }
+      }
+    }
+  }
+}
+.secondCol {
+  .brand {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 30%;
+      height: 30%;
+    }
+  }
+}
+#staticBackdrop {
+  .modal-content {
+    background-color: transparent;
+    background: transparent;
+    border: none;
+  }
+  .modal-body {
+    min-height: 600px;
+    #closeMod {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      background: red;
+      border: none;
+      border-radius: 100px;
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+#divId {
+  position: relative;
+}
+.btnDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+}
+#my-number {
+  color: #fff;
+  text-align: center;
+}
+.disbaledLabel {
+  cursor: not-allowed;
+}
+.wrap {
+  display: inline-block;
+  position: relative;
+}
+
+.overlap {
+  display: none;
+}
+
+.poptooltip {
+  .overlap {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    cursor: not-allowed;
+  }
+}
+.offline {
+  label {
+    i {
+      color: #bebebe;
+    }
+  }
+}
+.onlineDot {
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 100px;
+  background-color: #4bc64b;
+  margin-left: auto;
+}
+::ng-deep .hidden {
+  display: none !important;
+}
+::ng-deep #remote-media {
+  width: 550px !important;
+  height: 400px !important;
+}
+::ng-deep #local-media {
+  width: 270px !important;
+  height: 120px !important;
+}
+::ng-deep #hangupButtons {
+  position: absolute;
+  bottom: 0;
+}
+::ng-deep #hangupButtons {
+  .far {
+    color: #fff;
+  }
+}
+::ng-deep .toast-top-right {
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    height: fit-content;
+    top: unset !important;
+}
+::ng-deep .toast-success {
+  background-color: #969696;
+}
+#ProfilePic{
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 500px;
+}
+#callEnd{text-align: center;
+  transform: translateY(50%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+}
+.endSec{
+  display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@media only screen and (min-width: 1920px) {
+  .cstmRow {
+    margin-top: 5rem;
+    height: 92vh;
+    min-height: auto;
+    overflow: hidden;
+  }
+  .cstmRow .secondCol .chatBody .chatIcon {
+    width: 100%;
+    padding: 3rem;
+    margin: 0;
+  }
+  .cstmRow .secondCol .chatBody .chatIcon .messageBody {
+    width: 100%;
+  }
+  .cstmRow .secondCol .chatBody {
+    height: 80.5vh;
+  }
+}
+.fa.fa-arrow-left.display {
+  display: none;
+}
+@media only screen and (min-width: 2560px) {
+  .cstmRow {
+    min-height: 95vh;
+  }
+  .cstmRow .secondCol .chatBody {
+    height: 86.9vh;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .cstmRow {
+    margin-top: 5rem;
+    height: 91vh;
+    min-height: auto;
+    overflow: hidden;
+  }
+  .cstmRow .secondCol .chatBody .chatIcon {
+    width: 100%;
+    padding: 3rem;
+    margin: 0;
+  }
+  .cstmRow .secondCol .chatBody .chatIcon .messageBody {
+    width: 100%;
+  }
+  .cstmRow .secondCol .chatBody {
+    height: 76.9vh;
+  }
+}
+@media only screen and (max-width: 1440px) {
+  .cstmRow {
+    height: 87.5vh;
+  }
+  .cstmRow .secondCol .chatBody {
+    height: 68.9vh;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .cstmRow {
+    height: 94.1vh;
+  }
+  .cstmRow .secondCol .chatBody {
+    height: 85vh;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .cstmRow {
+    margin-top: 3rem;
+    height: 95vh;
+    .secondCol {
+      .chatBody {
+        height: 82vh;
+      }
+      .chatHeader {
+        .chatAction {
+          width: 20%;
+        }
+      }
+    }
+  }
+  .cstmRow .secondCol .chatBody {
+    height: 80vh;
+    position: relative;
+  }
+  .cstmRow {
+    height: 92vh;
+  }
+  .typingText {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+  }
+  .cstmRow .firstCol .chats .chatsBox .chatIcon .iconBox {
+    width: 60px;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .mobilChat {
+    width: 0 !important;
+  }
+  .mobilChatFull {
+    width: 100% !important;
+  }
+  .cstmRow .secondCol .chatFooter {
+    width: 100%;
+  }
+  .cstmRow .secondCol .chatBody .chatIcon {
+    padding: 1rem;
+  }
+  .cstmRow .secondCol .chatBody .chatIcon .iconBox {
+    width: 60px;
+  }
+  .cstmRow .secondCol .chatBody .reciever .time {
+    justify-content: flex-end;
+    width: 100%;
+    position: static;
+  }
+  .cstmRow .secondCol .chatBody .reciever.mt-5 {
+    margin-top: 1rem !important;
+  }
+  .cstmRow .secondCol .chatBody .reciever.mb-5 {
+    margin-bottom: 1rem !important;
+  }
+  .d-flex.align-items-center.mt-5.mb-5.reciver {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .cstmRow .firstCol .chats .chatsBox .chatIcon .iconBox {
+    width: 50px;
+  }
+  .fa.fa-arrow-left.display {
+    display: block;
+  }
+}
+@media only screen and (max-width: 414px) {
+  .cstmRow {
+    .secondCol {
+      .chatHeader {
+        .chatIcon {
+          width: 60%;
+        }
+        .chatAction {
+          width: 30%;
+        }
+      }
+      .chatBody {
+        .chatIcon {
+          .iconBox {
+            height: 60px;
+          }
+          .message {
+            p {
+              max-width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#accept {
+  display: none;
+}
+#decline {
+  display: none;
+}
