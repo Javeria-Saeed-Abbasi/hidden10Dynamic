@@ -37,57 +37,19 @@ export class NotificationsComponent implements OnInit {
 
   getNotifications(){
     this.http.get('/notifications', true).subscribe((res:any)=>{
-
       res.request_connect.map((data: any, i) => {
-        // console.log('====================================');
-        // console.log('====================================');
-        if (data.liked_id == localStorage.getItem('userId')) {
-          // this.notifications = res.request_connect
-          // console.log(res);
-        }
-        else{
-          // this.notifications = res.connect_details
-          if(this.notifications.liked_id == localStorage.getItem("userId")){
-            this.showNot = true;
-          }
-          else{
-            this.showNot = false;
-          }
-        }
-        setTimeout(() => {
-
           if(Object.keys(res.connect_details).length == 0 && Object.keys(res.request_connect).length != 0){
             this.notifications = res.request_connect
             if(Object.keys(res.connect_details).length != 0 && Object.keys(res.request_connect).length != 0){
               this.notifications = res.connect_details
             }
-            console.log(data);
-
             this.showNot = true;
           }
           if(Object.keys(res.connect_details).length != 0 && Object.keys(res.request_connect).length != 0){
             this.notifications = res.request_connect
-            console.log(data);
             this.showNot = false;
           }
-        }
-        ,);
-          for (const key in res) {
-          // console.log('====================================');
-          // console.log(key);
-          // console.log('====================================');
-          // if(Object.keys[key].length === 0){
-          // }
-          // res[key].map((data)=>{
-          //   // if(data.length > 0){
-          //   // }
-
-          // })
-        }
-        // console.log(res);
       });
-      // if(res.connect_details.liked_id != localStorage.getItem('userId')){
-      // }
     })
   }
   notificationread(notification) {

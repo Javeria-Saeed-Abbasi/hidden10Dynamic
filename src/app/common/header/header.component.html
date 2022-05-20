@@ -137,44 +137,99 @@
                 class="dropBtn dropdown-content"
                 [ngClass]="{ show: notidropDown == true }"
               >
-              <a *ngFor="let notification of notiDropDownItem" href="javascript:void(0)"
-              class="" (click)="clickONNotiTab()">
-              <div (click)="notificationread(notification)" class="d-flex flex-row align-items-center justify-content-center">
-                <span class="senderIcon d-flex justify-content-between align-items-center">
-                  <img *ngIf="notification?.users_invers?.gender == 'men'" src="{{
-                      notification?.users_invers?.image
-                        ? notification?.users_invers?.image
-                        : 'assets/1x/boyDummy.jpg'
-                    }}" alt="" />
-                  <img *ngIf="notification?.users_invers?.gender == 'women'" src="{{
-                      notification?.users_invers?.image
-                        ? notification?.users_invers?.image
-                        : 'assets/1x/girlDummy.jpg'
-                    }}" alt="" />
-                </span>
-                <span class="msgDet d-flex justify-content-between align-items-end">
-                  <span class="d-flex flex-column" style="width: 100%">
-                    {{ notification?.users_invers?.name
-                    }}
-                    <span class="newLab" *ngIf="notification?.request_accept == 1">Connected you</span>
-                    <span class="newLab" *ngIf="notification?.request_accept == 0">sent you a request</span>
+                <a
+                  *ngFor="let notification of notiDropDownItem"
+                  href="javascript:void(0)"
+                  class=""
+                  (click)="clickONNotiTab()"
+                >
+                  <div
+                    (click)="
+                      notification?.request_accept == 0
+                        ? notificationread(notification)
+                        : null
+                    "
+                    class="d-flex flex-row align-items-center justify-content-center"
+                  >
+                    <span
+                      class="senderIcon d-flex justify-content-between align-items-center"
+                    >
+                      <img
+                        *ngIf="notification?.users_invers?.gender == 'men'"
+                        src="{{
+                          notification?.users_invers?.image
+                            ? notification?.users_invers?.image
+                            : 'assets/1x/boyDummy.jpg'
+                        }}"
+                        alt=""
+                      />
+                      <img
+                        *ngIf="notification?.users_invers?.gender == 'women'"
+                        src="{{
+                          notification?.users_invers?.image
+                            ? notification?.users_invers?.image
+                            : 'assets/1x/girlDummy.jpg'
+                        }}"
+                        alt=""
+                      />
+                    </span>
+                    <span
+                      class="msgDet d-flex justify-content-between align-items-end"
+                    >
+                      <span
+                        *ngIf="notification?.request_accept == 0 && !showNot"
+                        class="d-flex flex-column"
+                        style="width: 100%"
+                      >
+                        {{ notification?.users_invers?.name }}
+                        <span class="newLab">connected you</span>
+                      </span>
+                      <span
+                        *ngIf="notification?.request_accept == 1 && !showNot"
+                        class="d-flex flex-column"
+                        style="width: 100%"
+                      >
+                        You connected with
+                        <span class="newLab">{{
+                          notification?.users_invers?.name
+                        }}</span>
+                      </span>
+                      <span
+                        *ngIf="notification?.request_accept == 0 && showNot"
+                        class="d-flex flex-column"
+                        style="width: 100%"
+                      >
+                        {{ notification?.users_invers?.name }}
+                        <span class="newLab">send you rquest</span>
+                      </span>
+                      <span class="timeLab">{{
+                        notification?.created_at | date: "dd/MM/yyyy hh:mm a"
+                      }}</span>
+                    </span>
+                  </div>
+
+                  <span
+                    class="d-flex flex-row justify-content-space-evenly justify-content-center mb-2"
+                    *ngIf="notification?.request_accept == 0 && showNot"
+                  >
+                    <div class="px-2">
+                      <button
+                        class="blackBtn2 mt-1"
+                        (click)="acceptRequest(notification)"
+                      >
+                        Accept
+                      </button>
+                    </div>
+                    <div class="px-2">
+                      <button
+                        class="blackBtn2 mt-1"
+                        (click)="declineRequest(notification)"
+                      >
+                        Decline
+                      </button>
+                    </div>
                   </span>
-                  <span class="timeLab">{{
-                    notification?.created_at | date: "dd/MM/yyyy hh:mm a"
-                    }}</span>
-                </span>
-              </div>
-
-              <span class="d-flex flex-row justify-content-space-evenly justify-content-center mb-2" *ngIf="notification?.request_accept == 0">
-                <div class="px-2">
-                  <button class="blackBtn2 mt-1" (click)="acceptRequest(notification)">Accept</button>
-                </div>
-                <div class="px-2">
-                  <button class="blackBtn2 mt-1" (click)="declineRequest(notification)">Decline</button>
-                </div>
-              </span>
-
-            </a>
+                </a>
                 <a
                   *ngIf="notiDropDownItem?.length > 4"
                   href="javascript:void(0)"
@@ -183,14 +238,22 @@
                 >
                   See More
                 </a>
-                <a *ngIf="notiDropDownItem?.length < 1 && notiDropDownItem?.length < 1">No Notifications</a>
+                <a
+                  *ngIf="
+                    notiDropDownItem?.length < 1 && notiDropDownItem?.length < 1
+                  "
+                  >No Notifications</a
+                >
               </div>
             </div>
           </div>
         </div>
         <div class="logoCol">
           <div class="cstmCol d-flex justify-content-center">
-            <div class="logoBox" [routerLink]="[!signRegister ? '/dashboard' : '']">
+            <div
+              class="logoBox"
+              [routerLink]="[!signRegister ? '/dashboard' : '']"
+            >
               <img src="assets/SVG/logo-white.svg" alt="" />
             </div>
           </div>
@@ -280,23 +343,23 @@
     </div>
     <div *ngIf="!signRegister" class="cstmCol d-flex align-items-center">
       <div
-              id="filterBtn"
-              class="d-flex filterIcon align-items-center"
-              *ngIf="filterBtn && (mobileNav && dashboard) || (mobileNav && !signRegister)"
-              (click)="filterSideBar()"
-            >
-              <div class="iconBox">
-                <img src="assets/SVG/filterIcon.svg" alt="" />
-              </div>
-              <h4>Filters</h4>
-            </div>
+        id="filterBtn"
+        class="d-flex filterIcon align-items-center"
+        *ngIf="
+          (filterBtn && mobileNav && dashboard) || (mobileNav && !signRegister)
+        "
+        (click)="filterSideBar()"
+      >
+        <div class="iconBox">
+          <img src="assets/SVG/filterIcon.svg" alt="" />
+        </div>
+        <h4>Filters</h4>
+      </div>
       <div class="iconBox mgRight3 chatIcon">
         <span (click)="myFunction($event)" class="item bageItem">
-          <label
-            *ngIf="chatBadge.length > 0"
-            class="notificationBdage"
-            >{{ chatBadge.length }}</label
-          >
+          <label *ngIf="chatBadge.length > 0" class="notificationBdage">{{
+            chatBadge.length
+          }}</label>
           <i id="chatIco" class="far fa-comment"></i>
         </span>
         <div
@@ -332,9 +395,7 @@
                 alt=""
               />
             </span>
-            <span
-              class="msgDet d-flex justify-content-between align-items-end"
-            >
+            <span class="msgDet d-flex justify-content-between align-items-end">
               <span class="d-flex flex-column">
                 {{ chat?.users_invers?.name
                 }}<span class="newLab">New Message</span>
@@ -375,44 +436,99 @@
           class="dropBtn dropdown-content"
           [ngClass]="{ show: notidropDown == true }"
         >
-        <a *ngFor="let notification of notiDropDownItem" href="javascript:void(0)"
-        class="" (click)="clickONNotiTab()">
-        <div (click)="notification?.request_accept == 0 ? null : notificationread(notification)" class="d-flex flex-row align-items-center justify-content-center">
-          <span class="senderIcon d-flex justify-content-between align-items-center">
-            <img *ngIf="notification?.users_invers?.gender == 'men'" src="{{
-                notification?.users_invers?.image
-                  ? notification?.users_invers?.image
-                  : 'assets/1x/boyDummy.jpg'
-              }}" alt="" />
-            <img *ngIf="notification?.users_invers?.gender == 'women'" src="{{
-                notification?.users_invers?.image
-                  ? notification?.users_invers?.image
-                  : 'assets/1x/girlDummy.jpg'
-              }}" alt="" />
-          </span>
-          <span class="msgDet d-flex justify-content-between align-items-end">
-            <span class="d-flex flex-column" style="width: 100%">
-              {{ notification?.users_invers?.name
-              }}
-              <span class="newLab" *ngIf="notification?.request_accept == 1">Connected you</span>
-              <span class="newLab" *ngIf="notification?.request_accept == 0">sent you a request</span>
+          <a
+            *ngFor="let notification of notiDropDownItem"
+            href="javascript:void(0)"
+            class=""
+            (click)="clickONNotiTab()"
+          >
+            <div
+              (click)="
+                notification?.request_accept == 0
+                  ? notificationread(notification)
+                  : null
+              "
+              class="d-flex flex-row align-items-center justify-content-center"
+            >
+              <span
+                class="senderIcon d-flex justify-content-between align-items-center"
+              >
+                <img
+                  *ngIf="notification?.users_invers?.gender == 'men'"
+                  src="{{
+                    notification?.users_invers?.image
+                      ? notification?.users_invers?.image
+                      : 'assets/1x/boyDummy.jpg'
+                  }}"
+                  alt=""
+                />
+                <img
+                  *ngIf="notification?.users_invers?.gender == 'women'"
+                  src="{{
+                    notification?.users_invers?.image
+                      ? notification?.users_invers?.image
+                      : 'assets/1x/girlDummy.jpg'
+                  }}"
+                  alt=""
+                />
+              </span>
+              <span
+                class="msgDet d-flex justify-content-between align-items-end"
+              >
+                <span
+                  *ngIf="notification?.request_accept == 0 && !showNot"
+                  class="d-flex flex-column"
+                  style="width: 100%"
+                >
+                  {{ notification?.users_invers?.name }}
+                  <span class="newLab">connected you</span>
+                </span>
+                <span
+                  *ngIf="notification?.request_accept == 1 && !showNot"
+                  class="d-flex flex-column"
+                  style="width: 100%"
+                >
+                  You connected with
+                  <span class="newLab">{{
+                    notification?.users_invers?.name
+                  }}</span>
+                </span>
+                <span
+                  *ngIf="notification?.request_accept == 0 && showNot"
+                  class="d-flex flex-column"
+                  style="width: 100%"
+                >
+                  {{ notification?.users_invers?.name }}
+                  <span class="newLab">send you rquest</span>
+                </span>
+                <span class="timeLab">{{
+                  notification?.created_at | date: "dd/MM/yyyy hh:mm a"
+                }}</span>
+              </span>
+            </div>
+
+            <span
+              class="d-flex flex-row justify-content-space-evenly justify-content-center mb-2"
+              *ngIf="notification?.request_accept == 0 && showNot"
+            >
+              <div class="px-2">
+                <button
+                  class="blackBtn2 mt-1"
+                  (click)="acceptRequest(notification)"
+                >
+                  Accept
+                </button>
+              </div>
+              <div class="px-2">
+                <button
+                  class="blackBtn2 mt-1"
+                  (click)="declineRequest(notification)"
+                >
+                  Decline
+                </button>
+              </div>
             </span>
-            <span class="timeLab">{{
-              notification?.created_at | date: "dd/MM/yyyy hh:mm a"
-              }}</span>
-          </span>
-        </div>
-
-        <span class="d-flex flex-row justify-content-space-evenly justify-content-center mb-2" *ngIf="notification?.request_accept == 0">
-          <div class="px-2">
-            <button class="blackBtn2 mt-1" (click)="acceptRequest(notification)">Accept</button>
-          </div>
-          <div class="px-2">
-            <button class="blackBtn2 mt-1" (click)="declineRequest(notification)">Decline</button>
-          </div>
-        </span>
-
-      </a>
+          </a>
           <a
             *ngIf="notiDropDownItem?.length > 4"
             href="javascript:void(0)"
@@ -421,7 +537,12 @@
           >
             See More
           </a>
-          <a *ngIf="notiDropDownItem?.length == 0 ||notiDropDownItem?.length < 1">No Notifications</a>
+          <a
+            *ngIf="
+              notiDropDownItem?.length == 0 || notiDropDownItem?.length < 1
+            "
+            >No Notifications</a
+          >
         </div>
       </div>
     </div>
@@ -431,7 +552,11 @@
       *ngIf="mobileNav && !dashboard && !contactDashboard"
       class="bigScreenSideBar"
     >
-      <div class="mobileLogo mb-5" [routerLink]="[!signRegister ? '/dashboard' : '']" (click)="navToggle()">
+      <div
+        class="mobileLogo mb-5"
+        [routerLink]="[!signRegister ? '/dashboard' : '']"
+        (click)="navToggle()"
+      >
         <img src="assets/SVG/logo-white.svg" alt="" />
       </div>
       <div id="items" class="text-center">
@@ -477,48 +602,56 @@
       </div>
     </div>
     <div *ngIf="mobileNav && dashboard" class="smallScreenSidebar">
-      <div class="mobileLogo mb-5" (click)="navToggle()" [routerLink]="[!signRegister ? '/dashboard' : '']">
+      <div
+        class="mobileLogo mb-5"
+        (click)="navToggle()"
+        [routerLink]="[!signRegister ? '/dashboard' : '']"
+      >
         <img src="assets/SVG/logo-white.svg" alt="" />
       </div>
       <div id="items" class="text-center">
         <div class="itemsBox">
-          <div class="imageItem" [routerLink]="'/profileSettings'" (click)="navToggle()">
+          <div
+            class="imageItem"
+            [routerLink]="'/profileSettings'"
+            (click)="navToggle()"
+          >
             <img
-                *ngIf="
-                  (mydata?.my_profile?.gender == 'men' &&
-                    mydata?.my_profile?.image != null) ||
-                  (mydata?.my_profile?.gender == 'men' && profileImg != null)
-                "
-                src="{{ profileImg ? profileImg : 'assets/1x/boyDummy.jpg' }}"
-                alt=""
-              />
-              <img
-                *ngIf="
-                  (mydata?.my_profile?.gender == 'women' &&
-                    mydata?.my_profile?.image != null) ||
-                  (mydata?.my_profile?.gender == 'women' && profileImg != null)
-                "
-                src="{{ profileImg ? profileImg : 'assets/1x/girlDummy.jpg' }}"
-                alt=""
-              />
-              <img
-                *ngIf="
-                  (mydata?.my_profile?.gender == 'men' &&
-                    mydata?.my_profile?.image == null) ||
-                  (mydata?.my_profile?.gender == 'men' && profileImg == null)
-                "
-                src="assets/1x/boyDummy.jpg"
-                alt=""
-              />
-              <img
-                *ngIf="
-                  (mydata?.my_profile?.gender == 'women' &&
-                    mydata?.my_profile?.image == null) ||
-                  (mydata?.my_profile?.gender == 'women' && profileImg == null)
-                "
-                src="assets/1x/girlDummy.jpg"
-                alt=""
-              />
+              *ngIf="
+                (mydata?.my_profile?.gender == 'men' &&
+                  mydata?.my_profile?.image != null) ||
+                (mydata?.my_profile?.gender == 'men' && profileImg != null)
+              "
+              src="{{ profileImg ? profileImg : 'assets/1x/boyDummy.jpg' }}"
+              alt=""
+            />
+            <img
+              *ngIf="
+                (mydata?.my_profile?.gender == 'women' &&
+                  mydata?.my_profile?.image != null) ||
+                (mydata?.my_profile?.gender == 'women' && profileImg != null)
+              "
+              src="{{ profileImg ? profileImg : 'assets/1x/girlDummy.jpg' }}"
+              alt=""
+            />
+            <img
+              *ngIf="
+                (mydata?.my_profile?.gender == 'men' &&
+                  mydata?.my_profile?.image == null) ||
+                (mydata?.my_profile?.gender == 'men' && profileImg == null)
+              "
+              src="assets/1x/boyDummy.jpg"
+              alt=""
+            />
+            <img
+              *ngIf="
+                (mydata?.my_profile?.gender == 'women' &&
+                  mydata?.my_profile?.image == null) ||
+                (mydata?.my_profile?.gender == 'women' && profileImg == null)
+              "
+              src="assets/1x/girlDummy.jpg"
+              alt=""
+            />
           </div>
           <div
             class="item"

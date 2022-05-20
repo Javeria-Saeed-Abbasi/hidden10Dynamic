@@ -4,10 +4,8 @@
 <div class="notificationBox mt2 mb2" [class.show]="show">
   <div class="row">
     <div class="col-lg-12" *ngFor="let notification of notifications">
-      <div class="notifaction d-flex justify-content-between"
+      <div class="notifaction d-flex justify-content-between flex-wrap"
       >
-      <!-- [routerLink]="['/profile', notification?.users_invers?.id]" -->
-
         <div class="d-flex align-items-center">
           <div class="imgBox">
             <img src="{{notification?.users_invers?.image}}" alt="">

@@ -55,6 +55,8 @@ export class HeaderComponent implements OnInit {
   resetForm = this.fb.group({
     email: [null],
   });
+  notifications;
+  showNot
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -401,11 +403,23 @@ export class HeaderComponent implements OnInit {
   }
   getNotification() {
     this.http.get('/notifications', true).subscribe((res: any) => {
-      res?.request_connect?.map((data: any, i) => {
-        if (data.liked_id != localStorage.getItem('userId')) {
+        if(Object.keys(res.connect_details).length == 0 && Object.keys(res.request_connect).length != 0){
+          this.notifications = res.request_connect
+          if(Object.keys(res.connect_details).length != 0 && Object.keys(res.request_connect).length != 0){
+            this.notifications = res.connect_details
+          }
+          this.showNot = true;
+        }
+        if(Object.keys(res.connect_details).length != 0 && Object.keys(res.request_connect).length != 0){
+          this.notifications = res.request_connect
+          this.showNot = false;
+        }
+        console.log(this.notifications);
+        this.notifications?.map((data: any, i) => {
+        // if (data.liked_id != localStorage.getItem('userId')) {
           this.notiList=[]
           this.notiList.push(data);
-        }
+        // }
       });
       setTimeout(() => {
         if (this.notiList.length <= 5) {
@@ -435,9 +449,9 @@ export class HeaderComponent implements OnInit {
           data?.user_id != localStorage.getItem('userId')) {
             this.chatBadge.push(data.status);
           }
-          console.log('====================================');
-          console.log(this.chatBadge);
-          console.log('====================================');
+          // console.log('====================================');
+          // console.log(this.chatBadge);
+          // console.log('====================================');
         });
       } else {
         this.chatDropDownItem = this.chatList.slice(0, 5);
