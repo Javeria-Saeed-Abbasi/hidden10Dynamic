@@ -107,7 +107,8 @@ export class ProfilesComponent implements OnInit {
       this.filterUsers = res;
       this.filterUsers.map((v,i)=>{
         if(v.id == localStorage.getItem('userId')){
-          this.filterUsers.splice(i,1)
+          const result = this.filterUsers.filter(friends => friends.id == localStorage.getItem('userId'))
+          this.filterUsers = result
         }
       })
       LoaderServiceService.loader.next(false);
@@ -120,7 +121,8 @@ export class ProfilesComponent implements OnInit {
       this.filterUsers = res
       this.filterUsers.map((res,i)=>{
         if(res.id == localStorage.getItem('userId')){
-          this.filterUsers.splice(i,1)
+          const result = this.filterUsers.filter(friends => friends.id == localStorage.getItem('userId'))
+          this.filterUsers = result
         }
       })
       setTimeout(() => {
@@ -138,12 +140,18 @@ export class ProfilesComponent implements OnInit {
   myProfile(){
     LoaderServiceService.loader.next(true);
     this.http.get('/my_profile',true).subscribe((res:any)=>{
-      if(localStorage.getItem('personalDetails') == "true" && localStorage.getItem('matchSettings') == "true" && res.my_profile.image != null){
-        this.progressBarVal = 100
-      }
-      else{
-        this.progressBarVal = 75
-      }
+      setTimeout(() => {
+        if(res?.my_profile?.verifiy_percent == "100"){
+          localStorage.setItem('personalDetails','true')
+          localStorage.setItem('matchSettings','true')
+        }
+        if(localStorage.getItem('personalDetails') == "true" && localStorage.getItem('matchSettings') == "true" && res.my_profile.image != null){
+          this.progressBarVal = 100
+        }
+        else{
+          this.progressBarVal = 75
+        }
+      });
     })
     LoaderServiceService.loader.next(false);
   }

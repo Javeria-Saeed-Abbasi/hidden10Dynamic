@@ -22,7 +22,20 @@ export class IndexComponent implements OnInit {
   selfie;
   gender;
   profile;
-  imageVerify;
+  // imageVerify;
+  verificationForm = this.fb.group({
+    relationship: [null],
+    second_date: [null],
+    break_up: [null],
+    career: [null],
+    ever_been_married: [null],
+    smoke_marijuana: [null],
+    use_drugs: [null],
+    interested_in_marriage: [null],
+    found_someone: [null],
+    should_accept_member_hidden: [null],
+    imageVerify: [],
+  });
   constructor(
     public http: HttpService,
     private fb: FormBuilder,
@@ -96,7 +109,7 @@ export class IndexComponent implements OnInit {
 
     LoaderServiceService.loader.next(true);
     setTimeout(() => {
-      this.http.post("/user_update", {image:this.imageUploadForm.controls['image'].value}, true).subscribe((res:any)=>{
+      this.http.post("/user_update", {image:this.imageUploadForm.value}, true).subscribe((res:any)=>{
         LoaderServiceService.loader.next(false);
         this.showprofileimage()
       })
@@ -111,15 +124,21 @@ export class IndexComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.selfie = reader.result;
+        this.verificationForm.patchValue({
+          imageVerify:reader.result
+        });
       };
+
     } else {
       return;
     }
   }
   verify(){
-
     LoaderServiceService.loader.next(true);
-    this.http.post('/image_verification', {image: this.selfie} ,true).subscribe((res:any)=>{
+    this.http.post('/image_verification', this.verificationForm.value ,true).subscribe((res:any)=>{
+      console.log('====================================');
+      console.log(res);
+      console.log('====================================');
       if(res.hasOwnProperty('image_verification')){
         this.showprofileimage()
       }

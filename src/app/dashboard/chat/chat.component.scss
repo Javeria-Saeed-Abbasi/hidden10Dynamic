@@ -367,6 +367,9 @@
 ::ng-deep #local-media {
   width: 270px !important;
   height: 120px !important;
+  transform: translate(185px
+px
+, 264px);
 }
 ::ng-deep #hangupButtons {
   position: absolute;
@@ -544,6 +547,11 @@
   }
   .fa.fa-arrow-left.display {
     display: block;
+  }
+  ::ng-deep #local-media {
+    width: 270px !important;
+    height: 120px !important;
+    transform: translate(106px, 265px);
   }
 }
 @media only screen and (max-width: 414px) {

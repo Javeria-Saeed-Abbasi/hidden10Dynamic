@@ -213,6 +213,9 @@ export class HeaderComponent implements OnInit {
         ) {
           this.showToaster(`${messageNoti.username} send you a message`);
           this.getChats();
+          setTimeout(() => {
+            this.getNotification();
+          },1500);
         }
       });
       this.getProfileData();
@@ -328,6 +331,12 @@ export class HeaderComponent implements OnInit {
       box.classList.add('active');
       burgerBg.classList.remove('burgerBg');
     }
+    if ($('.filterSideBar').hasClass('addTransform')) {
+      $('.filterSideBar').css('transform', 'translateX(-100%)');
+      $('.filterSideBar').toggleClass('addTransform');
+    } else {
+      return
+    }
   }
 
   clickONNotiTab() {
@@ -392,23 +401,25 @@ export class HeaderComponent implements OnInit {
   }
   getNotification() {
     this.http.get('/notifications', true).subscribe((res: any) => {
-      res?.connect_details?.map((data: any, i) => {
-        if (data.user_id != localStorage.getItem('userId')) {
+      res?.request_connect?.map((data: any, i) => {
+        if (data.liked_id != localStorage.getItem('userId')) {
           this.notiList=[]
           this.notiList.push(data);
         }
       });
-      if (this.notiList.length <= 5) {
-        this.notiDropDownItem = this.notiList;
-        this.notiDropDownItem.map((data) => {
-          this.notificationBadge=[]
-          if (data.notification_status == '0') {
-            this.notificationBadge.push(data.status);
-          }
-        });
-      } else {
-        this.notiDropDownItem = this.notiList.slice(0, 5);
-      }
+      setTimeout(() => {
+        if (this.notiList.length <= 5) {
+          this.notiDropDownItem = this.notiList;
+          this.notiDropDownItem.map((data) => {
+            this.notificationBadge=[]
+            if (data.notification_status == '0') {
+              this.notificationBadge.push(data.status);
+            }
+          });
+        } else {
+          this.notiDropDownItem = this.notiList.slice(0, 5);
+        }
+      });
       // chat dropdown
       res?.massage_details?.map((data: any, i) => {
         if (data.user_id != localStorage.getItem('userId')) {
@@ -417,15 +428,19 @@ export class HeaderComponent implements OnInit {
         }
       });
       if (this.chatList.length <= 5) {
-        this.notiDropDownItem = this.chatList;
-        this.notiDropDownItem.map((data) => {
-          this.notificationBadge=[]
-          if (data.notification_status == '0') {
-            this.notificationBadge.push(data.status);
+        this.chatDropDownItem = this.chatList;
+        this.chatDropDownItem.map((data) => {
+          this.chatBadge=[]
+          if (data?.read_status == '0' &&
+          data?.user_id != localStorage.getItem('userId')) {
+            this.chatBadge.push(data.status);
           }
+          console.log('====================================');
+          console.log(this.chatBadge);
+          console.log('====================================');
         });
       } else {
-        this.notiDropDownItem = this.chatList.slice(0, 5);
+        this.chatDropDownItem = this.chatList.slice(0, 5);
       }
     });
   }
@@ -554,16 +569,20 @@ export class HeaderComponent implements OnInit {
   }
   acceptRequest(notification){
     LoaderServiceService.loader.next(true);
-    this.http.get(`/accept_request/${this.mydata.my_profile.id}`, true).subscribe((res:any)=>{
+    this.http.get(`/accept_request/${notification.user_id}`, true).subscribe((res:any)=>{
       console.log(res);
+      this.notificationread(notification)
+      this.getNotification()
       LoaderServiceService.loader.next(false);
       this.notifiService.notification(true, {userDataId:notification?.user_id, userDataName:localStorage.getItem('userData'), not:"accepted your request"});
     })
   }
   declineRequest(notification){
     LoaderServiceService.loader.next(true);
-    this.http.get(`/decline_request/${this.mydata.my_profile.id}`, true).subscribe((res:any)=>{
+    this.http.get(`/decline_request/${notification.user_id}`, true).subscribe((res:any)=>{
       console.log(res);
+      this.notificationread(notification)
+      this.getNotification()
       LoaderServiceService.loader.next(false);
       this.notifiService.notification(true, {userDataId:notification?.user_id, userDataName:localStorage.getItem('userData'), not:"decline your request"});
     })

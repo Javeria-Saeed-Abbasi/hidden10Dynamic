@@ -221,6 +221,20 @@ header {
         background-color: transparent;
       }
     }
+    .imageItem{
+      width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 200px;
+        object-position:top;
+      }
+    }
   }
 
   #items .item {
@@ -598,12 +612,40 @@ header {
 ::ng-deep .toast-success {
   background-color: #969696;
 }
+
+@media only screen and (max-width:1024px){
+  .dropdown-content{
+    left:70px;
+  }
+}
 @media only screen and (max-width:820px){
   #mobileNav{
     display: none;
   }
   header #btn[_ngcontent-euj-c154]{
     display: block;
+  }
+  .burgerBg{
+    #filterBtn{
+      color: #fff;
+      h4{
+        margin: 0;
+      }
+    }
+    .cstmCol{
+      position: absolute;
+      right: 0;
+      min-width: 200px;
+      justify-content: space-around;
+    }
+    i{
+      color: #fff;
+    }
+    .dropdown-content{
+      right: -70px;
+      margin-top: 10px;
+      left: unset;
+    }
   }
 }
 @media only screen and (max-width:540px){
@@ -616,5 +658,10 @@ header {
 @media only screen and (max-width:414px){
   #exampleModal .modal-body .signInModal .fbBtn, #exampleModal .modal-body .signInModal .gmailBtn, #resetModal .modal-body .signInModal .fbBtn, #resetModal .modal-body .signInModal .gmailBtn{
     min-width: 250px;
+  }
+}
+@media only screen and (max-width:375px){
+  .btnBox {
+    transform: translateY(40%);
   }
 }

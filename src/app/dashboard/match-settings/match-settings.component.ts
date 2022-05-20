@@ -83,63 +83,65 @@ export class MatchSettingsComponent implements OnInit {
     this.filteredCitites.push(city);
   }
   update() {
-    if (
-      this.matchSettingForm.controls['age_from'].value != null &&
-      this.matchSettingForm.controls['age_to'].value != null &&
-      this.matchSettingForm.controls['height_from'].value != null &&
-      this.matchSettingForm.controls['height_to'].value != null &&
-      (this.matchSettingForm.controls['browsing_from'].value == null ||
-        this.matchSettingForm.controls['browsing_to'].value == null) &&
-      this.matchSettingForm.controls['specific_location'].value != null &&
-      this.matchSettingForm.controls['country'].value != null &&
-      this.matchSettingForm.controls['city'].value != null
-    ) {
-      localStorage.setItem('matchSettings', 'true');
-    } else if (
-      this.matchSettingForm.controls['age_from'].value != null &&
-      this.matchSettingForm.controls['age_to'].value != null &&
-      this.matchSettingForm.controls['height_from'].value != null &&
-      this.matchSettingForm.controls['height_to'].value != null &&
-      this.matchSettingForm.controls['browsing_from'].value != null &&
-      this.matchSettingForm.controls['browsing_to'].value != null &&
-      this.matchSettingForm.controls['specific_location'].value == null &&
-      this.matchSettingForm.controls['country'].value == null &&
-      this.matchSettingForm.controls['city'].value == null
-    ) {
-      localStorage.setItem('matchSettings', 'true');
-    } else {
-      localStorage.setItem('matchSettings', 'false');
-    }
     LoaderServiceService.loader.next(true);
     setTimeout(() => {
       if (
-        localStorage.getItem('personalDetails') == 'true' &&
-        localStorage.getItem('matchSettings') == 'true'
+        this.matchSettingForm.controls['age_from'].value != null &&
+        this.matchSettingForm.controls['age_to'].value != null &&
+        this.matchSettingForm.controls['height_from'].value != null &&
+        this.matchSettingForm.controls['height_to'].value != null &&
+        this.matchSettingForm.controls['browsing_from'].value == null &&
+        this.matchSettingForm.controls['browsing_to'].value == null &&
+        this.matchSettingForm.controls['specific_location'].value != null &&
+        this.matchSettingForm.controls['country'].value != null &&
+        this.matchSettingForm.controls['city'].value != null
       ) {
-        this.matchSettingForm.patchValue({
-          verifiy_percent: 100,
-        });
+        localStorage.setItem('matchSettings', 'true');
+      } else if (
+        this.matchSettingForm.controls['age_from'].value != null &&
+        this.matchSettingForm.controls['age_to'].value != null &&
+        this.matchSettingForm.controls['height_from'].value != null &&
+        this.matchSettingForm.controls['height_to'].value != null &&
+        this.matchSettingForm.controls['browsing_from'].value != null &&
+        this.matchSettingForm.controls['browsing_to'].value != null &&
+        this.matchSettingForm.controls['specific_location'].value == null &&
+        this.matchSettingForm.controls['country'].value == null &&
+        this.matchSettingForm.controls['city'].value == null
+      ) {
+        localStorage.setItem('matchSettings', 'true');
       } else {
-        this.matchSettingForm.patchValue({
-          verifiy_percent: 75,
-        });
+        localStorage.setItem('matchSettings', 'false');
       }
-      this.http
-        .post('/user_update', this.matchSettingForm.value, true)
-        .subscribe((res: any) => {
-          LoaderServiceService.loader.next(false);
-          this.toaster.success(res.messsage);
-        }),
-        (err) => {
-          LoaderServiceService.loader.next(false);
-        };
-    });
+      setTimeout(() => {
+        if (
+          localStorage.getItem('personalDetails') == 'true' &&
+          localStorage.getItem('matchSettings') == 'true'
+        ) {
+          this.matchSettingForm.patchValue({
+            verifiy_percent: 100,
+          });
+        } else {
+          this.matchSettingForm.patchValue({
+            verifiy_percent: 75,
+          });
+        }
+        this.http
+          .post('/user_update', this.matchSettingForm.value, true)
+          .subscribe((res: any) => {
+            LoaderServiceService.loader.next(false);
+            this.toaster.success(res.messsage);
+          }),
+          (err) => {
+            LoaderServiceService.loader.next(false);
+          };
+      });
+    },2000);
   }
   getProfileData() {
     LoaderServiceService.loader.next(true);
     this.http.get('/my_profile', true).subscribe((res: any) => {
       this.profileData = res;
-      if (res?.my_profile.specific_location) {
+      if (res?.my_profile.specific_location != null || res?.my_profile.country != null || res?.my_profile.city != null ) {
         this.specificLocation = true;
       } else {
         this.specificLocation = false;
@@ -162,8 +164,13 @@ export class MatchSettingsComponent implements OnInit {
   toggleSec(event) {
     if (event.target.checked) {
       this.specificLocation = true;
+      this.matchSettingForm.controls['browsing_from'].setValue(null);
+      this.matchSettingForm.controls['browsing_to'].setValue(null);
     } else {
       this.specificLocation = false;
+      this.matchSettingForm.controls['specific_location'].setValue(null);
+      this.matchSettingForm.controls['country'].setValue(null);
+      this.matchSettingForm.controls['city'].setValue(null);
     }
   }
 }

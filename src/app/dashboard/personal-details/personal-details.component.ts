@@ -71,7 +71,6 @@ export class PersonalDetailsComponent implements OnInit {
       this.editUserForm.controls['marital_status'].value == null ||
       this.editUserForm.controls['religion_community'].value == null ||
       this.editUserForm.controls['mother_tongue'].value == null ||
-      this.editUserForm.controls['physical_status'].value == null ||
       this.editUserForm.controls['country_living_in'].value == null ||
       this.editUserForm.controls['residing_state'].value == null ||
       this.editUserForm.controls['residing_city'].value == null ||
@@ -137,7 +136,7 @@ export class PersonalDetailsComponent implements OnInit {
           country_living_in: [this.profileData?.my_profile?.country_living_in],
           residing_state: [this.profileData?.my_profile?.residing_state],
           residing_city: [this.profileData?.my_profile?.residing_city],
-          citizenship: [this.profileData?.my_profile?.citizenship],
+          citizenship: [JSON.parse(this.profileData?.my_profile?.citizenship)],
           marital_status: [this.profileData?.my_profile?.marital_status],
           numer_of_marriages: [this.profileData?.my_profile?.numer_of_marriages],
           kids: [this.profileData?.my_profile?.kids],

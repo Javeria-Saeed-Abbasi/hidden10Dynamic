@@ -13,6 +13,8 @@ export class NotificationsComponent implements OnInit {
   notifications:any;
   show = false;
   showBtnRotate = false;
+  showNot = false
+  faultyData
   constructor(private http:HttpService,
     private notifiService: NotificationService,
     private cd: ChangeDetectorRef
@@ -35,14 +37,54 @@ export class NotificationsComponent implements OnInit {
 
   getNotifications(){
     this.http.get('/notifications', true).subscribe((res:any)=>{
-      console.log(res);
 
-      res?.connect_details?.map((data: any, i) => {
-        if (data.user_id != localStorage.getItem('userId')) {
-            this.notifications = res.connect_details
-            console.log(res);
-
+      res.request_connect.map((data: any, i) => {
+        // console.log('====================================');
+        // console.log('====================================');
+        if (data.liked_id == localStorage.getItem('userId')) {
+          // this.notifications = res.request_connect
+          // console.log(res);
         }
+        else{
+          // this.notifications = res.connect_details
+          if(this.notifications.liked_id == localStorage.getItem("userId")){
+            this.showNot = true;
+          }
+          else{
+            this.showNot = false;
+          }
+        }
+        setTimeout(() => {
+
+          if(Object.keys(res.connect_details).length == 0 && Object.keys(res.request_connect).length != 0){
+            this.notifications = res.request_connect
+            if(Object.keys(res.connect_details).length != 0 && Object.keys(res.request_connect).length != 0){
+              this.notifications = res.connect_details
+            }
+            console.log(data);
+
+            this.showNot = true;
+          }
+          if(Object.keys(res.connect_details).length != 0 && Object.keys(res.request_connect).length != 0){
+            this.notifications = res.request_connect
+            console.log(data);
+            this.showNot = false;
+          }
+        }
+        ,);
+          for (const key in res) {
+          // console.log('====================================');
+          // console.log(key);
+          // console.log('====================================');
+          // if(Object.keys[key].length === 0){
+          // }
+          // res[key].map((data)=>{
+          //   // if(data.length > 0){
+          //   // }
+
+          // })
+        }
+        // console.log(res);
       });
       // if(res.connect_details.liked_id != localStorage.getItem('userId')){
       // }
@@ -59,16 +101,18 @@ export class NotificationsComponent implements OnInit {
   }
   acceptRequest(notification){
     LoaderServiceService.loader.next(true);
-    this.http.get(`/accept_request/${notification?.liked_id}`, true).subscribe((res:any)=>{
+    this.http.get(`/accept_request/${notification?.user_id}`, true).subscribe((res:any)=>{
       console.log(res);
+      this.getNotifications()
       LoaderServiceService.loader.next(false);
       this.notifiService.notification(true, {userDataId:notification?.user_id, userDataName:localStorage.getItem('userData'), not:"accepted your request"});
     })
   }
   declineRequest(notification){
     LoaderServiceService.loader.next(true);
-    this.http.get(`/decline_request/${notification?.liked_id}`, true).subscribe((res:any)=>{
+    this.http.get(`/decline_request/${notification?.user_id}`, true).subscribe((res:any)=>{
       console.log(res);
+      this.getNotifications()
       LoaderServiceService.loader.next(false);
       this.notifiService.notification(true, {userDataId:notification?.user_id, userDataName:localStorage.getItem('userData'), not:"decline your request"});
     })

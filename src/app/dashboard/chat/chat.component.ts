@@ -65,8 +65,6 @@ export class ChatComponent implements OnInit {
     setTimeout(() => {
       this.chatService.onlineStatus().subscribe((online: string) => {
         const onlineStats = JSON.parse(online);
-        console.log(online, 'ponlinestats');
-        // console.log(onlineStats,"ponlinestats");
         this.getProfiles();
         this.friends?.map((v, i) => {
           if (v.id == onlineStats.user) {
@@ -96,6 +94,7 @@ export class ChatComponent implements OnInit {
     this.chatService.getMessage().subscribe((message: string) => {
       const mssg = JSON.parse(message);
       this.recivemessage[0].push(mssg);
+      GlobaldataService.messageSend.next(true);
       this.messages = [];
       setTimeout(() => {
         this.scrollToBottom();
@@ -212,28 +211,28 @@ export class ChatComponent implements OnInit {
     }
   }
   getProfiles() {
+    LoaderServiceService.loader.next(true);
     this.http.get('/user_details', true).subscribe((res: any) => {
       this.friends = res;
       this.friends.map((v, i) => {
         if(v.messages.length > 0 || v.message_recevie.length > 0){
-          const result = this.friends.filter(friends => (friends.messages.length > 0 || friends.message_recevie.length > 0) && friends.id != this.myData.id)
-          this.friends = result
-          console.log('====================================');
-          console.log(this.friends);
-          console.log('====================================');
+          const result = this.friends.filter(friends => (friends.messages.length > 0 || friends.message_recevie.length > 0) && friends.id != this.myData.id && friends.id != this.id)
+          this.friends = result;
+        }
+        else{
+          const result = this.friends.filter(friends => friends.id != this.myData.id && friends.id != this.id)
+          this.friends = result;
         }
         setTimeout(() => {
-          if(v.id == this.id){
-            if(this.friends.includes(this.id)){
-              this.friends.splice(i, 1)
-              return
-          } else{
+          if(v.id == this.id && v.id != "allUsers"){
             this.friends.push(v)
+            setTimeout(() => {
+              $(`#ChatBtn${this.id}`).trigger('click')
+              LoaderServiceService.loader.next(false);
+            });
           }
-          console.log('====================================');
-          console.log(this.friends);
-          console.log('====================================');
-          }
+          LoaderServiceService.loader.next(false);
+
         });
       });
     });
@@ -263,6 +262,7 @@ export class ChatComponent implements OnInit {
       });
   }
   getMessage() {
+    LoaderServiceService.loader.next(true);
     this.recivemessage = [];
     setTimeout(() => {
       this.http
@@ -272,6 +272,7 @@ export class ChatComponent implements OnInit {
           setTimeout(() => {
             this.scrollToBottom();
           });
+    LoaderServiceService.loader.next(false);
         });
     }, 1000);
   }

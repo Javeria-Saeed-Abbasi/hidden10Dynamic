@@ -482,15 +482,16 @@ span{
     font-size: 72px;
     margin: 0;
   }
-
-  p {
+  ::ng-deep p{
     color: #808080;
     font-family: "gilroy-medium";
     font-size: 19px;
     line-height: 1.3;
     margin-top: 2rem;
   }
-
+  span.fadeInLeft{
+    color: #808080;
+  }
   .pic {
     cursor: pointer;
     height: 480px;

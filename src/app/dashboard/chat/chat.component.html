@@ -10,7 +10,7 @@
           <div
             class="chatIcon d-flex align-items-center"
             (click)="chatData(friend)"
-            [id]="'ChatBtn' + friend?.id"
+            [id]="'ChatBtn'+friend?.id"
           >
             <div class="iconBox">
               <img
@@ -45,7 +45,7 @@
         class="fa fa-arrow-left display"
         (click)="mobileChat = !mobileChat"
       ></i>
-      <div class="chatIcon d-flex align-items-center">
+      <div [routerLink]="['/profile',chatBody[0]?.id]" class="chatIcon cursor d-flex align-items-center">
         <div class="iconBox">
           <img
             src="{{

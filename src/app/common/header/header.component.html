@@ -139,7 +139,7 @@
               >
               <a *ngFor="let notification of notiDropDownItem" href="javascript:void(0)"
               class="" (click)="clickONNotiTab()">
-              <div class="d-flex flex-row align-items-center justify-content-center">
+              <div (click)="notificationread(notification)" class="d-flex flex-row align-items-center justify-content-center">
                 <span class="senderIcon d-flex justify-content-between align-items-center">
                   <img *ngIf="notification?.users_invers?.gender == 'men'" src="{{
                       notification?.users_invers?.image
@@ -183,7 +183,7 @@
                 >
                   See More
                 </a>
-                <a *ngIf="notiDropDownItem?.length < 1">No Notifications</a>
+                <a *ngIf="notiDropDownItem?.length < 1 && notiDropDownItem?.length < 1">No Notifications</a>
               </div>
             </div>
           </div>
@@ -265,7 +265,7 @@
   </div>
   <div
     *ngIf="mobileNav && !contactDashboard"
-    class="w-100 burgerBg"
+    class="w-100 burgerBg d-flex justify-content-between align-items-center"
     id="burgerBg"
   >
     <div
@@ -277,6 +277,153 @@
       <div id="top"></div>
       <div id="middle"></div>
       <div id="bottom"></div>
+    </div>
+    <div *ngIf="!signRegister" class="cstmCol d-flex align-items-center">
+      <div
+              id="filterBtn"
+              class="d-flex filterIcon align-items-center"
+              *ngIf="filterBtn && (mobileNav && dashboard) || (mobileNav && !signRegister)"
+              (click)="filterSideBar()"
+            >
+              <div class="iconBox">
+                <img src="assets/SVG/filterIcon.svg" alt="" />
+              </div>
+              <h4>Filters</h4>
+            </div>
+      <div class="iconBox mgRight3 chatIcon">
+        <span (click)="myFunction($event)" class="item bageItem">
+          <label
+            *ngIf="chatBadge.length > 0"
+            class="notificationBdage"
+            >{{ chatBadge.length }}</label
+          >
+          <i id="chatIco" class="far fa-comment"></i>
+        </span>
+        <div
+          id="msgBtn"
+          class="dropBtn dropdown-content"
+          [ngClass]="{ show: chatdropDown == true }"
+        >
+          <a
+            *ngFor="let chat of chatList"
+            href="javascript:void(0)"
+            (click)="routeChat(chat?.user_id)"
+            class="d-flex align-items-center"
+          >
+            <span
+              class="senderIcon d-flex justify-content-between align-items-center"
+            >
+              <img
+                *ngIf="chat?.users_invers?.gender == 'men'"
+                src="{{
+                  chat?.users_invers?.image
+                    ? chat?.users_invers?.image
+                    : 'assets/1x/boyDummy.jpg'
+                }}"
+                alt=""
+              />
+              <img
+                *ngIf="chat?.users_invers?.gender == 'women'"
+                src="{{
+                  chat?.users_invers?.image
+                    ? chat?.users_invers?.image
+                    : 'assets/1x/girlDummy.jpg'
+                }}"
+                alt=""
+              />
+            </span>
+            <span
+              class="msgDet d-flex justify-content-between align-items-end"
+            >
+              <span class="d-flex flex-column">
+                {{ chat?.users_invers?.name
+                }}<span class="newLab">New Message</span>
+              </span>
+              <span class="timeLab">{{
+                chat?.created_at | date: "dd/MM/yyyy hh:mm a"
+              }}</span>
+            </span></a
+          >
+          <a
+            *ngIf="chatList.length > 4"
+            [routerLink]="['/profileSettings/chat/allUsers']"
+            href="javascript:void(0)"
+            class="d-flex align-items-center text-center"
+          >
+            See All
+          </a>
+          <a
+            *ngIf="chatList.length == 0 || chatList.length < 1"
+            href="javascript:void(0)"
+            class="d-flex align-items-center text-center"
+          >
+            No chat
+          </a>
+        </div>
+      </div>
+      <div class="iconBox mgRight3 notificationIcon">
+        <span (click)="myFunction($event)" class="item bageItem">
+          <label
+            *ngIf="notificationBadge.length >= 1"
+            class="notificationBdage"
+            >{{ notificationBadge.length }}</label
+          >
+          <i id="noti" class="far fa-bell"></i>
+        </span>
+        <div
+          id="notiBtn"
+          class="dropBtn dropdown-content"
+          [ngClass]="{ show: notidropDown == true }"
+        >
+        <a *ngFor="let notification of notiDropDownItem" href="javascript:void(0)"
+        class="" (click)="clickONNotiTab()">
+        <div (click)="notification?.request_accept == 0 ? null : notificationread(notification)" class="d-flex flex-row align-items-center justify-content-center">
+          <span class="senderIcon d-flex justify-content-between align-items-center">
+            <img *ngIf="notification?.users_invers?.gender == 'men'" src="{{
+                notification?.users_invers?.image
+                  ? notification?.users_invers?.image
+                  : 'assets/1x/boyDummy.jpg'
+              }}" alt="" />
+            <img *ngIf="notification?.users_invers?.gender == 'women'" src="{{
+                notification?.users_invers?.image
+                  ? notification?.users_invers?.image
+                  : 'assets/1x/girlDummy.jpg'
+              }}" alt="" />
+          </span>
+          <span class="msgDet d-flex justify-content-between align-items-end">
+            <span class="d-flex flex-column" style="width: 100%">
+              {{ notification?.users_invers?.name
+              }}
+              <span class="newLab" *ngIf="notification?.request_accept == 1">Connected you</span>
+              <span class="newLab" *ngIf="notification?.request_accept == 0">sent you a request</span>
+            </span>
+            <span class="timeLab">{{
+              notification?.created_at | date: "dd/MM/yyyy hh:mm a"
+              }}</span>
+          </span>
+        </div>
+
+        <span class="d-flex flex-row justify-content-space-evenly justify-content-center mb-2" *ngIf="notification?.request_accept == 0">
+          <div class="px-2">
+            <button class="blackBtn2 mt-1" (click)="acceptRequest(notification)">Accept</button>
+          </div>
+          <div class="px-2">
+            <button class="blackBtn2 mt-1" (click)="declineRequest(notification)">Decline</button>
+          </div>
+        </span>
+
+      </a>
+          <a
+            *ngIf="notiDropDownItem?.length > 4"
+            href="javascript:void(0)"
+            class="d-flex justify-content-centertext-center"
+            (click)="clickONNotiTab()"
+          >
+            See More
+          </a>
+          <a *ngIf="notiDropDownItem?.length == 0 ||notiDropDownItem?.length < 1">No Notifications</a>
+        </div>
+      </div>
     </div>
   </div>
   <div id="box" #boxNav>
@@ -326,27 +473,6 @@
               </button>
             </div>
           </div>
-          <div class="item" *ngIf="signRegister == false">
-            <div
-              class="btnBox d-flex align-items-center justify-content-center flex-column"
-              [ngClass]="!signRegister ? 'btnTransformBack' : ''"
-            >
-              <div
-                class="item"
-                [routerLink]="['/profileSettings/chat/allUsers']"
-                (click)="navToggle()"
-              >
-                Chat
-              </div>
-              <div class="item" (click)="clickONNotiTab(); navToggle()">
-                Notification
-              </div>
-              <div class="item" [routerLink]="['/profileSettings']">
-                Settings
-              </div>
-              <button (click)="logout()" class="register mb-3">Logout</button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -356,6 +482,44 @@
       </div>
       <div id="items" class="text-center">
         <div class="itemsBox">
+          <div class="imageItem" [routerLink]="'/profileSettings'" (click)="navToggle()">
+            <img
+                *ngIf="
+                  (mydata?.my_profile?.gender == 'men' &&
+                    mydata?.my_profile?.image != null) ||
+                  (mydata?.my_profile?.gender == 'men' && profileImg != null)
+                "
+                src="{{ profileImg ? profileImg : 'assets/1x/boyDummy.jpg' }}"
+                alt=""
+              />
+              <img
+                *ngIf="
+                  (mydata?.my_profile?.gender == 'women' &&
+                    mydata?.my_profile?.image != null) ||
+                  (mydata?.my_profile?.gender == 'women' && profileImg != null)
+                "
+                src="{{ profileImg ? profileImg : 'assets/1x/girlDummy.jpg' }}"
+                alt=""
+              />
+              <img
+                *ngIf="
+                  (mydata?.my_profile?.gender == 'men' &&
+                    mydata?.my_profile?.image == null) ||
+                  (mydata?.my_profile?.gender == 'men' && profileImg == null)
+                "
+                src="assets/1x/boyDummy.jpg"
+                alt=""
+              />
+              <img
+                *ngIf="
+                  (mydata?.my_profile?.gender == 'women' &&
+                    mydata?.my_profile?.image == null) ||
+                  (mydata?.my_profile?.gender == 'women' && profileImg == null)
+                "
+                src="assets/1x/girlDummy.jpg"
+                alt=""
+              />
+          </div>
           <div
             class="item"
             [routerLink]="['/profileSettings/chat/allUsers']"

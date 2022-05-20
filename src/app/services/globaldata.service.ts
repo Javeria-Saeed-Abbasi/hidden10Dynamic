@@ -13,6 +13,7 @@ export class GlobaldataService {
   public static connectRequest:Subject <any> = new Subject <any>();
   public static disconnected:Subject <any> = new Subject <any>();
   public static firstMessage:Subject <any> = new Subject <any>();
+  public static messageSend:Subject <any> = new Subject <any>();
   public static callConnection:Subject <any> = new Subject <any>();
   public static hearts:Subject <any> = new Subject <any>();
   public static signin:Subject <any> = new Subject <any>();

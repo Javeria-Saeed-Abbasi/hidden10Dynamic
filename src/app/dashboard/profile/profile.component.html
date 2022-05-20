@@ -139,7 +139,7 @@
               <label *ngIf="profileDetail?.connection_status == 1 && profileDetail?.connection_dual == 0"
                 class="d-flex heartBtn"
               > Request Sent</label>
-              <div class="d-flex justify-content-center align-items-center" *ngIf="profileDetail?.connection_status == 0 && profileDetail?.user_connected == 2 && profileDetail?.connection_dual == 0">
+              <div class="d-flex justify-content-start flex-wrap align-items-center" *ngIf="profileDetail?.connection_status == 0 && profileDetail?.user_connected == 2 && profileDetail?.connection_dual == 0">
                 <button class="heartBtn btn" (click)="acceptRequest()" >Accept</button>
                 <button class="heartBtn btn" (click)="declineRequest()">Decline</button>
               </div>
